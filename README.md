@@ -8,7 +8,7 @@
 
 ## 1. Sobre o Projeto
 
-O **GovSim** é um jogo educativo de simulação econômica em turnos — com mecânica e estética de cartas inspiradas no jogo ***Reigns*** — no qual o jogador assume o papel de **Presidente da República** durante um mandato de **10 turnos**. A cada turno, um personagem (Ministro da Economia, Presidente do Banco Central, Ministro da Saúde, Ministra da Educação, Representante dos Trabalhadores, Empresária, Governador, Líder da Oposição, Chanceler ou Representante da População) apresenta uma carta com um dilema econômico ou político, e o jogador deve deslizar a carta para a esquerda (**Decreto A**) ou para a direita (**Decreto B**) — ou utilizar os botões laterais e atalhos de teclado.
+O **GovSim** é um jogo educativo de simulação econômica em turnos — com mecânica e estética de cartas inspiradas no jogo ***Reigns*** — no qual o jogador assume o papel de **Presidente da República** durante um mandato de **10, 12 ou 15 turnos**, conforme a dificuldade. A cada turno, um personagem (Ministro da Economia, Presidente do Banco Central, Ministro da Saúde, Ministra da Educação, Representante dos Trabalhadores, Empresária, Governador, Líder da Oposição, Chanceler ou Representante da População) apresenta uma carta com um dilema econômico ou político, e o jogador deve deslizar a carta para a esquerda (**Decreto A**) ou para a direita (**Decreto B**) — ou utilizar os botões laterais e atalhos de teclado.
 
 O simulador demonstra na prática:
 - **Política Fiscal e Política Monetária** (gastos públicos, tributação, subsídios e taxa básica de juros Selic).
@@ -100,3 +100,15 @@ A tela inicial apresenta três cartas de tutorial e seleção de dificuldade. A 
 Fontes WOFF2 (Geist Mono, licença SIL OFL em view/fonts/OFL.txt) e cenários SVG são locais; não há CDN. O jogo respeita prefers-reduced-motion e oferece setas, símbolos de alerta, foco visível e descrições textuais dos gráficos. Risco: caixa/aprovação abaixo de 20, PIB negativo ou inflação a partir de 20.
 
 Teste HTTP: com o servidor na porta 18765, execute node tests/server-sessoes.cjs. Verifica isolamento, cookie, header, códigos 400/405/409 e fonte local. Esse script usa apenas módulos nativos do Node para testes; o jogo continua Java/JS puro.
+
+
+## Arco de mandato e personagens recorrentes
+
+O jogo possui 38 cartas, com posse nas partidas normais, prestação de contas no último turno, manchetes entre decisões e seis cadeias ramificadas (12 consequências). Escolhas anteriores voltam ao gabinete depois de dois ou três turnos. Personagens lembram se você apoiou ou contrariou sua proposta, e a tela final reúne epílogo, eleição narrativa, gráfico, critérios de Estadista e lições citando decretos reais. A demo tem abertura original, consequências e fechamento reproduzíveis.
+
+Tudo funciona offline com Java 8, sem frameworks ou bibliotecas externas. As regras de vitória/derrota e as fórmulas econômicas permanecem as mesmas. Consulte REGRAS_ECONOMICAS.md para os gatilhos, limites da narrativa e calibração; RELATORIO_DE_TESTES.md registra as verificações e saídas de simulação.
+
+
+## Linguagem simples e ajuda de palavras
+
+Os decretos usam ações concretas e têm um resumo curto na prévia do Fácil e Médio. Consequências mostram qual decisão anterior as trouxe. Toque nos indicadores ou nos termos sublinhados para abrir explicações; Enter/Espaço e Esc também funcionam. O glossário em src/govsim/view/glossario.json pode ser ampliado sem alterar o código e funciona offline. A auditoria e o guia de redação estão em docs/AUDITORIA_LINGUAGEM.md e docs/GUIA_DE_ESTILO.md.

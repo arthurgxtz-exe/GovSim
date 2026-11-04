@@ -1,0 +1,405 @@
+[
+  {
+    "id": "pib",
+    "termo": "PIB",
+    "aliases": [],
+    "definicao": "É o valor do que o país produz; aqui, o número mostra se a produção cresce ou diminui.",
+    "comoMuda": "Produzir e vender mais ajuda a subir; fábricas paradas e menos compras fazem cair.",
+    "proibidoEmTituloDialogoTag": true
+  },
+  {
+    "id": "caixa",
+    "termo": "Caixa",
+    "aliases": [],
+    "definicao": "É o dinheiro disponível para o governo pagar as contas.",
+    "comoMuda": "Impostos e economia de gastos ajudam a aumentar; despesas e pagamento de dívidas reduzem.",
+    "proibidoEmTituloDialogoTag": false
+  },
+  {
+    "id": "aprovacao",
+    "termo": "Aprovação",
+    "aliases": [],
+    "definicao": "É a parcela das pessoas que apoia o governo.",
+    "comoMuda": "Ajuda às famílias e emprego podem aumentar o apoio; preços altos e medidas impopulares podem reduzir.",
+    "proibidoEmTituloDialogoTag": false
+  },
+  {
+    "id": "inflacao",
+    "termo": "Inflação",
+    "aliases": [
+      "inflações"
+    ],
+    "definicao": "É quando os preços sobem e o mesmo dinheiro compra menos.",
+    "comoMuda": "Falta de produtos e mais gente querendo comprar podem aumentar os preços; mais oferta pode conter a alta.",
+    "proibidoEmTituloDialogoTag": true
+  },
+  {
+    "id": "selic",
+    "termo": "Selic",
+    "aliases": [],
+    "definicao": "É o nome dos juros definidos pelo Banco Central, que influenciam o custo dos empréstimos.",
+    "comoMuda": "Uma decisão do governo pode subir ou baixar esses juros; o efeito no crédito e nos preços leva tempo.",
+    "proibidoEmTituloDialogoTag": true
+  },
+  {
+    "id": "juros",
+    "termo": "Juros",
+    "aliases": [],
+    "definicao": "É o valor cobrado para emprestar dinheiro.",
+    "comoMuda": "Juros maiores tornam o empréstimo mais caro; juros menores facilitam pegar dinheiro emprestado.",
+    "proibidoEmTituloDialogoTag": false
+  },
+  {
+    "id": "tarifa",
+    "termo": "Tarifa",
+    "aliases": [
+      "tarifas",
+      "tarifário",
+      "tarifária"
+    ],
+    "definicao": "É o preço cobrado por um serviço ou, em algumas situações, um imposto sobre uma compra de fora.",
+    "comoMuda": "A conta pode subir quando prestar o serviço fica mais caro.",
+    "proibidoEmTituloDialogoTag": true
+  },
+  {
+    "id": "superaquecimento",
+    "termo": "Superaquecimento",
+    "aliases": [],
+    "definicao": "É quando as compras crescem mais rápido que a quantidade de produtos à venda.",
+    "comoMuda": "Com mais procura do que produtos, os preços podem subir.",
+    "proibidoEmTituloDialogoTag": true
+  },
+  {
+    "id": "subsidio",
+    "termo": "Subsídio",
+    "aliases": [
+      "subsídios",
+      "subsidiar"
+    ],
+    "definicao": "É quando o governo paga parte de uma conta para ajudar alguém.",
+    "comoMuda": "A ajuda alivia a conta de quem recebe e usa dinheiro do governo.",
+    "proibidoEmTituloDialogoTag": true
+  },
+  {
+    "id": "fiscal",
+    "termo": "Fiscal",
+    "aliases": [
+      "fiscais"
+    ],
+    "definicao": "Nos textos econômicos, é o que trata do dinheiro recebido e gasto pelo governo.",
+    "comoMuda": "Receber menos ou gastar mais deixa menos dinheiro disponível.",
+    "proibidoEmTituloDialogoTag": true
+  },
+  {
+    "id": "monetaria",
+    "termo": "Monetária",
+    "aliases": [
+      "monetário"
+    ],
+    "definicao": "É uma palavra usada para decisões sobre juros e dinheiro.",
+    "comoMuda": "Essas decisões mudam o custo de pegar dinheiro emprestado.",
+    "proibidoEmTituloDialogoTag": true
+  },
+  {
+    "id": "hiato",
+    "termo": "Hiato do produto",
+    "aliases": [],
+    "definicao": "É a diferença entre o que o país produz e o que poderia produzir.",
+    "comoMuda": "Máquinas e trabalhadores sem atividade indicam espaço para produzir mais.",
+    "proibidoEmTituloDialogoTag": true
+  },
+  {
+    "id": "anticiclica",
+    "termo": "Anticíclica",
+    "aliases": [
+      "anticíclico"
+    ],
+    "definicao": "É uma ação que tenta ajudar quando as vendas e o emprego caem.",
+    "comoMuda": "Pode exigir que o governo gaste dinheiro durante uma crise.",
+    "proibidoEmTituloDialogoTag": true
+  },
+  {
+    "id": "crowdingout",
+    "termo": "Crowding out",
+    "aliases": [],
+    "definicao": "É quando o governo toma dinheiro emprestado e dificulta empréstimos para empresas.",
+    "comoMuda": "Isso pode acontecer quando falta dinheiro disponível para todos.",
+    "proibidoEmTituloDialogoTag": true
+  },
+  {
+    "id": "absorcao",
+    "termo": "Absorção fiscal",
+    "aliases": [],
+    "definicao": "É uma forma técnica de dizer que o governo paga a conta.",
+    "comoMuda": "O gasto reduz o dinheiro disponível para outras necessidades.",
+    "proibidoEmTituloDialogoTag": true
+  },
+  {
+    "id": "racionamento",
+    "termo": "Racionamento",
+    "aliases": [],
+    "definicao": "É um limite para quanto cada pessoa ou empresa pode consumir.",
+    "comoMuda": "É usado quando um produto ou serviço não dá para atender todo mundo.",
+    "proibidoEmTituloDialogoTag": true
+  },
+  {
+    "id": "condicionalidades",
+    "termo": "Condicionalidades",
+    "aliases": [
+      "contrapartidas"
+    ],
+    "definicao": "São compromissos exigidos para receber ajuda.",
+    "comoMuda": "Quem pede a ajuda precisa cumprir o combinado.",
+    "proibidoEmTituloDialogoTag": true
+  },
+  {
+    "id": "estabilizacao",
+    "termo": "Estabilização",
+    "aliases": [],
+    "definicao": "É a tentativa de evitar mudanças muito bruscas nos preços ou na produção.",
+    "comoMuda": "O governo procura diminuir os altos e baixos da economia.",
+    "proibidoEmTituloDialogoTag": true
+  },
+  {
+    "id": "desoneracao",
+    "termo": "Desoneração",
+    "aliases": [
+      "desonerar"
+    ],
+    "definicao": "É reduzir ou retirar um imposto.",
+    "comoMuda": "Quem paga o imposto gasta menos, e o governo recebe menos dinheiro.",
+    "proibidoEmTituloDialogoTag": true
+  },
+  {
+    "id": "contingenciamento",
+    "termo": "Contingenciamento",
+    "aliases": [
+      "contingenciar"
+    ],
+    "definicao": "É adiar ou suspender gastos previstos pelo governo.",
+    "comoMuda": "Preserva dinheiro agora, mas pode atrasar serviços.",
+    "proibidoEmTituloDialogoTag": true
+  },
+  {
+    "id": "aliquota",
+    "termo": "Alíquota",
+    "aliases": [
+      "alíquotas"
+    ],
+    "definicao": "É a parte do preço ou da renda cobrada como imposto.",
+    "comoMuda": "Uma parte maior aumenta o imposto pago.",
+    "proibidoEmTituloDialogoTag": true
+  },
+  {
+    "id": "superavit",
+    "termo": "Superávit",
+    "aliases": [],
+    "definicao": "É o dinheiro que sobra quando o governo recebe mais do que gasta.",
+    "comoMuda": "Gastar menos ou receber mais ajuda a formar essa sobra.",
+    "proibidoEmTituloDialogoTag": true
+  },
+  {
+    "id": "austeridade",
+    "termo": "Austeridade",
+    "aliases": [],
+    "definicao": "É uma política de cortar gastos ou aumentar impostos para melhorar as contas.",
+    "comoMuda": "Pode preservar dinheiro e reduzir serviços ou o apoio ao governo.",
+    "proibidoEmTituloDialogoTag": true
+  },
+  {
+    "id": "macroeconomia",
+    "termo": "Macroeconômico",
+    "aliases": [
+      "macroeconômica"
+    ],
+    "definicao": "É o que trata da economia do país como um todo.",
+    "comoMuda": "Inclui preços, produção e emprego.",
+    "proibidoEmTituloDialogoTag": true
+  },
+  {
+    "id": "endogeno",
+    "termo": "Endógeno",
+    "aliases": [
+      "endógena",
+      "endógenos",
+      "endógenas"
+    ],
+    "definicao": "É um efeito causado por mudanças dentro do próprio jogo.",
+    "comoMuda": "Por exemplo, a produção maior pode aumentar o dinheiro recebido em impostos.",
+    "proibidoEmTituloDialogoTag": true
+  },
+  {
+    "id": "demanda",
+    "termo": "Demanda agregada",
+    "aliases": [],
+    "definicao": "É o total de compras feitas no país.",
+    "comoMuda": "Quando pessoas, empresas e governo compram mais, esse total aumenta.",
+    "proibidoEmTituloDialogoTag": true
+  },
+  {
+    "id": "insumo",
+    "termo": "Insumos",
+    "aliases": [
+      "insumo"
+    ],
+    "definicao": "São materiais usados para produzir, como peças, combustível e sementes.",
+    "comoMuda": "Materiais mais caros aumentam o custo de produzir.",
+    "proibidoEmTituloDialogoTag": true
+  },
+  {
+    "id": "liquidez",
+    "termo": "Liquidez",
+    "aliases": [],
+    "definicao": "É ter dinheiro disponível para pagar contas sem demora.",
+    "comoMuda": "Dinheiro preso em algo difícil de vender não ajuda a pagar uma conta hoje.",
+    "proibidoEmTituloDialogoTag": true
+  },
+  {
+    "id": "solvencia",
+    "termo": "Solvência",
+    "aliases": [],
+    "definicao": "É a capacidade de pagar as contas e as dívidas.",
+    "comoMuda": "Dívidas grandes e falta de dinheiro podem prejudicar essa capacidade.",
+    "proibidoEmTituloDialogoTag": true
+  },
+  {
+    "id": "ortodoxo",
+    "termo": "Ortodoxo",
+    "aliases": [
+      "ortodoxa"
+    ],
+    "definicao": "Nesse contexto, é uma gestão que aposta em cortar gastos e controlar preços.",
+    "comoMuda": "Pode deixar menos espaço para gastar com crescimento e serviços.",
+    "proibidoEmTituloDialogoTag": true
+  },
+  {
+    "id": "tradeoff",
+    "termo": "Trade-off",
+    "aliases": [
+      "trade-offs"
+    ],
+    "definicao": "É uma escolha em que ganhar algo exige abrir mão de outra coisa.",
+    "comoMuda": "Por exemplo, ajudar agora pode deixar menos dinheiro guardado.",
+    "proibidoEmTituloDialogoTag": true
+  },
+  {
+    "id": "arrecadacao",
+    "termo": "Arrecadação",
+    "aliases": [],
+    "definicao": "É o dinheiro que o governo recebe, principalmente em impostos.",
+    "comoMuda": "Mais vendas e trabalho podem aumentar esse dinheiro; menos atividade pode reduzir.",
+    "proibidoEmTituloDialogoTag": true
+  },
+  {
+    "id": "cambio",
+    "termo": "Câmbio",
+    "aliases": [
+      "cambial"
+    ],
+    "definicao": "É quanto custa trocar o dinheiro do país por outra moeda.",
+    "comoMuda": "Se a moeda de fora fica mais cara, comprar produtos estrangeiros custa mais.",
+    "proibidoEmTituloDialogoTag": false
+  },
+  {
+    "id": "federalismo",
+    "termo": "Federalismo",
+    "aliases": [],
+    "definicao": "É a divisão de responsabilidades entre governo nacional, estados e cidades.",
+    "comoMuda": "Cada parte precisa de dinheiro para cumprir suas tarefas.",
+    "proibidoEmTituloDialogoTag": false
+  },
+  {
+    "id": "tesouro",
+    "termo": "Tesouro",
+    "aliases": [],
+    "definicao": "É uma forma de falar do dinheiro e das contas do governo.",
+    "comoMuda": "Receitas trazem dinheiro; despesas usam esse dinheiro.",
+    "proibidoEmTituloDialogoTag": true
+  },
+  {
+    "id": "patronais",
+    "termo": "Patronais",
+    "aliases": [],
+    "definicao": "É o que se refere às empresas que contratam trabalhadores.",
+    "comoMuda": "Em linguagem comum, diga das empresas.",
+    "proibidoEmTituloDialogoTag": true
+  },
+  {
+    "id": "recolocacao",
+    "termo": "Recolocação",
+    "aliases": [],
+    "definicao": "É a busca de outro emprego por quem perdeu o trabalho.",
+    "comoMuda": "Cursos e ajuda para procurar vagas podem facilitar essa busca.",
+    "proibidoEmTituloDialogoTag": true
+  },
+  {
+    "id": "requalificacao",
+    "termo": "Requalificação",
+    "aliases": [
+      "requalificar"
+    ],
+    "definicao": "É aprender uma profissão ou habilidade nova para trabalhar.",
+    "comoMuda": "Pode ajudar quando máquinas substituem um tipo de trabalho.",
+    "proibidoEmTituloDialogoTag": true
+  },
+  {
+    "id": "credor",
+    "termo": "Credor",
+    "aliases": [
+      "credores"
+    ],
+    "definicao": "É quem emprestou dinheiro e espera receber de volta.",
+    "comoMuda": "Pode pedir mais garantias quando teme não receber.",
+    "proibidoEmTituloDialogoTag": false
+  },
+  {
+    "id": "recessao",
+    "termo": "Recessão",
+    "aliases": [],
+    "definicao": "É um período em que a produção e as vendas do país diminuem.",
+    "comoMuda": "As empresas podem produzir menos e deixar de contratar.",
+    "proibidoEmTituloDialogoTag": false
+  },
+  {
+    "id": "repasse",
+    "termo": "Repasse",
+    "aliases": [
+      "repassar"
+    ],
+    "definicao": "É cobrar de outra pessoa um aumento de custo que chegou antes.",
+    "comoMuda": "Por exemplo, o custo maior da energia pode chegar à conta de luz.",
+    "proibidoEmTituloDialogoTag": true
+  },
+  {
+    "id": "governabilidade",
+    "termo": "Governabilidade",
+    "aliases": [],
+    "definicao": "É a capacidade de manter apoio suficiente para continuar governando.",
+    "comoMuda": "As decisões do governo e as condições do país influenciam esse resultado.",
+    "proibidoEmTituloDialogoTag": true
+  },
+  {
+    "id": "insolvencia",
+    "termo": "Insolvência",
+    "aliases": [],
+    "definicao": "É não conseguir pagar as contas e dívidas.",
+    "comoMuda": "As decisões do governo e as condições do país influenciam esse resultado.",
+    "proibidoEmTituloDialogoTag": true
+  },
+  {
+    "id": "expansionista",
+    "termo": "Expansionista",
+    "aliases": [],
+    "definicao": "É uma medida que tenta aumentar as compras, a produção ou os gastos.",
+    "comoMuda": "As decisões do governo e as condições do país influenciam esse resultado.",
+    "proibidoEmTituloDialogoTag": true
+  },
+  {
+    "id": "contracionista",
+    "termo": "Contracionista",
+    "aliases": [],
+    "definicao": "É uma medida que tenta diminuir o ritmo das compras e dos gastos.",
+    "comoMuda": "As decisões do governo e as condições do país influenciam esse resultado.",
+    "proibidoEmTituloDialogoTag": true
+  }
+]

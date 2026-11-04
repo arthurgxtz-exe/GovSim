@@ -300,3 +300,62 @@ DIFICIL esperta 33.63   1.49  59.98   1.50   0.09   3.32 |   36.25  16.36  -0.07
 ```
 
 Resultado do turno conferido em desktop e 390×844: painel sem rolagem; explicação expandida com rolagem interna e botão de avanço visível. Recursos e sons offline, sem dependências externas.
+
+
+## Classificação e categorias — 04/11/2026
+
+Compilação --release 8 e --verificar aprovados. Testes Node de comunicação/arraste/áudio/categorias e sessões/HTTP aprovados. Limiares inclusivos, vitória obrigatória, ordem de mérito e categoria das 24 cartas cobertos. Todos os campos do catálogo exceto categoria comparados com o catálogo anterior: idênticos, inclusive tema e efeitos. A fixture das 14 cartas foi atualizada somente no campo categoria, preservando os tipos decimais.
+
+Simulação com 20.000 partidas por estratégia/dificuldade e sementes idênticas. Comparação automatizada de 18 linhas: vitória, cada derrota e médias finais de todos os indicadores idênticas. Somente as colunas de classificação diferem. Saídas completas em tests/resultados/estadista-antes.txt e estadista-depois.txt.
+
+Estadista entre vencedoras para a esperta: 4,10% / 4,35% / 2,50%. Estadista entre todas as partidas para a aleatória: 0,90% / 1,00% (valor exato 0,995%) / 0,16%. Os denominadores são intencionalmente explícitos: entre vencedoras, a aleatória apresenta 1,27% / 2,89% / 1,56%; não alegamos menos de 1% nessa segunda base.
+
+Coleta vencedora reproduzível: compilar tests/CalibrarEstadista.java com --release 8 -cp bin -d bin e executar java -Xmx256m -cp bin CalibrarEstadista arquivo.csv. Usa as estratégias reais do Simulador via reflexão; não duplica a heurística.
+
+
+## Continuação da fase 5 e entrega da fase 6 — 04/11/2026
+
+Causa da falha: a definição de h desapareceu ao remover as lições genéricas, mas o resumo acessível do gráfico ainda usava h.map. Foi restaurado o histórico local e a função do gráfico passou a aceitar histórico ausente/vazio. As lições antigas não foram reintroduzidas. Todas as referências a h no resultado, posse e Crônicas foram revisadas: as demais pertencem aos callbacks/loops locais.
+
+O teste Node executa as funções reais de renderização em um DOM limitado aos IDs do index.html, com canvas instrumentado. São 108 estados: 3 dificuldades × 6 status (vitória, caixa, aprovação, ambos, hiperinflação e depressão) × 3 históricos (vazio, 2 turnos e mandato completo) × 2 conjuntos de lições (registradas/vazias). Cobre gráfico, epílogo, classificação, critérios faltantes de Estadista e lições, além de posse, resultado e Crônicas. Falha em qualquer exceção, console.error, ID inexistente ou coordenada de gráfico inválida. Inclui também a classificação Estadista atingida. Sem lições, mostra uma mensagem de ausência em vez de fabricar aprendizado.
+
+Validação prática: demo de 4 turnos concluída no navegador, gráfico e resumo acessível desenhados, epílogo e critérios mostrados; console de erros vazio. Compilação Java --release 8, --verificar, node --check, tests/front-comunicacao.cjs e tests/server-sessoes.cjs aprovados.
+
+### Simulações por fase
+
+Cada fase possui saída completa em tests/resultados/arco-faseN-simulacao.txt, com N de 1 a 6, 20.000 partidas por estratégia/dificuldade. Fase 2 idêntica à 1; fase 4 idêntica à 3; fase 5 idêntica à 4: cadeias sem conteúdo, lembranças e epílogo não introduzem alterações econômicas por si. O conteúdo das fases 1 e 3 mudou a distribuição das partidas, motivando a calibração permitida da fase 6.
+
+A fase 6 alterou apenas benefício/custo no enum. Limiares de classificação, valores dos decretos, fórmulas, status e rotas da API não foram alterados por essa calibração. As 24 cartas-base tiveram decretos, efeitos atrasados e tema comparados ao HEAD do Git: idênticos.
+
+| Dificuldade | Aleatória antes | Aleatória depois | Meta | Estadista da esperta entre vitórias |
+|---|---:|---:|---:|---:|
+| Fácil | 82.11% | 69.56% | 70% | 5.03% |
+| Médio | 47.88% | 34.89% | 35% | 4.78% |
+| Difícil | 14.73% | 10.12% | 10% | 1.71% |
+
+Percentual de Estadista acima usa somente partidas vencedoras. O simulador também informa a porcentagem sobre todas as partidas. Os arquivos completos contêm todas as seis estratégias, causas de derrota e médias finais.
+
+### Arquivos e telas
+
+Implementação do arco: model/Estado.java, model/Evento.java, model/NarrativaMandato.java; engine/BancoEventos.java, engine/MotorEconomico.java, engine/eventos.json; server/JsonUtil.java; view/index.html, view/style.css, view/app.js. Calibração: model/Dificuldade.java. Verificações: engine/VerificacaoNarrativa.java, engine/VerificacaoEconomica.java, engine/VerificacaoConteudo.java, tests/front-comunicacao.cjs, tests/server-sessoes.cjs, tests/PilotoArco.java e resultados por fase. Documentação: README.md, REGRAS_ECONOMICAS.md e este relatório.
+
+Inicial: descrição e tutorial preservados. Partida: posse com herança, personagens com memória e consequências das escolhas. Resultado: manchete entre turnos. Última carta: prestação de contas sem efeitos próprios. Final: epílogo de 3–4 frases, eleição ilustrativa, gráfico, critérios de Estadista e lições rastreáveis. Crônicas: histórico preservado.
+
+Simplificações: uma consequência por oportunidade, ordem do catálogo resolve empates, janelas podem expirar e o encerramento tem prioridade. Lembranças só alteram texto; a fala de retorno usa uma lembrança e uma frase completa do problema. A eleição usa aprovação como referência, sem simular um eleitorado independente. O epílogo seleciona turnos por impacto agregado, que inclui efeitos anteriores e IA.
+
+
+## Linguagem simples e clareza narrativa — quatro fases
+
+Fase 1: auditoria anterior às mudanças, 38 cartas e textos gerados; 365 trechos e sugestões em docs/AUDITORIA_LINGUAGEM.md. Snapshot do catálogo anterior em tests/fixtures/linguagem-antes.json. Nenhum arquivo do jogo alterado durante a auditoria.
+
+Fase 2: 76 títulos com até 5 palavras; 76 resumos emPoucasPalavras com até 14; tags em lista curta; diálogos com até 20 palavras. Conceitos e lições explicam termos na própria frase. --verificar passou a carregar as proibições do glossário, rejeitando título, diálogo ou tag com jargão; teste negativo confirma a rejeição. O resumo é preservado ao inverter A/B e serializado nos dois níveis de visibilidade da API.
+
+Fase 3: selos de origem citam o turno e o título realmente escolhido; memória cita o turno da última decisão do personagem. Posse em 3 frases, fechamento explicado, manchetes de até 14 palavras e epílogo começando pelo decreto mais marcante.
+
+Fase 4: glossario.json central com definições e causas de subida/queda. Indicadores e Selic abrem ajuda; termos restantes são marcados automaticamente. Testes de clique/toque, Enter, Espaço, Esc, retorno de foco, limites de palavras, dados numéricos, aliases e extensão por arquivo aprovados. API serve o glossário offline.
+
+Validação em cada fase: --verificar, tests/front-comunicacao.cjs, tests/server-sessoes.cjs e --simular 20000. Sintaxe de app.js validada. Saídas completas linguagem-fase1-simulacao.txt até linguagem-fase4-simulacao.txt são idênticas byte a byte: vitórias, derrotas, médias e Estadista preservados em todas as 18 combinações. Números, IDs, categorias, temas, favoritos e gatilhos comparados ao snapshot: idênticos.
+
+Conferência no navegador: posse, resumo e chips sem corte; ajuda de PIB e Inflação por clique/Enter, fechamento por Esc; consequência da Helena com origem no turno 2; clique em juros dentro do selo abre a ajuda sem assinar decreto; console sem erros.
+
+Simplificações: glossário reconhece termos e aliases cadastrados, não tenta adivinhar toda palavra difícil. A ajuda é uma pequena janela modal acessível, em vez de uma caixa flutuante dependente da posição do cursor. Nomes das classificações usados para identificar resultados foram preservados; as explicações ao redor foram simplificadas. As regras de vitória, economia, dificuldade e sorteio não mudaram.

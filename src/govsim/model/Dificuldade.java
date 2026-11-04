@@ -2,9 +2,9 @@ package govsim.model;
 
 /** Parâmetros de partida e balanceamento, calibrados pelo Simulador. */
 public enum Dificuldade {
-    FACIL("Fácil", 10, 100, 60, 1.0, 1.17, 0, 0.5, true),
-    MEDIO("Médio", 12, 100, 60, 0.9, 1.18, 0.55, 1.0, false),
-    DIFICIL("Difícil", 15, 70, 50, 0.95, 1.035, 0.30, 1.5, false);
+    FACIL("Fácil", 10, 100, 60, 1.30, 1.38, 0, 0.5, true),
+    MEDIO("Médio", 12, 100, 60, 1.10, 1.38, 0.55, 1.0, false),
+    DIFICIL("Difícil", 15, 70, 50, 0.95, 1.08, 0.30, 1.5, false);
 
     private final String nome;
     private final int totalTurnos;

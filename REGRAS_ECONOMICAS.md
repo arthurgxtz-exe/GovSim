@@ -15,13 +15,13 @@ Os valores abaixo são os parâmetros finais após calibração. Substituem os v
 
 | Nível | Turnos | Caixa | Aprovação | Benefício | Custo | Ruído | IA | Prévia |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |
-| FACIL | 10 | 100 | 60 | 1,00 | 1,17 | 0 | 0,5 | números |
-| MEDIO | 12 | 100 | 60 | 0,90 | 1,18 | 0,55 | 1,0 | setas |
-| DIFICIL | 15 | 70 | 50 | 0,95 | 1,035 | 0,30 | 1,5 | setas |
+| FACIL | 10 | 100 | 60 | 1,30 | 1,38 | 0 | 0,5 | pontos e números |
+| MEDIO | 12 | 100 | 60 | 1,10 | 1,38 | 0,55 | 1,0 | pontos de intensidade |
+| DIFICIL | 15 | 70 | 50 | 0,95 | 1,08 | 0,30 | 1,5 | sem prévia |
 
 Para cada efeito direto ou atrasado de carta: `efeito = base × multiplicador × (1 + U(-ruído, +ruído))`. Benefícios são aumentos de caixa/aprovação/PIB e reduções de inflação; custos são os sinais contrários. Juros são um instrumento: sua alteração direta não recebe classificação de benefício/custo. O canal defasado da Selic recebe o ajuste por indicador. O ruído usa Random, independente por componente, e vale zero em demonstração. A IA tem seus deltas multiplicados pelo fator IA, sem novo ruído. Relações endógenas não recebem esses multiplicadores.
 
-Efeitos atrasados são ajustados e arredondados ao agendar, sem novo sorteio ou multiplicação na maturação. A prévia usa os valores base da carta (estimativas), números no Fácil e direção nos demais níveis. Indicadores realizados e explicações após a decisão continuam numéricos para análise didática.
+Efeitos atrasados são ajustados e arredondados ao agendar, sem novo sorteio ou multiplicação na maturação. A prévia usa os valores base da carta (estimativas), números no Fácil, pontos neutros de intensidade no Médio e nenhuma prévia no Difícil. Indicadores realizados e explicações após a decisão continuam numéricos para análise didática.
 
 POST /api/iniciar exige `{"modo":"normal","dificuldade":"DIFICIL","turnos":0}`. Turnos=0 usa o padrão do nível; valores explícitos devem estar entre 3 e 24. Campos ausentes, tipos errados, valores inválidos ou JSON malformado retornam HTTP 400 sem alterar a partida.
 
@@ -37,7 +37,19 @@ POST /api/iniciar exige `{"modo":"normal","dificuldade":"DIFICIL","turnos":0}`. 
 
 Depois dos efeitos e limites, a prioridade é: DERROTA_AMBOS, DERROTA_CAIXA, DERROTA_APROVACAO, DERROTA_HIPERINFLACAO (inflação >=25), DERROTA_DEPRESSAO (PIB <−3 por dois turnos consecutivos), vitória ao completar o mandato. As duas derrotas macroeconômicas só valem em MEDIO/DIFICIL. PIB >=−3 zera o contador; reiniciar também o zera.
 
-Estadista exige vitória, caixa >=85, inflação <=5, PIB >=2 e aprovação >=75. A combinação mantém a distinção rara, mas alcançável; o simulador informa sua frequência entre todas as partidas.
+Estadista exige vitória e quatro limites inclusivos, calibrados nos estados finais das partidas vencedoras (20.000 por estratégia/dificuldade, sementes 20261103 e 781):
+
+| Dificuldade | Caixa mínimo | Aprovação mínima | PIB mínimo | Inflação máxima |
+|---|---:|---:|---:|---:|
+| Fácil | 30 | 98 | 5 | 12 |
+| Médio | 35 | 85 | 1 | 11 |
+| Difícil | 25 | 95 | 0,5 | 8,5 |
+
+São critérios relativos por dificuldade, sem alterar parâmetros de Dificuldade, trajetória econômica ou condições de vitória. O limite de inflação não equivale à meta de 4%: a classificação não declara estabilidade ideal de preços. Caixa mínimo menor exige apoio popular muito alto e um piso de atividade.
+
+A ordem de avaliação das vitórias é: Estadista; Gestão Equilibrada (caixa >=20, aprovação >=35, PIB >=0,5 e inflação até o limite da dificuldade); Pressão Inflacionária (acima desse limite); Baixo Crescimento (PIB <0,5); Reservas Frágeis (restante). Uma derrota nunca recebe Estadista. A interface usa o título exato da classificação, sem confundir uma referência textual a Estadista com o selo de excelência.
+
+O simulador mantém Estadista% sobre todas as partidas e acrescenta Estadista/vitórias%, cujo denominador exclui as derrotas (zero quando não há vitórias). As metas da esperta são avaliadas entre vencedoras; o limite de 1% para a aleatória usa a coluna histórica sobre todas as partidas. Assim, bases distintas ficam explícitas.
 
 ### Simulação reproduzível
 
@@ -231,3 +243,60 @@ Mesmas sementes e 20000 partidas por estratégia/dificuldade (360000 no total):
 | DIFICIL | 10,53% | 9,93% | ~10% | 39,75% | 33,63% |
 
 As metas desta rodada são para a estratégia aleatória. A esperta perdeu eficiência com a confiança corrigida; esses resultados não representam manutenção das antigas metas dessa estratégia. Saídas completas em simulacao-antes.txt e simulacao-20000.txt.
+
+
+### Categorias de apresentação e temas do sorteio
+
+As 24 cartas usam as categorias FISCAL, PRECO, CAMBIO, DESEMPREGO, ENERGIA, SUPERAQUECIMENTO, EDUCACAO, SAUDE, COMERCIO e FEDERALISMO. O front exibe Fiscal, Preço, Câmbio, Desemprego, Energia, Superaquecimento, Educação, Saúde, Comércio e Federalismo.
+
+O campo tema permanece idêntico: os pesos de BancoEventos continuam usando PRECO, FISCAL, DESEMPREGO e SUPERAQUECIMENTO. Categoria não participa do cálculo. Os cenários são escolhidos explicitamente: Saúde→saúde; Energia→energia; Educação→educação; Desemprego→desemprego; Preço/Superaquecimento→preço; Câmbio/Comércio→câmbio; Fiscal/Federalismo→fiscal, todos locais.
+
+
+## Arco de mandato (fases 1–6)
+
+O catálogo contém 38 cartas: as 24 anteriores, posse, prestação de contas e 12 consequências. O turno 1 normal é a posse. A demo mantém a abertura original. O último turno de ambos os modos é a prestação de contas, com decretos sem efeitos próprios; efeitos pendentes, inércia, arrecadação e IA continuam operando normalmente. A pergunta final não muda vitória/derrota. Os totais permanecem 10/12/15; na API, as rotas e campos anteriores permanecem válidos.
+
+### Cadeias
+
+O campo opcional gatilho contém origem, decreto (código original A/B), atrasoMin e atrasoMax. A escolha original é guardada antes de considerar a posição visual: uma carta invertida não troca o significado do gatilho. Uma consequência só é elegível se a origem foi decidida com o decreto certo e o turno atual menos o turno de origem está na janela inclusiva. As cartas novas usam janela de 2 a 3 turnos.
+
+Posse e encerramento são reservados. Nos outros turnos, consequências elegíveis têm prioridade, em ordem do catálogo; no mínimo dois turnos separam aparições. Consequências nunca entram no sorteio comum e nunca repetem. Uma janela que expira sem seleção é perdida. A demo usa a mesma elegibilidade e ordem estável, sem sorteio. Não há aumento do mandato nem garantia de ver todas as cadeias numa partida.
+
+### Memória, manchetes e epílogo
+
+Cada personagem tem contadores de seguiu/ignorou e última escolha original. O favorito é definido por decretoFavorito no catálogo. falaRetorno possui variantes seguiu e ignorou. No retorno, uma lembrança é combinada com a primeira frase completa do problema, sempre com até 20 palavras; não há reticências cortando a frase. A memória é isolada por sessão, limpa ao reiniciar e não altera IA, pesos, efeitos ou Random.
+
+Existem 15 manchetes determinísticas. A prioridade é inflação >8, caixa <30, aprovação <35, PIB negativo e contexto sem alerta dominante; cada grupo alterna três textos pelo número de decisões.
+
+O epílogo usa até três decisões reais, ordenadas por abs(Δcaixa)/10 + abs(Δaprovação)/8 + abs(ΔPIB) + abs(Δinflação). Essa pontuação serve apenas à narrativa. Empates preservam a ordem do histórico. O texto tem 3–4 frases, distingue vitória/derrota e cita os turnos e títulos dos decretos. As 2–3 lições citam as mesmas escolhas; com histórico insuficiente, usam apenas decisões executadas. O saldo atribuído ao turno inclui reações e efeitos anteriores.
+
+A eleição é uma projeção narrativa pela aprovação final: >=60, reeleição com folga; >=50, por pouco; abaixo de 50, derrota nas urnas. A margem ilustrativa é abs(2×aprovação−100) pontos. Mandato interrompido não concede reeleição. Isso não altera o status de vitória: concluir o mandato e vencer a eleição são descrições distintas.
+
+A tela final mostra também os critérios faltantes de Estadista. Se não há lições registradas, informa a ausência sem fabricar lições genéricas. O gráfico e seu resumo acessível usam o histórico real, com suporte a histórico vazio.
+
+### Recalibração do arco
+
+A fase 6 altera exclusivamente os multiplicadores de benefício/custo do enum: Fácil 1,00/1,17 → 1,30/1,38; Médio 0,90/1,18 → 1,10/1,38; Difícil 0,95/1,035 → 0,95/1,08. Valores iniciais, duração, ruído, fator IA, fórmulas e efeitos do catálogo não foram alterados nessa fase. As saídas de 20 mil partidas por estratégia/dificuldade estão em tests/resultados/arco-fase5-simulacao.txt (antes) e arco-fase6-simulacao.txt (depois).
+
+| Origem | Decreto original | Consequência | Personagem |
+|---|---|---|---|
+| Fuga de Capitais e Disparada do Dólar | A | Crédito depois do aperto | Dra. Helena Campos |
+| Fuga de Capitais e Disparada do Dólar | B | Importadores voltam ao balcão | Dra. Helena Campos |
+| Disparo no Preço da Cesta Básica | A | A safra precisa de espaço | Dona Maria Aparecida |
+| Disparo no Preço da Cesta Básica | B | Feirantes cobram abastecimento | Dona Maria Aparecida |
+| Reservatórios Secos e Risco de Apagão | A | Térmicas cobram renovação | Eng. Roberto Albuquerque |
+| Reservatórios Secos e Risco de Apagão | B | Indústria pede previsibilidade | Eng. Roberto Albuquerque |
+| Alerta no Tesouro e Risco da Dívida | A | Serviços sob revisão | Dr. Celso Montenegro |
+| Alerta no Tesouro e Risco da Dívida | B | Credores pedem garantias | Dr. Celso Montenegro |
+| Barreiras Externas e Queda nas Exportações | A | Exportadores disputam crédito | Beatriz Vasconcelos |
+| Barreiras Externas e Queda nas Exportações | B | Fornecedores sob nova tarifa | Beatriz Vasconcelos |
+| Greve Geral do Funcionalismo Público | A | Acordo salarial em cobrança | Carlos Eduardo "Carlão" |
+| Greve Geral do Funcionalismo Público | B | Negociação após o congelamento | Carlos Eduardo "Carlão" |
+
+Resultado final da recalibração (20.000 partidas por estratégia/dificuldade):
+
+| Dificuldade | Aleatória antes | Aleatória depois | Meta | Estadista da esperta entre vitórias |
+|---|---:|---:|---:|---:|
+| Fácil | 82.11% | 69.56% | 70% | 5.03% |
+| Médio | 47.88% | 34.89% | 35% | 4.78% |
+| Difícil | 14.73% | 10.12% | 10% | 1.71% |

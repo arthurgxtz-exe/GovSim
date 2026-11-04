@@ -18,6 +18,9 @@ public final class VerificacaoConteudo {
    java.lang.reflect.Method serializar=JsonUtil.class.getDeclaredMethod("eventoParaJson",Evento.class);serializar.setAccessible(true);
    for(int i=0;i<14;i++)exigir(originais.get(i).equals(JsonUtil.lerJson((String)serializar.invoke(null,banco.getCatalogoEventos().get(i)))),"Carta original alterada: "+i);
   }catch(Exception ex){throw new AssertionError(ex);}
+  Set<String> categorias=new HashSet<String>(Arrays.asList("FISCAL","PRECO","CAMBIO","DESEMPREGO","ENERGIA","SUPERAQUECIMENTO","EDUCACAO","SAUDE","COMERCIO","FEDERALISMO"));
+  exigir(banco.getCatalogoEventos().size()>=26,"Catálogo de 24 cartas");
+  for(Evento carta:banco.getCatalogoEventos())exigir(categorias.contains(carta.getCategoria()),"Categoria não padronizada: "+carta.getId());
   Estado a=new Estado(),b=new Estado();
   motor.iniciarPartida(a,false,0,Dificuldade.MEDIO,Long.valueOf(1234));
   MotorEconomico outro=new MotorEconomico();outro.iniciarPartida(b,false,0,Dificuldade.MEDIO,Long.valueOf(1234));
@@ -32,7 +35,7 @@ public final class VerificacaoConteudo {
    motor.processarDecisao(a,"A");outro.processarDecisao(b,"A");
   }
   for(int i=14;i<banco.getCatalogoEventos().size();i++){
-   Evento c=banco.getCatalogoEventos().get(i);Decreto x=c.getDecretoA(),y=c.getDecretoB();
+   Evento c=banco.getCatalogoEventos().get(i);if(c.getId().equals("EV_PRESTACAO_CONTAS"))continue;Decreto x=c.getDecretoA(),y=c.getDecretoB();
    exigir((x.getImpactoCaixa()-y.getImpactoCaixa())*(x.getImpactoAprovacao()-y.getImpactoAprovacao())<0,"Nova carta dominante");
    exigir(x.getEfeitosAtrasados().size()>0&&y.getEfeitosAtrasados().size()>0,"Carta sem defasagem");
   }

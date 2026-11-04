@@ -41,7 +41,28 @@ public final class VerificacaoEconomica {
   exigir(alto.getPib().getValorAtual()<baixo.getPib().getValorAtual(),"Selic reduz atividade com defasagem");
   exigir(alto.getInflacao().getValorAtual()<baixo.getInflacao().getValorAtual(),"Selic reduz inflação com defasagem");
   m.iniciarPartida(e,false,0,Dificuldade.DIFICIL);exigir(e.getTotalTurnos()==15&&e.getTurnosDepressao()==0,"Reinício difícil");
+  VerificacaoLinguagem.executar();
+  VerificacaoNarrativa.executar();
+  verificarClassificacoes();
   VerificacaoConteudo.executar();
   System.out.println("[APROVADO] Dificuldades, determinismo demo, reversão, canal Selic e derrotas macroeconômicas.");
+ }
+ private static String avaliar(MotorEconomico m,Estado e,boolean vitoria){
+  try{java.lang.reflect.Method f=MotorEconomico.class.getDeclaredMethod("gerarAvaliacaoFinal",Estado.class,boolean.class);f.setAccessible(true);return (String)f.invoke(m,e,vitoria);}catch(Exception ex){throw new AssertionError(ex);}
+ }
+ private static void verificarClassificacoes(){
+  MotorEconomico m=new MotorEconomico();double[][] limites={{30,98,5,12},{35,85,1,11},{25,95,0.5,8.5}};
+  for(Dificuldade d:Dificuldade.values()){
+   Estado e=novo(m,d);double[] l=limites[d.ordinal()];Indicador[] indicadores={e.getCaixaPublico(),e.getAprovacaoPopular(),e.getPib(),e.getInflacao()};
+   for(int j=0;j<4;j++)indicadores[j].definirValor(l[j]);
+   exigir(avaliar(m,e,true).contains("(Estadista)"),"Limiar inclusivo e prioridade de Estadista "+d);
+   exigir(!avaliar(m,e,false).contains("(Estadista)"),"Derrota nunca recebe Estadista");
+   for(int j=0;j<4;j++){indicadores[j].definirValor(l[j]+(j==3?0.1:-0.1));exigir(!avaliar(m,e,true).contains("(Estadista)"),"Cada limiar é necessário "+d+" / "+j);indicadores[j].definirValor(l[j]);}
+   e.getCaixaPublico().definirValor(20);e.getAprovacaoPopular().definirValor(35);e.getPib().definirValor(.5);
+   exigir(avaliar(m,e,true).contains("Gestão Equilibrada:"),"Equilibrada exige mínimos explícitos");
+   e.getCaixaPublico().definirValor(19.9);exigir(avaliar(m,e,true).contains("Reservas Frágeis"),"Vitória frágil não é equilibrada");
+   e.getInflacao().definirValor(l[3]+.1);exigir(avaliar(m,e,true).contains("Pressão Inflacionária"),"Inflação acima do limite");
+  }
+  System.out.println("[APROVADO] Classificações: limites inclusivos, vitória obrigatória e ordem de mérito nas três dificuldades.");
  }
 }

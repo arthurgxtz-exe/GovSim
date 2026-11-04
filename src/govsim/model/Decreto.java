@@ -9,6 +9,9 @@ import java.util.List;
  * diante de um evento de crise econômica ou política.
  */
 public class Decreto {
+    private String emPoucasPalavras="";
+    public Decreto comResumo(String resumo){emPoucasPalavras=resumo;return this;}
+    public String getEmPoucasPalavras(){return emPoucasPalavras.isEmpty()?descricao:emPoucasPalavras;}
     private final String codigo; // "A" ou "B"
     private final String titulo;
     private final String tipoPolitica; // ex.: "Política Fiscal Expansionista", "Política Monetária Contracionista"
@@ -50,7 +53,7 @@ public class Decreto {
     }
 
     public Decreto comCodigo(String codigo) {
-        return new Decreto(codigo,titulo,tipoPolitica,descricao,consequenciasEsperadas,explicacaoTeorica,impactoCaixa,impactoAprovacao,impactoPib,impactoInflacao,impactoJuros,efeitosAtrasados);
+        return new Decreto(codigo,titulo,tipoPolitica,descricao,consequenciasEsperadas,explicacaoTeorica,impactoCaixa,impactoAprovacao,impactoPib,impactoInflacao,impactoJuros,efeitosAtrasados).comResumo(getEmPoucasPalavras());
     }
     public String getCodigo() {
         return codigo;

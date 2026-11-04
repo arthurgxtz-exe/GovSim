@@ -1,0 +1,2865 @@
+[
+  {
+    "id": "EV_PANDEMIA",
+    "nome": "Emergência Sanitária e Paralisação Econômica",
+    "categoria": "SAUDE",
+    "personagemNome": "Dr. Henrique Valadares",
+    "personagemCargo": "Ministro da Saúde",
+    "personagemAvatar": "MINISTRO_SAUDE",
+    "dialogo": "Os hospitais lotaram, Presidente. Tem gente sem renda dividindo o último pacote de arroz; vírus nenhum espera reunião de gabinete.",
+    "descricao": "Uma grave crise sanitária exige distanciamento social, paralisando o consumo e ameaçando empresas e trabalhadores informais.",
+    "contextualizacao": "Dilema Fiscal Anticíclico: expandir gastos públicos sustenta a renda e o PIB no curto prazo, mas reduz o Caixa Público e gera inflação futura.",
+    "consequenciasPotenciais": "Risco de recessão severa e queda de popularidade, ou forte drenagem do Caixa Público com pressão inflacionária no próximo turno.",
+    "decretoA": {
+      "codigo": "A",
+      "titulo": "Pagar Auxílio Emergencial",
+      "tipoPolitica": "Política Fiscal Expansionista",
+      "descricao": "Transfere renda direta às famílias, libera crédito subsidiado e amplia leitos de UTI.",
+      "explicacaoTeorica": "A expansão fiscal sustenta a demanda agregada (C + G) evitando o colapso do PIB e elevando a aprovação, porém drena o Caixa Público e pressiona a inflação no turno seguinte.",
+      "impactoCaixa": -22,
+      "impactoAprovacao": 12,
+      "impactoPib": 1.8,
+      "impactoInflacao": 0.8,
+      "impactoJuros": 0,
+      "consequenciasEsperadas": [
+        "Caixa Público: -22,0 pts (forte aumento do gasto público)",
+        "Aprovação Popular: +12,0% (proteção social imediata)",
+        "PIB: +1,8% a.a. (sustenta o consumo no curto prazo)",
+        "Efeito Atrasado (T+1): +1,5% na Inflação por excesso de moeda frente à oferta restrita"
+      ],
+      "efeitosAtrasados": [
+        {
+          "turnoOrigem": 0,
+          "turnoAplicacao": 1,
+          "turnosRestantes": 1,
+          "decretoOrigem": "Auxílio Emergencial (Pandemia)",
+          "descricao": "Pressão inflacionária defasada pelo aumento da liquidez durante restrição de oferta",
+          "deltaCaixa": 0,
+          "deltaAprovacao": 0,
+          "deltaPib": 0.4,
+          "deltaInflacao": 1.5
+        }
+      ]
+    },
+    "decretoB": {
+      "codigo": "B",
+      "titulo": "Manter Austeridade Fiscal",
+      "tipoPolitica": "Política Fiscal Contracionista",
+      "descricao": "Preserva o Caixa Público limitando gastos extras apenas a insumos hospitalares básicos, sem transferência de renda.",
+      "explicacaoTeorica": "A austeridade protege o Caixa Público imediato e evita pressão inflacionária, mas aprofunda a recessão do PIB e derruba a aprovação popular.",
+      "impactoCaixa": -4,
+      "impactoAprovacao": -14,
+      "impactoPib": -2.2,
+      "impactoInflacao": -0.7,
+      "impactoJuros": 0,
+      "consequenciasEsperadas": [
+        "Caixa Público: -4,0 pts (preservação quase integral do Tesouro)",
+        "Aprovação Popular: -14,0% (forte revolta social pela falta de apoio)",
+        "PIB: -2,2% a.a. (queda abrupta do consumo e falências)",
+        "Efeito Atrasado (T+1): -0,6% na Inflação, mas -4,0 pts no Caixa por queda de arrecadação"
+      ],
+      "efeitosAtrasados": [
+        {
+          "turnoOrigem": 0,
+          "turnoAplicacao": 1,
+          "turnosRestantes": 1,
+          "decretoOrigem": "Austeridade na Pandemia",
+          "descricao": "Retração secundária na arrecadação e desinflação pela queda prolongada da atividade",
+          "deltaCaixa": -4,
+          "deltaAprovacao": -2,
+          "deltaPib": -0.5,
+          "deltaInflacao": -0.6
+        }
+      ]
+    },
+    "tema": "DESEMPREGO",
+    "decretoFavorito": "A",
+    "falaRetorno": {
+      "seguiu": "Lembro da parceria.",
+      "ignorou": "Lembro da divergência."
+    }
+  },
+  {
+    "id": "EV_ALTA_DOLAR",
+    "nome": "Fuga de Capitais e Disparada do Dólar",
+    "categoria": "CAMBIO",
+    "personagemNome": "Dra. Helena Campos",
+    "personagemCargo": "Presidente do Banco Central",
+    "personagemAvatar": "PRESIDENTE_BC",
+    "dialogo": "O dólar disparou e os investidores estão saindo pela porta dos fundos. Minha mesa virou balcão de reclamações.",
+    "descricao": "A disparada do dólar encarece combustíveis, trigo e máquinas, ameaçando desencadear uma espiral inflacionária.",
+    "contextualizacao": "Política Monetária e Defasagem Temporal: subir juros atrai capitais e reduz a inflação nos turnos seguintes, mas encarece a dívida e desacelera o PIB.",
+    "consequenciasPotenciais": "Aceleração da inflação cambial ou desaceleração futura da atividade econômica pelo crédito mais caro.",
+    "decretoA": {
+      "codigo": "A",
+      "titulo": "Subir Juros Selic (+2,5 p.p.)",
+      "tipoPolitica": "Política Monetária Contracionista",
+      "descricao": "Eleva firmemente a Selic para atrair capital externo, segurar o dólar e ancorar a inflação nos próximos turnos.",
+      "explicacaoTeorica": "Demonstra a defasagem da política monetária: subir juros quase não altera a inflação hoje (-0,3%), mas reduz fortemente a inflação nos 2 turnos seguintes à medida que o crédito mais caro freia o consumo e o PIB.",
+      "impactoCaixa": -6,
+      "impactoAprovacao": -5,
+      "impactoPib": -0.4,
+      "impactoInflacao": -0.3,
+      "impactoJuros": 2.5,
+      "consequenciasEsperadas": [
+        "Taxa de Juros: +2,5% a.a. | Caixa: -6,0 pts (maior custo da dívida)",
+        "Aprovação Popular: -5,0% (crédito e financiamentos mais caros)",
+        "Efeito Atrasado (T+1 e T+2): Queda acumulada de -2,4% na Inflação, com custo de -1,7% no PIB"
+      ],
+      "efeitosAtrasados": [
+        {
+          "turnoOrigem": 0,
+          "turnoAplicacao": 1,
+          "turnosRestantes": 1,
+          "decretoOrigem": "Alta de Juros (Choque Cambial)",
+          "descricao": "1ª onda da defasagem monetária: crédito caro desacelera o PIB e inicia queda da inflação",
+          "deltaCaixa": -3,
+          "deltaAprovacao": -2,
+          "deltaPib": -1.1,
+          "deltaInflacao": -1.4
+        },
+        {
+          "turnoOrigem": 0,
+          "turnoAplicacao": 2,
+          "turnosRestantes": 2,
+          "decretoOrigem": "Alta de Juros (Choque Cambial)",
+          "descricao": "2ª onda da defasagem monetária: consolidação da desinflação e ancoragem cambial",
+          "deltaCaixa": 0,
+          "deltaAprovacao": 3,
+          "deltaPib": -0.6,
+          "deltaInflacao": -1
+        }
+      ]
+    },
+    "decretoB": {
+      "codigo": "B",
+      "titulo": "Subsidiar Importados com Caixa",
+      "tipoPolitica": "Intervenção Fiscal Cambial",
+      "descricao": "Mantém os juros estáveis para proteger o crescimento do PIB e usa o Caixa Público para subsidiar a importação de combustíveis e trigo.",
+      "explicacaoTeorica": "Manter juros baixos preserva o PIB e a aprovação hoje, mas consome o Caixa Público e permite que o dólar alto contamine a inflação no turno seguinte.",
+      "impactoCaixa": -16,
+      "impactoAprovacao": 6,
+      "impactoPib": 0.8,
+      "impactoInflacao": 1.2,
+      "impactoJuros": 0,
+      "consequenciasEsperadas": [
+        "Caixa Público: -16,0 pts (gasto elevado com subsídios cambiais)",
+        "Aprovação Popular: +6,0% | PIB: +0,8% a.a. (indústria preserva ritmo)",
+        "Inflação: +1,2% agora e +1,3% no próximo turno (repasse cambial sem freio monetário)"
+      ],
+      "efeitosAtrasados": [
+        {
+          "turnoOrigem": 0,
+          "turnoAplicacao": 1,
+          "turnosRestantes": 1,
+          "decretoOrigem": "Juros Estáveis na Alta do Dólar",
+          "descricao": "Repasse cambial secundário (pass-through) pressiona preços industriais e alimentos",
+          "deltaCaixa": -3,
+          "deltaAprovacao": -3,
+          "deltaPib": 0,
+          "deltaInflacao": 1.3
+        }
+      ]
+    },
+    "tema": "PRECO",
+    "decretoFavorito": "A",
+    "falaRetorno": {
+      "seguiu": "Lembro do apoio.",
+      "ignorou": "Lembro da divergência."
+    }
+  },
+  {
+    "id": "EV_PRECO_ALIMENTOS",
+    "nome": "Disparo no Preço da Cesta Básica",
+    "categoria": "PRECO",
+    "personagemNome": "Dona Maria Aparecida",
+    "personagemCargo": "Representante da População",
+    "personagemAvatar": "POPULACAO",
+    "dialogo": "O arroz subiu de novo, Presidente! Na feira, já perguntam se o feijão vem com financiamento.",
+    "descricao": "Uma quebra de safra agrícola reduziu a oferta de alimentos, corroendo o poder de compra das famílias trabalhadoras.",
+    "contextualizacao": "Choque de Oferta Agrícola: o governo pode usar recursos fiscais para subvencionar a produção e desonerar a cesta básica, ou usar juros para conter a propagação inflacionária.",
+    "consequenciasPotenciais": "Queda acentuada da aprovação popular pela carestia ou perda relevante de arrecadação no Caixa Público.",
+    "decretoA": {
+      "codigo": "A",
+      "titulo": "Desonerar Cesta Básica e Safra",
+      "tipoPolitica": "Política Fiscal de Oferta",
+      "descricao": "Zera impostos federais sobre alimentos básicos e libera crédito rural subsidiado para recompor rapidamente os estoques.",
+      "explicacaoTeorica": "Atuar pelo lado da oferta via desoneração reduz a inflação de alimentos e eleva a aprovação popular, mas custa caro ao Caixa Público.",
+      "impactoCaixa": -17,
+      "impactoAprovacao": 9,
+      "impactoPib": 0.9,
+      "impactoInflacao": -1.1,
+      "impactoJuros": 0,
+      "consequenciasEsperadas": [
+        "Caixa Público: -17,0 pts (renúncia fiscal e subvenção agrícola)",
+        "Aprovação Popular: +9,0% (alívio imediato na mesa das famílias)",
+        "PIB: +0,9% a.a. | Inflação: -1,1% agora e -0,8% no Turno +1"
+      ],
+      "efeitosAtrasados": [
+        {
+          "turnoOrigem": 0,
+          "turnoAplicacao": 1,
+          "turnosRestantes": 1,
+          "decretoOrigem": "Subvenção à Safra Agrícola",
+          "descricao": "Entrada da nova safra financiada reduz preços de alimentos no atacado",
+          "deltaCaixa": 0,
+          "deltaAprovacao": 2,
+          "deltaPib": 0.5,
+          "deltaInflacao": -0.8
+        }
+      ]
+    },
+    "decretoB": {
+      "codigo": "B",
+      "titulo": "Negar Subsídio e Subir Juros",
+      "tipoPolitica": "Ortodoxia Fiscal e Monetária",
+      "descricao": "Preserva o Caixa Público recusando subsídios e eleva os juros (+1,5 p.p.) para impedir que a alta dos alimentos se espalhe pela economia.",
+      "explicacaoTeorica": "Protege o Tesouro Nacional, mas a população sente o choque imediato nos preços, derrubando a aprovação antes que o aperto monetário reduza a inflação no turno seguinte.",
+      "impactoCaixa": 4,
+      "impactoAprovacao": -11,
+      "impactoPib": -0.9,
+      "impactoInflacao": 0.9,
+      "impactoJuros": 1.5,
+      "consequenciasEsperadas": [
+        "Caixa Público: +4,0 pts (preservação da receita tributária)",
+        "Aprovação Popular: -11,0% (revolta com a carestia nos mercados)",
+        "PIB: -0,9% a.a. | Efeito Atrasado (T+1): -1,4% na Inflação"
+      ],
+      "efeitosAtrasados": [
+        {
+          "turnoOrigem": 0,
+          "turnoAplicacao": 1,
+          "turnosRestantes": 1,
+          "decretoOrigem": "Aperto Monetário contra Inércia Alimentar",
+          "descricao": "Freio na propagação inflacionária para serviços, porém com desaceleração do PIB",
+          "deltaCaixa": -2,
+          "deltaAprovacao": 0,
+          "deltaPib": -0.8,
+          "deltaInflacao": -1.4
+        }
+      ]
+    },
+    "tema": "PRECO",
+    "decretoFavorito": "A",
+    "falaRetorno": {
+      "seguiu": "O bairro lembra.",
+      "ignorou": "O bairro discordou."
+    }
+  },
+  {
+    "id": "EV_CRISE_ENERGETICA",
+    "nome": "Reservatórios Secos e Risco de Apagão",
+    "categoria": "ENERGIA",
+    "personagemNome": "Eng. Roberto Albuquerque",
+    "personagemCargo": "Ministro de Minas e Energia",
+    "personagemAvatar": "ENERGIA",
+    "dialogo": "Os reservatórios secaram e a indústria pede energia. Se chover discurso, infelizmente a turbina não gira.",
+    "descricao": "O acionamento de termelétricas encarece drasticamente a geração de energia elétrica no país.",
+    "contextualizacao": "Insumo Transversal: repassar o custo para a tarifa acelera a inflação e trava a indústria; assumir a conta pelo Tesouro drena o Caixa Público.",
+    "consequenciasPotenciais": "Disparo na inflação de energia e queda do PIB industrial, ou forte impacto negativo no orçamento público.",
+    "decretoA": {
+      "codigo": "A",
+      "titulo": "Tesouro Paga a Conta de Luz",
+      "tipoPolitica": "Absorção Fiscal e Investimento",
+      "descricao": "Cobre o custo das termelétricas com dinheiro público para segurar a tarifa e inicia novas linhas de transmissão.",
+      "explicacaoTeorica": "O Estado absorve o choque de custos mantendo a inflação baixa e a indústria aquecida, gerando retorno produtivo em 2 turnos, mas sacrifica o Caixa Público agora.",
+      "impactoCaixa": -19,
+      "impactoAprovacao": 7,
+      "impactoPib": 1.1,
+      "impactoInflacao": -0.4,
+      "impactoJuros": 0,
+      "consequenciasEsperadas": [
+        "Caixa Público: -19,0 pts (subsídio tarifário e obras)",
+        "Aprovação Popular: +7,0% | PIB: +1,1% a.a. | Inflação: -0,4%",
+        "Efeito Atrasado (T+2): +1,2% no PIB e -0,6% na Inflação pela nova capacidade energética"
+      ],
+      "efeitosAtrasados": [
+        {
+          "turnoOrigem": 0,
+          "turnoAplicacao": 2,
+          "turnosRestantes": 2,
+          "decretoOrigem": "Obras Emergenciais de Transmissão",
+          "descricao": "Expansão da oferta de energia reduz gargalos produtivos e barateia tarifa futura",
+          "deltaCaixa": 4,
+          "deltaAprovacao": 2,
+          "deltaPib": 1.2,
+          "deltaInflacao": -0.6
+        }
+      ]
+    },
+    "decretoB": {
+      "codigo": "B",
+      "titulo": "Cobrar Bandeira Vermelha",
+      "tipoPolitica": "Repasse Tarifário e Racionamento",
+      "descricao": "Repassa o custo integral das termelétricas para a conta de luz dos consumidores e impõe cotas de economia às indústrias.",
+      "explicacaoTeorica": "Preserva o Caixa Público, mas provoca um salto imediato na inflação (preços administrados) e retrai o PIB industrial.",
+      "impactoCaixa": 5,
+      "impactoAprovacao": -12,
+      "impactoPib": -1.6,
+      "impactoInflacao": 1.8,
+      "impactoJuros": 0,
+      "consequenciasEsperadas": [
+        "Caixa Público: +5,0 pts (nenhum desembolso do Tesouro)",
+        "Aprovação Popular: -12,0% (indignação com a conta de luz cara)",
+        "PIB: -1,6% a.a. (corte de produção fabril) | Inflação: +1,8% imediato"
+      ],
+      "efeitosAtrasados": [
+        {
+          "turnoOrigem": 0,
+          "turnoAplicacao": 1,
+          "turnosRestantes": 1,
+          "decretoOrigem": "Estabilização dos Reservatórios",
+          "descricao": "Redução do consumo energético permite desligar parte das termelétricas no turno seguinte",
+          "deltaCaixa": 0,
+          "deltaAprovacao": 0,
+          "deltaPib": 0.3,
+          "deltaInflacao": -0.7
+        }
+      ]
+    },
+    "tema": "DESEMPREGO",
+    "decretoFavorito": "A",
+    "falaRetorno": {
+      "seguiu": "Honrou nosso contrato.",
+      "ignorou": "Discordamos sobre energia."
+    }
+  },
+  {
+    "id": "EV_DESEMPREGO_ELEVADO",
+    "nome": "Fechamento de Fábricas e Desemprego",
+    "categoria": "DESEMPREGO",
+    "personagemNome": "Carlos Eduardo \"Carlão\"",
+    "personagemCargo": "Líder dos Trabalhadores",
+    "personagemAvatar": "TRABALHADORES",
+    "dialogo": "A fábrica fechou e a fila do emprego dobrou. Meus colegas querem trabalho, não outro curso de paciência.",
+    "descricao": "A desaceleração industrial e da construção civil elevou o desemprego, derrubando o consumo das famílias.",
+    "contextualizacao": "Multiplicador Keynesiano vs. Estímulo Monetário: obras públicas geram emprego imediato com alto gasto fiscal; baixar juros estimula o emprego privado no turno seguinte sem gastar do Caixa.",
+    "consequenciasPotenciais": "Perda de apoio popular e recessão, ou forte desembolso fiscal acompanhado de pressão inflacionária.",
+    "decretoA": {
+      "codigo": "A",
+      "titulo": "Lançar Obras Públicas (PAC)",
+      "tipoPolitica": "Política Fiscal Keynesiana",
+      "descricao": "Inicia imediatamente a construção de rodovias, habitação popular e saneamento básico com contratação direta.",
+      "explicacaoTeorica": "O investimento público aquece rapidamente o PIB e a aprovação popular, recuperando parte da arrecadação depois, mas exige alto Caixa inicial e pressiona a inflação.",
+      "impactoCaixa": -20,
+      "impactoAprovacao": 11,
+      "impactoPib": 2.4,
+      "impactoInflacao": 0.9,
+      "impactoJuros": 0,
+      "consequenciasEsperadas": [
+        "Caixa Público: -20,0 pts (investimento público pesado)",
+        "Aprovação Popular: +11,0% | PIB: +2,4% a.a. (forte efeito multiplicador)",
+        "Efeito Atrasado (T+1): +7,0 pts no Caixa e +1,0% no PIB, mas +1,1% na Inflação"
+      ],
+      "efeitosAtrasados": [
+        {
+          "turnoOrigem": 0,
+          "turnoAplicacao": 1,
+          "turnosRestantes": 1,
+          "decretoOrigem": "Multiplicador do Plano de Obras",
+          "descricao": "Renda dos novos trabalhadores estimula o comércio, elevando PIB e arrecadação, mas pressionando preços",
+          "deltaCaixa": 7,
+          "deltaAprovacao": 3,
+          "deltaPib": 1,
+          "deltaInflacao": 1.1
+        }
+      ]
+    },
+    "decretoB": {
+      "codigo": "B",
+      "titulo": "Cortar Juros (-2,0 p.p.) Privado",
+      "tipoPolitica": "Política Monetária Expansionista",
+      "descricao": "Reduz a taxa básica de juros para baratear o crédito empresarial e incentivar contratações pelo setor privado sem gastar do Tesouro.",
+      "explicacaoTeorica": "Preserva o Caixa Público e estimula o investimento privado com defasagem de 1 turno, porém o crédito mais barato acelera a inflação futura.",
+      "impactoCaixa": 4,
+      "impactoAprovacao": 2,
+      "impactoPib": 0.5,
+      "impactoInflacao": 0.4,
+      "impactoJuros": -2,
+      "consequenciasEsperadas": [
+        "Taxa de Juros: -2,0% a.a. | Caixa Público: +4,0 pts (menor custo da dívida)",
+        "Aprovação Popular: +2,0% agora | PIB: +0,5% agora",
+        "Efeito Atrasado (T+1): +1,7% no PIB, +5,0% na Aprovação e +1,4% na Inflação"
+      ],
+      "efeitosAtrasados": [
+        {
+          "turnoOrigem": 0,
+          "turnoAplicacao": 1,
+          "turnosRestantes": 1,
+          "decretoOrigem": "Estímulo Monetário (Corte de Juros)",
+          "descricao": "Expansão do crédito privado reativa contratações na indústria, mas aquece a inflação",
+          "deltaCaixa": 4,
+          "deltaAprovacao": 5,
+          "deltaPib": 1.7,
+          "deltaInflacao": 1.4
+        }
+      ]
+    },
+    "tema": "DESEMPREGO",
+    "decretoFavorito": "A",
+    "falaRetorno": {
+      "seguiu": "A categoria lembra.",
+      "ignorou": "A categoria discordou."
+    }
+  },
+  {
+    "id": "EV_CRISE_FISCAL",
+    "nome": "Alerta no Tesouro e Risco da Dívida",
+    "categoria": "FISCAL",
+    "personagemNome": "Dr. Celso Montenegro",
+    "personagemCargo": "Ministro da Economia",
+    "personagemAvatar": "MINISTRO_ECONOMIA",
+    "dialogo": "O Tesouro tem contas vencendo e credores telefonando. Já reconheço o toque de cobrança antes do café.",
+    "descricao": "O crescimento das despesas obrigatórias gerou desconfiança sobre a sustentabilidade da dívida pública.",
+    "contextualizacao": "Sustentabilidade Fiscal: um ajuste fiscal recompõe o Caixa e derruba a inflação e o risco-país, mas contrai o PIB e reduz a popularidade no curto prazo.",
+    "consequenciasPotenciais": "Risco de insolvência fiscal nos próximos turnos ou desgaste político imediato com os cortes orçamentários.",
+    "decretoA": {
+      "codigo": "A",
+      "titulo": "Cortar Gastos e Fazer Superávit",
+      "tipoPolitica": "Ajuste Fiscal Estrutural",
+      "descricao": "Corta despesas ministeriais, revisa benefícios e garante superávit primário para recompor o Caixa Público.",
+      "explicacaoTeorica": "Recompõe fortemente o Caixa Público e reduz a inflação e o risco-país, mas cobra um custo recessivo e político imediato.",
+      "impactoCaixa": 22,
+      "impactoAprovacao": -10,
+      "impactoPib": -1.2,
+      "impactoInflacao": -0.9,
+      "impactoJuros": -1,
+      "consequenciasEsperadas": [
+        "Caixa Público: +22,0 pts agora e +8,0 pts no Turno +1",
+        "Aprovação Popular: -10,0% (protestos contra os cortes)",
+        "PIB: -1,2% a.a. agora, mas +0,9% no T+1 | Inflação: -0,9%"
+      ],
+      "efeitosAtrasados": [
+        {
+          "turnoOrigem": 0,
+          "turnoAplicacao": 1,
+          "turnosRestantes": 1,
+          "decretoOrigem": "Bônus de Credibilidade Fiscal",
+          "descricao": "Queda do risco-país atrai investimento privado e economiza juros da dívida",
+          "deltaCaixa": 8,
+          "deltaAprovacao": 2,
+          "deltaPib": 0.9,
+          "deltaInflacao": -0.6
+        }
+      ]
+    },
+    "decretoB": {
+      "codigo": "B",
+      "titulo": "Manter Gastos e Emitir Dívida",
+      "tipoPolitica": "Expansão sob Risco Fiscal",
+      "descricao": "Rejeita o corte de gastos para manter programas populares e financia o rombo emitindo novos títulos públicos a juros altos.",
+      "explicacaoTeorica": "Evita o desgaste político hoje, mas o aumento do serviço da dívida drena o Caixa Público e gera inflação por dominância fiscal no turno seguinte.",
+      "impactoCaixa": -12,
+      "impactoAprovacao": 7,
+      "impactoPib": 0.7,
+      "impactoInflacao": 1.4,
+      "impactoJuros": 1.5,
+      "consequenciasEsperadas": [
+        "Caixa Público: -12,0 pts agora e -10,0 pts no Turno +1",
+        "Aprovação Popular: +7,0% agora, mas -5,0% no T+1",
+        "Inflação: +1,4% agora e +1,2% no T+1 | Juros: +1,5% a.a."
+      ],
+      "efeitosAtrasados": [
+        {
+          "turnoOrigem": 0,
+          "turnoAplicacao": 1,
+          "turnosRestantes": 1,
+          "decretoOrigem": "Custo da Rolagem da Dívida (Dominância Fiscal)",
+          "descricao": "Juros mais altos da dívida pública consomem o orçamento e retraem o investimento",
+          "deltaCaixa": -10,
+          "deltaAprovacao": -5,
+          "deltaPib": -1.3,
+          "deltaInflacao": 1.2
+        }
+      ]
+    },
+    "tema": "DESEMPREGO",
+    "decretoFavorito": "A",
+    "falaRetorno": {
+      "seguiu": "Honrou nossa planilha.",
+      "ignorou": "Ignorou meu aviso."
+    }
+  },
+  {
+    "id": "EV_GUERRA_INTERNACIONAL",
+    "nome": "Guerra Internacional e Choque do Petróleo",
+    "categoria": "COMERCIO",
+    "personagemNome": "Embaixador Otávio Mendes",
+    "personagemCargo": "Ministro das Relações Exteriores",
+    "personagemAvatar": "CHANCELER",
+    "dialogo": "A guerra interrompeu carregamentos de petróleo. Nossos parceiros pedem respostas; os navios, por enquanto, continuam parados.",
+    "descricao": "A guerra externa encareceu o frete rodoviário e os insumos agrícolas em todo o planeta.",
+    "contextualizacao": "Choque de Estagflação Externa: subsidiar o diesel protege o PIB e evita inflação doméstica à custa do Caixa Público; alinhar preços preserva o Tesouro mas dispara a inflação.",
+    "consequenciasPotenciais": "Inflação severa nos transportes e alimentos combinada com queda do PIB, ou alto gasto fiscal.",
+    "decretoA": {
+      "codigo": "A",
+      "titulo": "Subsidiar Diesel e Fertilizantes",
+      "tipoPolitica": "Amortecimento Fiscal Externo",
+      "descricao": "Usa recursos do Tesouro Nacional para congelar o preço do diesel e garantir estoque de fertilizantes ao campo.",
+      "explicacaoTeorica": "Protege a economia nacional da inflação importada e sustenta o PIB e a popularidade, mas transfere a conta da guerra para o Caixa Público.",
+      "impactoCaixa": -18,
+      "impactoAprovacao": 8,
+      "impactoPib": 0.8,
+      "impactoInflacao": -0.6,
+      "impactoJuros": 0,
+      "consequenciasEsperadas": [
+        "Caixa Público: -18,0 pts agora e -4,0 pts no T+1",
+        "Aprovação Popular: +8,0% (evita alta em fretes e passagens)",
+        "PIB: +0,8% a.a. | Inflação: -0,6% a.a."
+      ],
+      "efeitosAtrasados": [
+        {
+          "turnoOrigem": 0,
+          "turnoAplicacao": 1,
+          "turnosRestantes": 1,
+          "decretoOrigem": "Safra Garantida por Fertilizantes Subsidiados",
+          "descricao": "Insumos garantidos mantêm a colheita agrícola estável no turno seguinte",
+          "deltaCaixa": -4,
+          "deltaAprovacao": 2,
+          "deltaPib": 0.6,
+          "deltaInflacao": -0.4
+        }
+      ]
+    },
+    "decretoB": {
+      "codigo": "B",
+      "titulo": "Repassar Alta nos Postos",
+      "tipoPolitica": "Alinhamento Internacional e Caixa",
+      "descricao": "Permite que o combustível suba conforme o mercado internacional e arrecada royalties extras de petróleo para o Tesouro.",
+      "explicacaoTeorica": "Reforça o Caixa Público, mas o choque do petróleo se espalha por toda a cadeia de transportes, acelerando a inflação e retraindo o PIB.",
+      "impactoCaixa": 7,
+      "impactoAprovacao": -13,
+      "impactoPib": -1.5,
+      "impactoInflacao": 2.1,
+      "impactoJuros": 1,
+      "consequenciasEsperadas": [
+        "Caixa Público: +7,0 pts agora e +3,0 pts no T+1 (royalties)",
+        "Aprovação Popular: -13,0% (revolta com gasolina e frete caros)",
+        "PIB: -1,5% a.a. | Inflação: +2,1% a.a."
+      ],
+      "efeitosAtrasados": [
+        {
+          "turnoOrigem": 0,
+          "turnoAplicacao": 1,
+          "turnosRestantes": 1,
+          "decretoOrigem": "Ajuste do Consumo de Combustíveis",
+          "descricao": "Desaceleração econômica reduz gradualmente a pressão secundária de preços",
+          "deltaCaixa": 3,
+          "deltaAprovacao": 0,
+          "deltaPib": -0.4,
+          "deltaInflacao": -0.8
+        }
+      ]
+    },
+    "tema": "PRECO",
+    "decretoFavorito": "A",
+    "falaRetorno": {
+      "seguiu": "Lembro da parceria.",
+      "ignorou": "Lembro da divergência."
+    }
+  },
+  {
+    "id": "EV_QUEDA_ARRECADACAO",
+    "nome": "Tombo na Arrecadação e Disputa no Congresso",
+    "categoria": "FISCAL",
+    "personagemNome": "Deputado Marcos Silveira",
+    "personagemCargo": "Líder da Oposição no Congresso",
+    "personagemAvatar": "OPOSICAO",
+    "dialogo": "A arrecadação caiu e o Congresso apresentou mais despesas. A calculadora pediu exoneração antes de mim.",
+    "descricao": "Uma frustração de receitas tributárias abriu um rombo imediato nas contas do governo federal.",
+    "contextualizacao": "Tributação e Atividade (Curva de Laffer): elevar impostos recompõe o Caixa imediatamente mas freia o PIB; reduzir alíquotas drena o Caixa hoje apostando na recuperação futura da base tributária.",
+    "consequenciasPotenciais": "Queda imediata do Caixa Público ou desaceleração do PIB com desgaste político.",
+    "decretoA": {
+      "codigo": "A",
+      "titulo": "Elevar Impostos e Contingenciar",
+      "tipoPolitica": "Ajuste Tributário Contracionista",
+      "descricao": "Eleva tributos sobre grandes lucros e bloqueia 15% das verbas ministeriais para recompor o Caixa imediatamente.",
+      "explicacaoTeorica": "Garante solvência imediata ao Caixa Público, mas reduz a renda disponível do setor privado, contraindo o PIB e a aprovação.",
+      "impactoCaixa": 16,
+      "impactoAprovacao": -9,
+      "impactoPib": -1.4,
+      "impactoInflacao": -0.5,
+      "impactoJuros": 0,
+      "consequenciasEsperadas": [
+        "Caixa Público: +16,0 pts agora e +4,0 pts no T+1",
+        "Aprovação Popular: -9,0% (desgaste com maior carga tributária)",
+        "PIB: -1,4% a.a. | Inflação: -0,5% a.a."
+      ],
+      "efeitosAtrasados": [
+        {
+          "turnoOrigem": 0,
+          "turnoAplicacao": 1,
+          "turnosRestantes": 1,
+          "decretoOrigem": "Efeito Contracionista da Maior Carga Tributária",
+          "descricao": "Menor margem líquida das empresas reduz investimentos no turno seguinte",
+          "deltaCaixa": 4,
+          "deltaAprovacao": -2,
+          "deltaPib": -0.6,
+          "deltaInflacao": -0.4
+        }
+      ]
+    },
+    "decretoB": {
+      "codigo": "B",
+      "titulo": "Reduzir Alíquotas e Estimular PIB",
+      "tipoPolitica": "Estímulo à Base Tributária",
+      "descricao": "Absorve o prejuízo no Caixa Público agora e reduz alíquotas para incentivar empresas a produzir e formalizar empregos.",
+      "explicacaoTeorica": "Sacrifica fortemente o Caixa Público no curto prazo para estimular o PIB e colher recuperação da arrecadação 2 turnos depois.",
+      "impactoCaixa": -15,
+      "impactoAprovacao": 8,
+      "impactoPib": 1.5,
+      "impactoInflacao": 0.6,
+      "impactoJuros": 0,
+      "consequenciasEsperadas": [
+        "Caixa Público: -15,0 pts agora, mas +12,0 pts no Turno +2",
+        "Aprovação Popular: +8,0% | PIB: +1,5% a.a.",
+        "Inflação: +0,6% a.a."
+      ],
+      "efeitosAtrasados": [
+        {
+          "turnoOrigem": 0,
+          "turnoAplicacao": 2,
+          "turnosRestantes": 2,
+          "decretoOrigem": "Maturidade da Formalização e Base Tributária",
+          "descricao": "Crescimento do PIB e formalização ampliam a arrecadação estrutural",
+          "deltaCaixa": 12,
+          "deltaAprovacao": 2,
+          "deltaPib": 1,
+          "deltaInflacao": 0.3
+        }
+      ]
+    },
+    "tema": "DESEMPREGO",
+    "decretoFavorito": "A",
+    "falaRetorno": {
+      "seguiu": "Lembro da parceria.",
+      "ignorou": "Lembro da divergência."
+    }
+  },
+  {
+    "id": "EV_CRESCIMENTO_AQUECIDO",
+    "nome": "Euforia de Consumo e Fábricas no Limite",
+    "categoria": "SUPERAQUECIMENTO",
+    "personagemNome": "Dr. Celso Montenegro",
+    "personagemCargo": "Ministro da Economia",
+    "personagemAvatar": "MINISTRO_ECONOMIA",
+    "dialogo": "As lojas lotaram e as fábricas não atendem tantos pedidos. O entusiasmo chegou antes das novas máquinas.",
+    "descricao": "A demanda agregada cresceu acima da capacidade instalada do país, gerando gargalos produtivos.",
+    "contextualizacao": "Política Anticíclica vs. Pró-Cíclica: poupar no período de bonança evita o superaquecimento inflacionário; estimular uma economia já no limite gera euforia hoje e disparo da inflação amanhã.",
+    "consequenciasPotenciais": "Oportunidade de reforçar o Caixa Público com segurança ou risco de desencadear espiral inflacionária no próximo turno.",
+    "decretoA": {
+      "codigo": "A",
+      "titulo": "Poupar Caixa e Subir Juros (+1,5)",
+      "tipoPolitica": "Política Prudencial Anticíclica",
+      "descricao": "Guarda o excesso de arrecadação no Caixa Público e eleva moderadamente os juros para um pouso suave da economia.",
+      "explicacaoTeorica": "Aplica a política anticíclica: aproveita a fase favorável para fortalecer o Caixa Público e impedir o descontrole inflacionário futuro.",
+      "impactoCaixa": 15,
+      "impactoAprovacao": -4,
+      "impactoPib": -0.6,
+      "impactoInflacao": -0.8,
+      "impactoJuros": 1.5,
+      "consequenciasEsperadas": [
+        "Caixa Público: +15,0 pts agora e +5,0 pts no T+1",
+        "Aprovação Popular: -4,0% agora, mas +3,0% no T+1",
+        "PIB: -0,6% | Inflação: -0,8% agora e -1,3% no T+1"
+      ],
+      "efeitosAtrasados": [
+        {
+          "turnoOrigem": 0,
+          "turnoAplicacao": 1,
+          "turnosRestantes": 1,
+          "decretoOrigem": "Pouso Suave da Política Preventiva",
+          "descricao": "Inflação converge para a meta com estabilidade fiscal",
+          "deltaCaixa": 5,
+          "deltaAprovacao": 3,
+          "deltaPib": -0.7,
+          "deltaInflacao": -1.3
+        }
+      ]
+    },
+    "decretoB": {
+      "codigo": "B",
+      "titulo": "Acelerar Gastos e Cortar Juros",
+      "tipoPolitica": "Estímulo Pró-Cíclico",
+      "descricao": "Aproveita o otimismo para liberar mais crédito e obras, buscando um crescimento recorde imediato.",
+      "explicacaoTeorica": "Ilustra a armadilha do populismo pró-cíclico: estimular a demanda acima da capacidade produtiva gera euforia hoje, mas cobra a conta em inflação alta no próximo turno.",
+      "impactoCaixa": -11,
+      "impactoAprovacao": 11,
+      "impactoPib": 2.1,
+      "impactoInflacao": 1.3,
+      "impactoJuros": -1.5,
+      "consequenciasEsperadas": [
+        "Caixa Público: -11,0 pts | Aprovação: +11,0% agora",
+        "PIB: +2,1% a.a. imediato",
+        "Efeito Atrasado (T+1): Disparo de +2,6% na Inflação e queda de -8,0% na Aprovação"
+      ],
+      "efeitosAtrasados": [
+        {
+          "turnoOrigem": 0,
+          "turnoAplicacao": 1,
+          "turnosRestantes": 1,
+          "decretoOrigem": "Superaquecimento e Espiral Inflacionária",
+          "descricao": "Demanda acima da capacidade produtiva faz preços dispararem e corrói salários",
+          "deltaCaixa": -5,
+          "deltaAprovacao": -8,
+          "deltaPib": -0.9,
+          "deltaInflacao": 2.6
+        }
+      ]
+    },
+    "tema": "DESEMPREGO",
+    "decretoFavorito": "A",
+    "falaRetorno": {
+      "seguiu": "Honrou nossa planilha.",
+      "ignorou": "Ignorou meu aviso."
+    }
+  },
+  {
+    "id": "EV_COMERCIO_EXTERIOR",
+    "nome": "Barreiras Externas e Queda nas Exportações",
+    "categoria": "COMERCIO",
+    "personagemNome": "Beatriz Vasconcelos",
+    "personagemCargo": "Representante dos Empresários",
+    "personagemAvatar": "EMPRESARIO",
+    "dialogo": "Nosso principal comprador ergueu uma barreira comercial. Há contêineres parados e produtores perguntando onde vender a safra.",
+    "descricao": "A retração do comércio mundial e barreiras tarifárias derrubaram as vendas externas da indústria e do agronegócio.",
+    "contextualizacao": "Política Comercial: incentivar exportações custa recursos fiscais hoje mas recupera o PIB e divisas depois; o protecionismo tarifário arrecada impostos hoje mas encarece insumos e gera inflação.",
+    "consequenciasPotenciais": "Perda de dinamismo exportador ou aumento da inflação interna por tarifas protecionistas.",
+    "decretoA": {
+      "codigo": "A",
+      "titulo": "Financiar e Desonerar Exportação",
+      "tipoPolitica": "Estímulo à Competitividade",
+      "descricao": "Desonera tributos da cadeia exportadora e abre linha de crédito para conquistar novos mercados externos.",
+      "explicacaoTeorica": "Reduz o Caixa Público no curto prazo para ganhar competitividade externa, gerando crescimento do PIB e retorno fiscal no turno seguinte.",
+      "impactoCaixa": -14,
+      "impactoAprovacao": 6,
+      "impactoPib": 1.4,
+      "impactoInflacao": -0.2,
+      "impactoJuros": 0,
+      "consequenciasEsperadas": [
+        "Caixa Público: -14,0 pts agora, mas +8,0 pts no Turno +1",
+        "Aprovação Popular: +6,0% | PIB: +1,4% a.a.",
+        "Efeito Atrasado (T+1): +0,8% no PIB e -0,5% na Inflação"
+      ],
+      "efeitosAtrasados": [
+        {
+          "turnoOrigem": 0,
+          "turnoAplicacao": 1,
+          "turnosRestantes": 1,
+          "decretoOrigem": "Dividendo dos Novos Acordos Comerciais",
+          "descricao": "Entrada de divisas das exportações recompõe arrecadação e fortalece a moeda",
+          "deltaCaixa": 8,
+          "deltaAprovacao": 2,
+          "deltaPib": 0.8,
+          "deltaInflacao": -0.5
+        }
+      ]
+    },
+    "decretoB": {
+      "codigo": "B",
+      "titulo": "Sobretaxar Produtos Importados",
+      "tipoPolitica": "Protecionismo Tarifário",
+      "descricao": "Aumenta fortemente o imposto de importação para arrecadar no Caixa Público e proteger a indústria local da concorrência.",
+      "explicacaoTeorica": "Reforça o Caixa Público imediatamente, mas encarece máquinas e produtos para o consumidor, elevando a inflação e reduzindo a eficiência do PIB.",
+      "impactoCaixa": 12,
+      "impactoAprovacao": -6,
+      "impactoPib": -0.7,
+      "impactoInflacao": 1.5,
+      "impactoJuros": 0,
+      "consequenciasEsperadas": [
+        "Caixa Público: +12,0 pts (receita de tarifas alfandegárias)",
+        "Aprovação Popular: -6,0% | PIB: -0,7% a.a.",
+        "Inflação: +1,5% agora e +0,6% no T+1 (insumos e bens mais caros)"
+      ],
+      "efeitosAtrasados": [
+        {
+          "turnoOrigem": 0,
+          "turnoAplicacao": 1,
+          "turnosRestantes": 1,
+          "decretoOrigem": "Custo de Insumos Protecionistas",
+          "descricao": "Máquinas e componentes importados mais caros reduzem a produtividade industrial",
+          "deltaCaixa": -2,
+          "deltaAprovacao": -2,
+          "deltaPib": -0.6,
+          "deltaInflacao": 0.6
+        }
+      ]
+    },
+    "tema": "DESEMPREGO",
+    "decretoFavorito": "A",
+    "falaRetorno": {
+      "seguiu": "A indústria lembra.",
+      "ignorou": "Discordamos sobre incentivos."
+    }
+  },
+  {
+    "id": "EV_EDUCACAO_CIENCIA",
+    "nome": "Crise nas Universidades e Escolas Técnicas",
+    "categoria": "EDUCACAO",
+    "personagemNome": "Profa. Clara Nogueira",
+    "personagemCargo": "Ministra da Educação",
+    "personagemAvatar": "MINISTRA_EDUCACAO",
+    "dialogo": "Os laboratórios estão fechando e faltam vagas nas escolas técnicas. Até o microscópio virou peça de museu.",
+    "descricao": "A defasagem orçamentária ameaça paralisar centros de ensino técnico, pesquisa e qualificação profissional.",
+    "contextualizacao": "Investimento em Capital Humano: gastos em educação e tecnologia reduzem o Caixa Público no presente, mas elevam a produtividade e o PIB potencial nos turnos seguintes sem pressionar a inflação.",
+    "consequenciasPotenciais": "Greves estudantis e perda de produtividade futura, ou desembolso imediato do Caixa Público.",
+    "decretoA": {
+      "codigo": "A",
+      "titulo": "Investir no Ensino e Ciência",
+      "tipoPolitica": "Investimento em Capital Humano",
+      "descricao": "Libera orçamento suplementar para escolas técnicas, bolsas de pesquisa e modernização de laboratórios.",
+      "explicacaoTeorica": "Investimentos em educação e tecnologia têm maturação de médio prazo: custam ao Caixa hoje, mas ampliam a capacidade produtiva do país (PIB) sem gerar inflação.",
+      "impactoCaixa": -15,
+      "impactoAprovacao": 9,
+      "impactoPib": 0.6,
+      "impactoInflacao": 0,
+      "impactoJuros": 0,
+      "consequenciasEsperadas": [
+        "Caixa Público: -15,0 pts (investimento público em educação)",
+        "Aprovação Popular: +9,0% (apoio de estudantes, famílias e professores)",
+        "PIB: +0,6% agora | Efeito Atrasado (T+2): +1,5% no PIB e -0,5% na Inflação por ganho de produtividade"
+      ],
+      "efeitosAtrasados": [
+        {
+          "turnoOrigem": 0,
+          "turnoAplicacao": 2,
+          "turnosRestantes": 2,
+          "decretoOrigem": "Dividendo de Produtividade Educacional",
+          "descricao": "Mão de obra qualificada e inovação ampliam o PIB e reduzem custos produtivos",
+          "deltaCaixa": 5,
+          "deltaAprovacao": 3,
+          "deltaPib": 1.5,
+          "deltaInflacao": -0.5
+        }
+      ]
+    },
+    "decretoB": {
+      "codigo": "B",
+      "titulo": "Contingenciar Verba da Educação",
+      "tipoPolitica": "Contenção Orçamentária",
+      "descricao": "Mantém o bloqueio de verbas na educação para preservar o saldo do Caixa Público neste turno.",
+      "explicacaoTeorica": "Economiza recursos do Caixa Público no curto prazo, mas gera forte desgaste político e reduz o potencial de crescimento futuro do PIB.",
+      "impactoCaixa": 6,
+      "impactoAprovacao": -10,
+      "impactoPib": -0.4,
+      "impactoInflacao": 0,
+      "impactoJuros": 0,
+      "consequenciasEsperadas": [
+        "Caixa Público: +6,0 pts (economia orçamentária imediata)",
+        "Aprovação Popular: -10,0% (protestos estudantis e desgaste social)",
+        "PIB: -0,4% agora e -0,8% no Turno +2 por perda de qualificação"
+      ],
+      "efeitosAtrasados": [
+        {
+          "turnoOrigem": 0,
+          "turnoAplicacao": 2,
+          "turnosRestantes": 2,
+          "decretoOrigem": "Defasagem Tecnológica e de Mão de Obra",
+          "descricao": "Falta de qualificação técnica limita a expansão da indústria e serviços",
+          "deltaCaixa": 0,
+          "deltaAprovacao": -2,
+          "deltaPib": -0.8,
+          "deltaInflacao": 0.3
+        }
+      ]
+    },
+    "tema": "DESEMPREGO",
+    "decretoFavorito": "A",
+    "falaRetorno": {
+      "seguiu": "Lembro da parceria.",
+      "ignorou": "Lembro da divergência."
+    }
+  },
+  {
+    "id": "EV_CRISE_ESTADOS",
+    "nome": "Estados à Beira da Falência Pedem Socorro",
+    "categoria": "FEDERALISMO",
+    "personagemNome": "Governador Paulo Renato",
+    "personagemCargo": "Representante dos Governadores",
+    "personagemAvatar": "GOVERNADOR",
+    "dialogo": "Os estados atrasaram salários e os governadores vieram cobrar socorro. Trouxeram pastas; dinheiro, nenhum.",
+    "descricao": "Governadores de diversos estados enfrentam colapso financeiro e pedem transferência extraordinária da União.",
+    "contextualizacao": "Federalismo Fiscal: socorrer os estados mantém serviços essenciais funcionando e protege o PIB regional e a aprovação, mas transfere o déficit estadual para o Caixa Federal.",
+    "consequenciasPotenciais": "Paralisação de serviços nos estados e queda severa de aprovação, ou forte impacto negativo no Caixa Público da União.",
+    "decretoA": {
+      "codigo": "A",
+      "titulo": "Socorrer Cofres dos Estados",
+      "tipoPolitica": "Resgate Federativo Expansionista",
+      "descricao": "Transfere recursos do Tesouro Nacional aos estados para garantir salários e investimentos regionais.",
+      "explicacaoTeorica": "Evita o colapso dos serviços estaduais e sustenta a atividade econômica regional, mas consome parcela expressiva do Caixa Público federal.",
+      "impactoCaixa": -17,
+      "impactoAprovacao": 9,
+      "impactoPib": 1.2,
+      "impactoInflacao": 0.6,
+      "impactoJuros": 0,
+      "consequenciasEsperadas": [
+        "Caixa Público: -17,0 pts (transferência extraordinária aos estados)",
+        "Aprovação Popular: +9,0% (manutenção da saúde e segurança regional)",
+        "PIB: +1,2% a.a. | Inflação: +0,6% a.a."
+      ],
+      "efeitosAtrasados": [
+        {
+          "turnoOrigem": 0,
+          "turnoAplicacao": 1,
+          "turnosRestantes": 1,
+          "decretoOrigem": "Estabilidade Regional Pós-Resgate",
+          "descricao": "Normalização do comércio e serviços públicos nos estados",
+          "deltaCaixa": 3,
+          "deltaAprovacao": 2,
+          "deltaPib": 0.4,
+          "deltaInflacao": 0.3
+        }
+      ]
+    },
+    "decretoB": {
+      "codigo": "B",
+      "titulo": "Negar Resgate e Exigir Ajuste",
+      "tipoPolitica": "Rigor Fiscal Federativo",
+      "descricao": "Recusa transferir recursos a fundo perdido e exige que os próprios governadores cortem gastos estaduais.",
+      "explicacaoTeorica": "Impõe disciplina fiscal e preserva o Caixa da União, mas a retração dos gastos estaduais derruba o PIB e transfere o desgaste político para o Presidente.",
+      "impactoCaixa": 7,
+      "impactoAprovacao": -11,
+      "impactoPib": -1.1,
+      "impactoInflacao": -0.5,
+      "impactoJuros": 0,
+      "consequenciasEsperadas": [
+        "Caixa Público: +7,0 pts (blindagem do Tesouro Nacional)",
+        "Aprovação Popular: -11,0% (governadores culpam a Presidência pela crise local)",
+        "PIB: -1,1% a.a. | Inflação: -0,5% a.a."
+      ],
+      "efeitosAtrasados": [
+        {
+          "turnoOrigem": 0,
+          "turnoAplicacao": 1,
+          "turnosRestantes": 1,
+          "decretoOrigem": "Ajuste Forçado das Contas Estaduais",
+          "descricao": "Estados equilibram orçamentos após corte de despesas regionais",
+          "deltaCaixa": 4,
+          "deltaAprovacao": 0,
+          "deltaPib": -0.3,
+          "deltaInflacao": -0.4
+        }
+      ]
+    },
+    "tema": "DESEMPREGO",
+    "decretoFavorito": "A",
+    "falaRetorno": {
+      "seguiu": "Lembro da parceria.",
+      "ignorou": "Lembro da divergência."
+    }
+  },
+  {
+    "id": "EV_GREVE_GERAL",
+    "nome": "Greve Geral do Funcionalismo Público",
+    "categoria": "FISCAL",
+    "personagemNome": "Carlos Eduardo \"Carlão\"",
+    "personagemCargo": "Líder dos Servidores e Sindicatos",
+    "personagemAvatar": "TRABALHADORES",
+    "dialogo": "A categoria parou, Presidente. Tem servidor fazendo bico depois do expediente; agora o expediente também parou.",
+    "descricao": "Servidores federais iniciaram paralisação nacional reivindicando reajuste salarial acima da inflação.",
+    "contextualizacao": "Despesa Obrigatória Permanente: reajustar salários recupera a aprovação e normaliza serviços, mas cria gasto rígido que continua drenando o Caixa no turno seguinte.",
+    "consequenciasPotenciais": "Desgaste severo de popularidade com serviços parados, ou pressão permanente sobre o Caixa Público.",
+    "decretoA": {
+      "codigo": "A",
+      "titulo": "Conceder Reajuste Salarial",
+      "tipoPolitica": "Expansão de Despesa Obrigatória",
+      "descricao": "Atende às reivindicações concedendo reajuste na folha para encerrar a greve imediatamente.",
+      "explicacaoTeorica": "Encerra a crise política e impulsiona a aprovação e o consumo, mas cria uma despesa permanente que volta a reduzir o Caixa Público no turno seguinte.",
+      "impactoCaixa": -16,
+      "impactoAprovacao": 10,
+      "impactoPib": 0.9,
+      "impactoInflacao": 0.8,
+      "impactoJuros": 0,
+      "consequenciasEsperadas": [
+        "Caixa Público: -16,0 pts agora e -8,0 pts no T+1 (gasto permanente)",
+        "Aprovação Popular: +10,0% | PIB: +0,9% a.a.",
+        "Inflação: +0,8% a.a."
+      ],
+      "efeitosAtrasados": [
+        {
+          "turnoOrigem": 0,
+          "turnoAplicacao": 1,
+          "turnosRestantes": 1,
+          "decretoOrigem": "Impacto Permanente da Folha Salarial",
+          "descricao": "Nova parcela do reajuste salarial entra em vigor no orçamento do turno seguinte",
+          "deltaCaixa": -8,
+          "deltaAprovacao": 2,
+          "deltaPib": 0.3,
+          "deltaInflacao": 0.5
+        }
+      ]
+    },
+    "decretoB": {
+      "codigo": "B",
+      "titulo": "Congelar Salários e Cortar Ponto",
+      "tipoPolitica": "Contenção de Folha Pública",
+      "descricao": "Nega o reajuste alegando limite fiscal do Caixa Público e determina desconto dos dias parados.",
+      "explicacaoTeorica": "Protege a solvência fiscal de longo prazo e evita indexação inflacionária, mas impõe pesado desgaste à Aprovação Popular.",
+      "impactoCaixa": 6,
+      "impactoAprovacao": -12,
+      "impactoPib": -0.8,
+      "impactoInflacao": -0.5,
+      "impactoJuros": 0,
+      "consequenciasEsperadas": [
+        "Caixa Público: +6,0 pts agora e +5,0 pts no T+1",
+        "Aprovação Popular: -12,0% (greve prolongada e desgaste político)",
+        "PIB: -0,8% a.a. | Inflação: -0,5% a.a."
+      ],
+      "efeitosAtrasados": [
+        {
+          "turnoOrigem": 0,
+          "turnoAplicacao": 1,
+          "turnosRestantes": 1,
+          "decretoOrigem": "Estabilidade das Despesas Obrigatórias",
+          "descricao": "Controle da folha libera espaço fiscal no turno seguinte",
+          "deltaCaixa": 5,
+          "deltaAprovacao": -2,
+          "deltaPib": 0.4,
+          "deltaInflacao": -0.3
+        }
+      ]
+    },
+    "tema": "DESEMPREGO",
+    "decretoFavorito": "A",
+    "falaRetorno": {
+      "seguiu": "A categoria lembra.",
+      "ignorou": "A categoria discordou."
+    }
+  },
+  {
+    "id": "EV_ENDIVIDAMENTO_FAMILIAS",
+    "nome": "Famílias Endividadas e Varejo Travado",
+    "categoria": "SUPERAQUECIMENTO",
+    "personagemNome": "Dona Maria Aparecida",
+    "personagemCargo": "Representante da População",
+    "personagemAvatar": "POPULACAO",
+    "dialogo": "As famílias estão pagando juros com outro empréstimo. O varejo tem vitrines cheias e clientes sem crédito.",
+    "descricao": "A inadimplência recorde das famílias travou as vendas do comércio varejista nacional.",
+    "contextualizacao": "Canal de Crédito: usar um fundo público garantidor e baixar juros destrava o consumo e o PIB rapidamente, mas custa ao Caixa e aquece a inflação depois.",
+    "consequenciasPotenciais": "Estagnação do comércio e perda de aprovação, ou custo fiscal e aceleração inflacionária futura.",
+    "decretoA": {
+      "codigo": "A",
+      "titulo": "Renegociar Dívidas e Cortar Juros",
+      "tipoPolitica": "Alívio Creditício e Monetário",
+      "descricao": "Cria fundo garantidor do Tesouro para descontos de dívidas atrasadas e reduz a Selic em -1,5 p.p.",
+      "explicacaoTeorica": "Desobstrui o crédito das famílias, impulsionando o PIB e a aprovação a um custo moderado de Caixa, mas gera pressão inflacionária no turno seguinte.",
+      "impactoCaixa": -13,
+      "impactoAprovacao": 10,
+      "impactoPib": 1.6,
+      "impactoInflacao": 0.7,
+      "impactoJuros": -1.5,
+      "consequenciasEsperadas": [
+        "Caixa Público: -13,0 pts | Taxa de Juros: -1,5% a.a.",
+        "Aprovação Popular: +10,0% | PIB: +1,6% a.a.",
+        "Efeito Atrasado (T+1): +0,8% no PIB, mas +1,0% na Inflação"
+      ],
+      "efeitosAtrasados": [
+        {
+          "turnoOrigem": 0,
+          "turnoAplicacao": 1,
+          "turnosRestantes": 1,
+          "decretoOrigem": "Expansão do Consumo Pós-Renegociação",
+          "descricao": "Retorno das famílias ao crédito estimula o PIB, mas pressiona preços",
+          "deltaCaixa": 3,
+          "deltaAprovacao": 2,
+          "deltaPib": 0.8,
+          "deltaInflacao": 1
+        }
+      ]
+    },
+    "decretoB": {
+      "codigo": "B",
+      "titulo": "Manter Rigor Bancário (+1,0 Juros)",
+      "tipoPolitica": "Ortodoxia Monetária Prudencial",
+      "descricao": "Recusa usar dinheiro público para cobrir dívidas privadas e sobe juros em +1,0 p.p. para conter o crédito.",
+      "explicacaoTeorica": "Preserva o Caixa Público e reduz rapidamente a inflação pela retração do crédito, mas penaliza o PIB do comércio e a aprovação.",
+      "impactoCaixa": 4,
+      "impactoAprovacao": -9,
+      "impactoPib": -1.1,
+      "impactoInflacao": -1,
+      "impactoJuros": 1,
+      "consequenciasEsperadas": [
+        "Caixa Público: +4,0 pts (sem gasto com garantias)",
+        "Aprovação Popular: -9,0% | PIB: -1,1% a.a.",
+        "Inflação: -1,0% agora e -0,9% no T+1"
+      ],
+      "efeitosAtrasados": [
+        {
+          "turnoOrigem": 0,
+          "turnoAplicacao": 1,
+          "turnosRestantes": 1,
+          "decretoOrigem": "Saneamento da Carteira de Crédito",
+          "descricao": "Menor alavancagem reduz a inflação de demanda, mantendo atividade contida",
+          "deltaCaixa": 0,
+          "deltaAprovacao": 0,
+          "deltaPib": -0.4,
+          "deltaInflacao": -0.9
+        }
+      ]
+    },
+    "tema": "DESEMPREGO",
+    "decretoFavorito": "A",
+    "falaRetorno": {
+      "seguiu": "O bairro lembra.",
+      "ignorou": "O bairro discordou."
+    }
+  },
+  {
+    "id": "EV_SECA",
+    "nome": "Seca e preço dos alimentos",
+    "categoria": "PRECO",
+    "tema": "PRECO",
+    "personagemNome": "Rosana Figueiredo",
+    "personagemCargo": "Ministra da Agricultura",
+    "personagemAvatar": "AGRICULTORA",
+    "dialogo": "A seca queimou o milho e esvaziou os açudes. No campo, promessa não enche caminhão nem barriga.",
+    "descricao": "Seca e preço dos alimentos",
+    "contextualizacao": "Investimentos ampliam a oferta futura, enquanto importações aliviam preços sacrificando arrecadação.",
+    "consequenciasPotenciais": "A escolha distribui custos presentes e benefícios futuros.",
+    "decretoA": {
+      "codigo": "A",
+      "titulo": "Financiar irrigação",
+      "tipoPolitica": "Investimento agrícola",
+      "descricao": "Abre uma linha pública para irrigação nas propriedades atingidas pela seca.",
+      "explicacaoTeorica": "Investimentos ampliam a oferta futura, enquanto importações aliviam preços sacrificando arrecadação.",
+      "impactoCaixa": -16,
+      "impactoAprovacao": 9,
+      "impactoPib": 0.8,
+      "impactoInflacao": -0.4,
+      "impactoJuros": 0,
+      "consequenciasEsperadas": [
+        "Custos e benefícios se distribuem ao longo do mandato."
+      ],
+      "efeitosAtrasados": [
+        {
+          "turnosRestantes": 2,
+          "decretoOrigem": "Financiar irrigação",
+          "descricao": "Ajuste defasado da oferta e da arrecadação",
+          "deltaCaixa": 3,
+          "deltaAprovacao": 1,
+          "deltaPib": 0.4,
+          "deltaInflacao": -0.3
+        }
+      ]
+    },
+    "decretoB": {
+      "codigo": "B",
+      "titulo": "Abrir importações",
+      "tipoPolitica": "Redução de tarifas",
+      "descricao": "Reduz tarifas sobre alimentos importados para ampliar a oferta no mercado interno.",
+      "explicacaoTeorica": "Investimentos ampliam a oferta futura, enquanto importações aliviam preços sacrificando arrecadação.",
+      "impactoCaixa": 5,
+      "impactoAprovacao": -7,
+      "impactoPib": -0.5,
+      "impactoInflacao": -1,
+      "impactoJuros": 0,
+      "consequenciasEsperadas": [
+        "Custos e benefícios se distribuem ao longo do mandato."
+      ],
+      "efeitosAtrasados": [
+        {
+          "turnosRestantes": 2,
+          "decretoOrigem": "Abrir importações",
+          "descricao": "Ajuste defasado da oferta e da arrecadação",
+          "deltaCaixa": -2,
+          "deltaAprovacao": -1,
+          "deltaPib": 0.2,
+          "deltaInflacao": -0.3
+        }
+      ]
+    },
+    "decretoFavorito": "A",
+    "falaRetorno": {
+      "seguiu": "Lembro da parceria.",
+      "ignorou": "Lembro da divergência."
+    }
+  },
+  {
+    "id": "EV_DIVIDA",
+    "nome": "Vencimento da dívida pública",
+    "categoria": "FISCAL",
+    "tema": "FISCAL",
+    "personagemNome": "Artur Lemos",
+    "personagemCargo": "Secretário do Tesouro",
+    "personagemAvatar": "ECONOMISTA_OCULOS",
+    "dialogo": "A dívida vence nesta semana e os credores querem garantias. Eles não aceitam discurso como comprovante de pagamento.",
+    "descricao": "Vencimento da dívida pública",
+    "contextualizacao": "Alongar vencimentos preserva serviços, mas prêmio de risco e ajuste fiscal distribuem custos de formas distintas.",
+    "consequenciasPotenciais": "A escolha distribui custos presentes e benefícios futuros.",
+    "decretoA": {
+      "codigo": "A",
+      "titulo": "Renegociar vencimentos",
+      "tipoPolitica": "Gestão da dívida",
+      "descricao": "Negocia novos prazos com os credores para os títulos que estão vencendo.",
+      "explicacaoTeorica": "Alongar vencimentos preserva serviços, mas prêmio de risco e ajuste fiscal distribuem custos de formas distintas.",
+      "impactoCaixa": -12,
+      "impactoAprovacao": 7,
+      "impactoPib": 0.5,
+      "impactoInflacao": 0.4,
+      "impactoJuros": 0,
+      "consequenciasEsperadas": [
+        "Custos e benefícios se distribuem ao longo do mandato."
+      ],
+      "efeitosAtrasados": [
+        {
+          "turnosRestantes": 2,
+          "decretoOrigem": "Renegociar vencimentos",
+          "descricao": "Ajuste defasado da oferta e da arrecadação",
+          "deltaCaixa": 3,
+          "deltaAprovacao": 1,
+          "deltaPib": 0.4,
+          "deltaInflacao": -0.3
+        }
+      ]
+    },
+    "decretoB": {
+      "codigo": "B",
+      "titulo": "Cortar despesas",
+      "tipoPolitica": "Ajuste fiscal",
+      "descricao": "Bloqueia despesas do orçamento para atender ao vencimento da dívida.",
+      "explicacaoTeorica": "Alongar vencimentos preserva serviços, mas prêmio de risco e ajuste fiscal distribuem custos de formas distintas.",
+      "impactoCaixa": 14,
+      "impactoAprovacao": -10,
+      "impactoPib": -0.9,
+      "impactoInflacao": -0.3,
+      "impactoJuros": 0,
+      "consequenciasEsperadas": [
+        "Custos e benefícios se distribuem ao longo do mandato."
+      ],
+      "efeitosAtrasados": [
+        {
+          "turnosRestantes": 2,
+          "decretoOrigem": "Cortar despesas",
+          "descricao": "Ajuste defasado da oferta e da arrecadação",
+          "deltaCaixa": -2,
+          "deltaAprovacao": -1,
+          "deltaPib": 0.2,
+          "deltaInflacao": -0.3
+        }
+      ]
+    },
+    "decretoFavorito": "A",
+    "falaRetorno": {
+      "seguiu": "Lembro da parceria.",
+      "ignorou": "Lembro da divergência."
+    }
+  },
+  {
+    "id": "EV_AUTOMACAO",
+    "nome": "Automação e desemprego",
+    "categoria": "DESEMPREGO",
+    "tema": "DESEMPREGO",
+    "personagemNome": "Marisa Duarte",
+    "personagemCargo": "Líder do Sindicato Metalúrgico",
+    "personagemAvatar": "TRABALHADORES",
+    "dialogo": "As máquinas chegaram; meus colegas receberam aviso de demissão. O futuro é moderno, mas o aluguel continua vencendo.",
+    "descricao": "Automação e desemprego",
+    "contextualizacao": "Capital humano produz ganhos defasados; incentivos tributários ajudam contratações com perda de receita.",
+    "consequenciasPotenciais": "A escolha distribui custos presentes e benefícios futuros.",
+    "decretoA": {
+      "codigo": "A",
+      "titulo": "Requalificar trabalhadores",
+      "tipoPolitica": "Formação profissional",
+      "descricao": "Financia cursos técnicos e bolsas para os trabalhadores deslocados pela automação.",
+      "explicacaoTeorica": "Capital humano produz ganhos defasados; incentivos tributários ajudam contratações com perda de receita.",
+      "impactoCaixa": -15,
+      "impactoAprovacao": 10,
+      "impactoPib": 0.9,
+      "impactoInflacao": 0.3,
+      "impactoJuros": 0,
+      "consequenciasEsperadas": [
+        "Custos e benefícios se distribuem ao longo do mandato."
+      ],
+      "efeitosAtrasados": [
+        {
+          "turnosRestantes": 2,
+          "decretoOrigem": "Requalificar trabalhadores",
+          "descricao": "Ajuste defasado da oferta e da arrecadação",
+          "deltaCaixa": 3,
+          "deltaAprovacao": 1,
+          "deltaPib": 0.4,
+          "deltaInflacao": -0.3
+        }
+      ]
+    },
+    "decretoB": {
+      "codigo": "B",
+      "titulo": "Rever incentivos patronais",
+      "tipoPolitica": "Reforma de incentivos",
+      "descricao": "Reorganiza benefícios às empresas e as condições dos incentivos à contratação.",
+      "explicacaoTeorica": "Capital humano produz ganhos defasados; incentivos tributários ajudam contratações com perda de receita.",
+      "impactoCaixa": 6,
+      "impactoAprovacao": -8,
+      "impactoPib": -0.5,
+      "impactoInflacao": -0.2,
+      "impactoJuros": 0,
+      "consequenciasEsperadas": [
+        "Custos e benefícios se distribuem ao longo do mandato."
+      ],
+      "efeitosAtrasados": [
+        {
+          "turnosRestantes": 2,
+          "decretoOrigem": "Rever incentivos patronais",
+          "descricao": "Ajuste defasado da oferta e da arrecadação",
+          "deltaCaixa": -2,
+          "deltaAprovacao": -1,
+          "deltaPib": 0.2,
+          "deltaInflacao": -0.3
+        }
+      ]
+    },
+    "decretoFavorito": "A",
+    "falaRetorno": {
+      "seguiu": "Lembro da parceria.",
+      "ignorou": "Lembro da divergência."
+    }
+  },
+  {
+    "id": "EV_CREDITO",
+    "nome": "Expansão acelerada do crédito",
+    "categoria": "SUPERAQUECIMENTO",
+    "tema": "SUPERAQUECIMENTO",
+    "personagemNome": "Dra. Helena Campos",
+    "personagemCargo": "Presidente do Banco Central",
+    "personagemAvatar": "PRESIDENTE_BC",
+    "dialogo": "Os bancos oferecem crédito até para quem entrou só para pedir informação. As famílias já estão assinando sem ler.",
+    "descricao": "Expansão acelerada do crédito",
+    "contextualizacao": "O ciclo de crédito estimula demanda, mas pode gerar inflação e risco fiscal.",
+    "consequenciasPotenciais": "A escolha distribui custos presentes e benefícios futuros.",
+    "decretoA": {
+      "codigo": "A",
+      "titulo": "Apertar o crédito",
+      "tipoPolitica": "Restrição de crédito",
+      "descricao": "Eleva exigências bancárias e restringe a expansão dos empréstimos ao consumidor.",
+      "explicacaoTeorica": "O ciclo de crédito estimula demanda, mas pode gerar inflação e risco fiscal.",
+      "impactoCaixa": 8,
+      "impactoAprovacao": -8,
+      "impactoPib": -1,
+      "impactoInflacao": -0.8,
+      "impactoJuros": 1,
+      "consequenciasEsperadas": [
+        "Custos e benefícios se distribuem ao longo do mandato."
+      ],
+      "efeitosAtrasados": [
+        {
+          "turnosRestantes": 2,
+          "decretoOrigem": "Apertar o crédito",
+          "descricao": "Ajuste defasado da oferta e da arrecadação",
+          "deltaCaixa": 3,
+          "deltaAprovacao": 1,
+          "deltaPib": 0.4,
+          "deltaInflacao": -0.3
+        }
+      ]
+    },
+    "decretoB": {
+      "codigo": "B",
+      "titulo": "Garantir novos empréstimos",
+      "tipoPolitica": "Garantia pública",
+      "descricao": "Amplia as garantias do Tesouro para os novos empréstimos concedidos pelos bancos.",
+      "explicacaoTeorica": "O ciclo de crédito estimula demanda, mas pode gerar inflação e risco fiscal.",
+      "impactoCaixa": -17,
+      "impactoAprovacao": 11,
+      "impactoPib": 1.2,
+      "impactoInflacao": 1,
+      "impactoJuros": -0.5,
+      "consequenciasEsperadas": [
+        "Custos e benefícios se distribuem ao longo do mandato."
+      ],
+      "efeitosAtrasados": [
+        {
+          "turnosRestantes": 2,
+          "decretoOrigem": "Garantir novos empréstimos",
+          "descricao": "Ajuste defasado da oferta e da arrecadação",
+          "deltaCaixa": -2,
+          "deltaAprovacao": -1,
+          "deltaPib": 0.2,
+          "deltaInflacao": -0.3
+        }
+      ]
+    },
+    "decretoFavorito": "A",
+    "falaRetorno": {
+      "seguiu": "Lembro do apoio.",
+      "ignorou": "Lembro da divergência."
+    }
+  },
+  {
+    "id": "EV_ENERGIA",
+    "nome": "Escassez de energia",
+    "categoria": "ENERGIA",
+    "tema": "PRECO",
+    "personagemNome": "Eng. Roberto Albuquerque",
+    "personagemCargo": "Ministro de Minas e Energia",
+    "personagemAvatar": "ENERGIA",
+    "dialogo": "A usina reduziu a geração e as fábricas pedem explicações. Meu capacete protege a cabeça, não produz eletricidade.",
+    "descricao": "Escassez de energia",
+    "contextualizacao": "Subsídios protegem renda presente; preços de escassez induzem economia e investimento.",
+    "consequenciasPotenciais": "A escolha distribui custos presentes e benefícios futuros.",
+    "decretoA": {
+      "codigo": "A",
+      "titulo": "Subsidiar a tarifa",
+      "tipoPolitica": "Subsídio energético",
+      "descricao": "Usa recursos do Tesouro para cobrir parte do custo adicional da energia.",
+      "explicacaoTeorica": "Subsídios protegem renda presente; preços de escassez induzem economia e investimento.",
+      "impactoCaixa": -18,
+      "impactoAprovacao": 11,
+      "impactoPib": 0.7,
+      "impactoInflacao": -0.6,
+      "impactoJuros": 0,
+      "consequenciasEsperadas": [
+        "Custos e benefícios se distribuem ao longo do mandato."
+      ],
+      "efeitosAtrasados": [
+        {
+          "turnosRestantes": 2,
+          "decretoOrigem": "Subsidiar a tarifa",
+          "descricao": "Ajuste defasado da oferta e da arrecadação",
+          "deltaCaixa": 3,
+          "deltaAprovacao": 1,
+          "deltaPib": 0.4,
+          "deltaInflacao": -0.3
+        }
+      ]
+    },
+    "decretoB": {
+      "codigo": "B",
+      "titulo": "Repassar a conta",
+      "tipoPolitica": "Reajuste tarifário",
+      "descricao": "Autoriza as distribuidoras a repassar o custo adicional aos consumidores.",
+      "explicacaoTeorica": "Subsídios protegem renda presente; preços de escassez induzem economia e investimento.",
+      "impactoCaixa": 9,
+      "impactoAprovacao": -11,
+      "impactoPib": -0.7,
+      "impactoInflacao": 1,
+      "impactoJuros": 0,
+      "consequenciasEsperadas": [
+        "Custos e benefícios se distribuem ao longo do mandato."
+      ],
+      "efeitosAtrasados": [
+        {
+          "turnosRestantes": 2,
+          "decretoOrigem": "Repassar a conta",
+          "descricao": "Ajuste defasado da oferta e da arrecadação",
+          "deltaCaixa": -2,
+          "deltaAprovacao": -1,
+          "deltaPib": 0.2,
+          "deltaInflacao": -0.3
+        }
+      ]
+    },
+    "decretoFavorito": "A",
+    "falaRetorno": {
+      "seguiu": "Honrou nosso contrato.",
+      "ignorou": "Discordamos sobre energia."
+    }
+  },
+  {
+    "id": "EV_MUNICIPIOS",
+    "nome": "Crise financeira municipal",
+    "categoria": "FEDERALISMO",
+    "tema": "FISCAL",
+    "personagemNome": "Teresa Menezes",
+    "personagemCargo": "Prefeita de Boa Esperança",
+    "personagemAvatar": "PREFEITA_COLETE",
+    "dialogo": "A prefeitura atrasou a coleta e o posto está sem insumos. Os moradores cobram na minha porta, diariamente.",
+    "descricao": "Crise financeira municipal",
+    "contextualizacao": "Transferências estabilizam serviços; condicionalidades preservam solvência com custo social imediato.",
+    "consequenciasPotenciais": "A escolha distribui custos presentes e benefícios futuros.",
+    "decretoA": {
+      "codigo": "A",
+      "titulo": "Transferir recursos",
+      "tipoPolitica": "Transferência federativa",
+      "descricao": "Transfere recursos federais aos municípios para custear serviços locais.",
+      "explicacaoTeorica": "Transferências estabilizam serviços; condicionalidades preservam solvência com custo social imediato.",
+      "impactoCaixa": -17,
+      "impactoAprovacao": 12,
+      "impactoPib": 0.9,
+      "impactoInflacao": 0.5,
+      "impactoJuros": 0,
+      "consequenciasEsperadas": [
+        "Custos e benefícios se distribuem ao longo do mandato."
+      ],
+      "efeitosAtrasados": [
+        {
+          "turnosRestantes": 2,
+          "decretoOrigem": "Transferir recursos",
+          "descricao": "Ajuste defasado da oferta e da arrecadação",
+          "deltaCaixa": 3,
+          "deltaAprovacao": 1,
+          "deltaPib": 0.4,
+          "deltaInflacao": -0.3
+        }
+      ]
+    },
+    "decretoB": {
+      "codigo": "B",
+      "titulo": "Condicionar o socorro",
+      "tipoPolitica": "Contrapartida fiscal",
+      "descricao": "Exige medidas de ajuste dos municípios como condição para o apoio financeiro.",
+      "explicacaoTeorica": "Transferências estabilizam serviços; condicionalidades preservam solvência com custo social imediato.",
+      "impactoCaixa": 11,
+      "impactoAprovacao": -9,
+      "impactoPib": -0.8,
+      "impactoInflacao": -0.3,
+      "impactoJuros": 0,
+      "consequenciasEsperadas": [
+        "Custos e benefícios se distribuem ao longo do mandato."
+      ],
+      "efeitosAtrasados": [
+        {
+          "turnosRestantes": 2,
+          "decretoOrigem": "Condicionar o socorro",
+          "descricao": "Ajuste defasado da oferta e da arrecadação",
+          "deltaCaixa": -2,
+          "deltaAprovacao": -1,
+          "deltaPib": 0.2,
+          "deltaInflacao": -0.3
+        }
+      ]
+    },
+    "decretoFavorito": "A",
+    "falaRetorno": {
+      "seguiu": "Lembro da parceria.",
+      "ignorou": "Lembro da divergência."
+    }
+  },
+  {
+    "id": "EV_INDUSTRIA",
+    "nome": "Fechamento de fábricas",
+    "categoria": "DESEMPREGO",
+    "tema": "DESEMPREGO",
+    "personagemNome": "Beatriz Vasconcelos",
+    "personagemCargo": "Presidente da Federação Industrial",
+    "personagemAvatar": "EMPRESARIO",
+    "dialogo": "A fábrica suspendeu turnos e os fornecedores estão sem pedidos. A cidade inteira vive desse portão.",
+    "descricao": "Fechamento de fábricas",
+    "contextualizacao": "Política industrial mantém emprego presente; realocação pode melhorar produtividade futura.",
+    "consequenciasPotenciais": "A escolha distribui custos presentes e benefícios futuros.",
+    "decretoA": {
+      "codigo": "A",
+      "titulo": "Modernizar fábricas",
+      "tipoPolitica": "Crédito industrial",
+      "descricao": "Financia a modernização de equipamentos e processos das indústrias atingidas.",
+      "explicacaoTeorica": "Política industrial mantém emprego presente; realocação pode melhorar produtividade futura.",
+      "impactoCaixa": -16,
+      "impactoAprovacao": 10,
+      "impactoPib": 1,
+      "impactoInflacao": 0.4,
+      "impactoJuros": 0,
+      "consequenciasEsperadas": [
+        "Custos e benefícios se distribuem ao longo do mandato."
+      ],
+      "efeitosAtrasados": [
+        {
+          "turnosRestantes": 2,
+          "decretoOrigem": "Modernizar fábricas",
+          "descricao": "Ajuste defasado da oferta e da arrecadação",
+          "deltaCaixa": 3,
+          "deltaAprovacao": 1,
+          "deltaPib": 0.4,
+          "deltaInflacao": -0.3
+        }
+      ]
+    },
+    "decretoB": {
+      "codigo": "B",
+      "titulo": "Financiar recolocação",
+      "tipoPolitica": "Mobilidade profissional",
+      "descricao": "Direciona o apoio à recolocação e à mobilidade dos trabalhadores da região.",
+      "explicacaoTeorica": "Política industrial mantém emprego presente; realocação pode melhorar produtividade futura.",
+      "impactoCaixa": 7,
+      "impactoAprovacao": -7,
+      "impactoPib": -0.6,
+      "impactoInflacao": -0.2,
+      "impactoJuros": 0,
+      "consequenciasEsperadas": [
+        "Custos e benefícios se distribuem ao longo do mandato."
+      ],
+      "efeitosAtrasados": [
+        {
+          "turnosRestantes": 2,
+          "decretoOrigem": "Financiar recolocação",
+          "descricao": "Ajuste defasado da oferta e da arrecadação",
+          "deltaCaixa": -2,
+          "deltaAprovacao": -1,
+          "deltaPib": 0.2,
+          "deltaInflacao": -0.3
+        }
+      ]
+    },
+    "decretoFavorito": "A",
+    "falaRetorno": {
+      "seguiu": "A indústria lembra.",
+      "ignorou": "Discordamos sobre incentivos."
+    }
+  },
+  {
+    "id": "EV_IMOVEIS",
+    "nome": "Boom imobiliário",
+    "categoria": "SUPERAQUECIMENTO",
+    "tema": "SUPERAQUECIMENTO",
+    "personagemNome": "Lígia Azevedo",
+    "personagemCargo": "Ministra da Habitação",
+    "personagemAvatar": "MINISTRA_TAILLEUR",
+    "dialogo": "Os imóveis dispararam e os aluguéis expulsam famílias do bairro. Tem apartamento vazio valendo mais que minha rua.",
+    "descricao": "Boom imobiliário",
+    "contextualizacao": "Restrições prudenciais contêm alavancagem; subsídios expandem acesso e demanda.",
+    "consequenciasPotenciais": "A escolha distribui custos presentes e benefícios futuros.",
+    "decretoA": {
+      "codigo": "A",
+      "titulo": "Exigir entrada maior",
+      "tipoPolitica": "Regulação do crédito",
+      "descricao": "Eleva a entrada mínima exigida nos financiamentos imobiliários.",
+      "explicacaoTeorica": "Restrições prudenciais contêm alavancagem; subsídios expandem acesso e demanda.",
+      "impactoCaixa": 10,
+      "impactoAprovacao": -8,
+      "impactoPib": -1,
+      "impactoInflacao": -0.7,
+      "impactoJuros": 0.5,
+      "consequenciasEsperadas": [
+        "Custos e benefícios se distribuem ao longo do mandato."
+      ],
+      "efeitosAtrasados": [
+        {
+          "turnosRestantes": 2,
+          "decretoOrigem": "Exigir entrada maior",
+          "descricao": "Ajuste defasado da oferta e da arrecadação",
+          "deltaCaixa": 3,
+          "deltaAprovacao": 1,
+          "deltaPib": 0.4,
+          "deltaInflacao": -0.3
+        }
+      ]
+    },
+    "decretoB": {
+      "codigo": "B",
+      "titulo": "Subsidiar moradias",
+      "tipoPolitica": "Subsídio habitacional",
+      "descricao": "Amplia o subsídio público aos financiamentos de habitação.",
+      "explicacaoTeorica": "Restrições prudenciais contêm alavancagem; subsídios expandem acesso e demanda.",
+      "impactoCaixa": -20,
+      "impactoAprovacao": 12,
+      "impactoPib": 1.3,
+      "impactoInflacao": 1,
+      "impactoJuros": 0,
+      "consequenciasEsperadas": [
+        "Custos e benefícios se distribuem ao longo do mandato."
+      ],
+      "efeitosAtrasados": [
+        {
+          "turnosRestantes": 2,
+          "decretoOrigem": "Subsidiar moradias",
+          "descricao": "Ajuste defasado da oferta e da arrecadação",
+          "deltaCaixa": -2,
+          "deltaAprovacao": -1,
+          "deltaPib": 0.2,
+          "deltaInflacao": -0.3
+        }
+      ]
+    },
+    "decretoFavorito": "A",
+    "falaRetorno": {
+      "seguiu": "Lembro da parceria.",
+      "ignorou": "Lembro da divergência."
+    }
+  },
+  {
+    "id": "EV_PORTOS",
+    "nome": "Congestionamento nos portos",
+    "categoria": "COMERCIO",
+    "tema": "PRECO",
+    "personagemNome": "Almirante Raul Noronha",
+    "personagemCargo": "Diretor da Autoridade Portuária",
+    "personagemAvatar": "OFICIAL_PORTOS",
+    "dialogo": "Os caminhões estão presos no acesso ao porto. A carga estraga enquanto discutimos de quem é a fila.",
+    "descricao": "Congestionamento nos portos",
+    "contextualizacao": "Infraestrutura remove gargalos com atraso; tarifas racionam demanda e arrecadam no presente.",
+    "consequenciasPotenciais": "A escolha distribui custos presentes e benefícios futuros.",
+    "decretoA": {
+      "codigo": "A",
+      "titulo": "Ampliar os portos",
+      "tipoPolitica": "Investimento logístico",
+      "descricao": "Financia obras e equipamentos para ampliar a capacidade de movimentação dos portos.",
+      "explicacaoTeorica": "Infraestrutura remove gargalos com atraso; tarifas racionam demanda e arrecadam no presente.",
+      "impactoCaixa": -18,
+      "impactoAprovacao": 10,
+      "impactoPib": 0.8,
+      "impactoInflacao": -0.2,
+      "impactoJuros": 0,
+      "consequenciasEsperadas": [
+        "Custos e benefícios se distribuem ao longo do mandato."
+      ],
+      "efeitosAtrasados": [
+        {
+          "turnosRestantes": 2,
+          "decretoOrigem": "Ampliar os portos",
+          "descricao": "Ajuste defasado da oferta e da arrecadação",
+          "deltaCaixa": 3,
+          "deltaAprovacao": 1,
+          "deltaPib": 0.4,
+          "deltaInflacao": -0.3
+        }
+      ]
+    },
+    "decretoB": {
+      "codigo": "B",
+      "titulo": "Tarifar o congestionamento",
+      "tipoPolitica": "Tarifa portuária",
+      "descricao": "Cobra uma tarifa adicional pelo uso da infraestrutura portuária congestionada.",
+      "explicacaoTeorica": "Infraestrutura remove gargalos com atraso; tarifas racionam demanda e arrecadam no presente.",
+      "impactoCaixa": 10,
+      "impactoAprovacao": -9,
+      "impactoPib": -0.7,
+      "impactoInflacao": 0.4,
+      "impactoJuros": 0,
+      "consequenciasEsperadas": [
+        "Custos e benefícios se distribuem ao longo do mandato."
+      ],
+      "efeitosAtrasados": [
+        {
+          "turnosRestantes": 2,
+          "decretoOrigem": "Tarifar o congestionamento",
+          "descricao": "Ajuste defasado da oferta e da arrecadação",
+          "deltaCaixa": -2,
+          "deltaAprovacao": -1,
+          "deltaPib": 0.2,
+          "deltaInflacao": -0.3
+        }
+      ]
+    },
+    "decretoFavorito": "A",
+    "falaRetorno": {
+      "seguiu": "Lembro da parceria.",
+      "ignorou": "Lembro da divergência."
+    }
+  },
+  {
+    "id": "EV_INFORMAIS",
+    "nome": "Queda da renda informal",
+    "categoria": "DESEMPREGO",
+    "tema": "DESEMPREGO",
+    "personagemNome": "Dona Rita Nascimento",
+    "personagemCargo": "Presidente da Associação de Ambulantes",
+    "personagemAvatar": "POPULACAO",
+    "dialogo": "Os ambulantes venderam metade do habitual nesta semana. O aluguel da barraca não aceitou acompanhar a queda.",
+    "descricao": "Queda da renda informal",
+    "contextualizacao": "Transferências sustentam consumo imediato; formalização amplia a base tributária ao longo do tempo.",
+    "consequenciasPotenciais": "A escolha distribui custos presentes e benefícios futuros.",
+    "decretoA": {
+      "codigo": "A",
+      "titulo": "Pagar renda temporária",
+      "tipoPolitica": "Transferência de renda",
+      "descricao": "Cria um auxílio temporário para os trabalhadores informais atingidos pela queda da renda.",
+      "explicacaoTeorica": "Transferências sustentam consumo imediato; formalização amplia a base tributária ao longo do tempo.",
+      "impactoCaixa": -19,
+      "impactoAprovacao": 12,
+      "impactoPib": 1,
+      "impactoInflacao": 0.6,
+      "impactoJuros": 0,
+      "consequenciasEsperadas": [
+        "Custos e benefícios se distribuem ao longo do mandato."
+      ],
+      "efeitosAtrasados": [
+        {
+          "turnosRestantes": 2,
+          "decretoOrigem": "Pagar renda temporária",
+          "descricao": "Ajuste defasado da oferta e da arrecadação",
+          "deltaCaixa": 3,
+          "deltaAprovacao": 1,
+          "deltaPib": 0.4,
+          "deltaInflacao": -0.3
+        }
+      ]
+    },
+    "decretoB": {
+      "codigo": "B",
+      "titulo": "Incentivar a formalização",
+      "tipoPolitica": "Incentivo à formalização",
+      "descricao": "Reorganiza os incentivos à formalização e o acesso dos trabalhadores aos programas existentes.",
+      "explicacaoTeorica": "Transferências sustentam consumo imediato; formalização amplia a base tributária ao longo do tempo.",
+      "impactoCaixa": 8,
+      "impactoAprovacao": -8,
+      "impactoPib": -0.5,
+      "impactoInflacao": -0.3,
+      "impactoJuros": 0,
+      "consequenciasEsperadas": [
+        "Custos e benefícios se distribuem ao longo do mandato."
+      ],
+      "efeitosAtrasados": [
+        {
+          "turnosRestantes": 2,
+          "decretoOrigem": "Incentivar a formalização",
+          "descricao": "Ajuste defasado da oferta e da arrecadação",
+          "deltaCaixa": -2,
+          "deltaAprovacao": -1,
+          "deltaPib": 0.2,
+          "deltaInflacao": -0.3
+        }
+      ]
+    },
+    "decretoFavorito": "A",
+    "falaRetorno": {
+      "seguiu": "Lembro da parceria.",
+      "ignorou": "Lembro da divergência."
+    }
+  },
+  {
+    "id": "EV_POSSE",
+    "nome": "A chave do gabinete",
+    "categoria": "FEDERALISMO",
+    "personagemNome": "Clara Nogueira",
+    "personagemCargo": "Coordenadora da Transição",
+    "personagemAvatar": "MINISTRA_TAILLEUR",
+    "dialogo": "A faixa chegou; as contas também. Presidente, qual será a primeira mensagem do seu governo?",
+    "descricao": "A transição apresenta as contas herdadas e pede uma orientação inicial.",
+    "contextualizacao": "A orientação inicial combina escolhas fiscais e apoio político.",
+    "consequenciasPotenciais": "O mandato começa com compromissos e restrições.",
+    "decretoA": {
+      "codigo": "A",
+      "titulo": "Priorizar a renda",
+      "tipoPolitica": "Apoio inicial à renda",
+      "descricao": "Anuncia um programa inicial de apoio às famílias.",
+      "explicacaoTeorica": "A despesa pública sustenta a demanda e exige financiamento.",
+      "impactoCaixa": -12,
+      "impactoAprovacao": 8,
+      "impactoPib": 0.6,
+      "impactoInflacao": 0.3,
+      "impactoJuros": 0,
+      "consequenciasEsperadas": [
+        "Apoio à renda com custo fiscal."
+      ],
+      "efeitosAtrasados": [
+        {
+          "turnosRestantes": 1,
+          "decretoOrigem": "Programa de posse",
+          "descricao": "Apoio inicial à atividade",
+          "deltaCaixa": -2,
+          "deltaAprovacao": 1,
+          "deltaPib": 0.3,
+          "deltaInflacao": 0.2
+        }
+      ]
+    },
+    "decretoB": {
+      "codigo": "B",
+      "titulo": "Revisar as despesas",
+      "tipoPolitica": "Revisão inicial de gastos",
+      "descricao": "Revisa despesas antes de novos compromissos.",
+      "explicacaoTeorica": "A revisão de gastos preserva recursos e restringe a demanda.",
+      "impactoCaixa": 6,
+      "impactoAprovacao": -6,
+      "impactoPib": -0.3,
+      "impactoInflacao": -0.1,
+      "impactoJuros": 0,
+      "consequenciasEsperadas": [
+        "Mais reservas, menos estímulo imediato."
+      ],
+      "efeitosAtrasados": [
+        {
+          "turnosRestantes": 1,
+          "decretoOrigem": "Revisão de posse",
+          "descricao": "Ajuste inicial de despesas",
+          "deltaCaixa": 2,
+          "deltaAprovacao": -1,
+          "deltaPib": -0.2,
+          "deltaInflacao": -0.1
+        }
+      ]
+    },
+    "tema": "FISCAL",
+    "tipoMandato": "POSSE",
+    "decretoFavorito": "A",
+    "falaRetorno": {
+      "seguiu": "Lembro da parceria.",
+      "ignorou": "Lembro da divergência."
+    }
+  },
+  {
+    "id": "EV_PRESTACAO_CONTAS",
+    "nome": "O país pede respostas",
+    "categoria": "FEDERALISMO",
+    "personagemNome": "Clara Nogueira",
+    "personagemCargo": "Coordenadora da Prestação de Contas",
+    "personagemAvatar": "MINISTRA_TAILLEUR",
+    "dialogo": "As urnas se aproximam e o país cobra seu balanço. O que dirá aos cidadãos?",
+    "descricao": "Último pronunciamento do mandato, sem efeitos econômicos próprios.",
+    "contextualizacao": "A eleição será narrada pela aprovação final; não determina vitória ou derrota.",
+    "consequenciasPotenciais": "O mandato começa com compromissos e restrições.",
+    "decretoA": {
+      "codigo": "A",
+      "titulo": "Defender o legado",
+      "tipoPolitica": "Prestação de contas",
+      "descricao": "Defender o legado no pronunciamento final.",
+      "explicacaoTeorica": "Esta decisão é narrativa. Os mecanismos econômicos normais do turno continuam a operar.",
+      "impactoCaixa": 0,
+      "impactoAprovacao": 0,
+      "impactoPib": 0,
+      "impactoInflacao": 0,
+      "impactoJuros": 0,
+      "consequenciasEsperadas": [
+        "Sem efeito direto ou atrasado próprio."
+      ],
+      "efeitosAtrasados": []
+    },
+    "decretoB": {
+      "codigo": "B",
+      "titulo": "Reconhecer os limites",
+      "tipoPolitica": "Prestação de contas",
+      "descricao": "Reconhecer os limites no pronunciamento final.",
+      "explicacaoTeorica": "Esta decisão é narrativa. Os mecanismos econômicos normais do turno continuam a operar.",
+      "impactoCaixa": 0,
+      "impactoAprovacao": 0,
+      "impactoPib": 0,
+      "impactoInflacao": 0,
+      "impactoJuros": 0,
+      "consequenciasEsperadas": [
+        "Sem efeito direto ou atrasado próprio."
+      ],
+      "efeitosAtrasados": []
+    },
+    "tema": "FISCAL",
+    "tipoMandato": "ENCERRAMENTO",
+    "decretoFavorito": "A",
+    "falaRetorno": {
+      "seguiu": "Lembro da parceria.",
+      "ignorou": "Lembro da divergência."
+    }
+  },
+  {
+    "id": "EV_ALTA_DOLAR_RETORNO_A",
+    "nome": "Crédito depois do aperto",
+    "categoria": "CAMBIO",
+    "personagemNome": "Dra. Helena Campos",
+    "personagemCargo": "Presidente do Banco Central",
+    "personagemAvatar": "PRESIDENTE_BC",
+    "dialogo": "O crédito encolheu após sua decisão. Empresários trouxeram planilhas; nenhum trouxe solução pronta.",
+    "descricao": "Após a decisão em Fuga de Capitais e Disparada do Dólar, surge uma nova cobrança do mesmo setor.",
+    "contextualizacao": "Uma decisão anterior alterou prioridades; a nova escolha tem custos e benefícios próprios.",
+    "consequenciasPotenciais": "A resposta exige conciliar reservas, apoio popular e atividade.",
+    "decretoA": {
+      "codigo": "A",
+      "titulo": "Renegociar crédito produtivo",
+      "tipoPolitica": "Renegociação produtiva",
+      "descricao": "Destina recursos para responder à cobrança apresentada pelo personagem.",
+      "explicacaoTeorica": "O apoio público sustenta renda e produção, mas exige financiamento e pode pressionar preços.",
+      "impactoCaixa": -10,
+      "impactoAprovacao": 6,
+      "impactoPib": 0.4,
+      "impactoInflacao": 0.3,
+      "impactoJuros": 0,
+      "consequenciasEsperadas": [
+        "Apoio imediato com custo fiscal e efeitos futuros."
+      ],
+      "efeitosAtrasados": [
+        {
+          "turnosRestantes": 1,
+          "decretoOrigem": "Crédito depois do aperto",
+          "descricao": "Continuidade da resposta produtiva",
+          "deltaCaixa": -2,
+          "deltaAprovacao": 1,
+          "deltaPib": 0.2,
+          "deltaInflacao": 0.1
+        }
+      ]
+    },
+    "decretoB": {
+      "codigo": "B",
+      "titulo": "Preservar as reservas",
+      "tipoPolitica": "Limite de garantias",
+      "descricao": "Restringe o compromisso fiscal e concentra a resposta nos recursos disponíveis.",
+      "explicacaoTeorica": "Conter o compromisso preserva caixa, com menor estímulo à atividade e custo político.",
+      "impactoCaixa": 3,
+      "impactoAprovacao": -4,
+      "impactoPib": -0.3,
+      "impactoInflacao": -0.2,
+      "impactoJuros": 0,
+      "consequenciasEsperadas": [
+        "Reservas preservadas com custo político."
+      ],
+      "efeitosAtrasados": [
+        {
+          "turnosRestantes": 1,
+          "decretoOrigem": "Crédito depois do aperto",
+          "descricao": "Revisão dos compromissos",
+          "deltaCaixa": 1,
+          "deltaAprovacao": -1,
+          "deltaPib": -0.1,
+          "deltaInflacao": -0.1
+        }
+      ]
+    },
+    "tema": "PRECO",
+    "gatilho": {
+      "origem": "EV_ALTA_DOLAR",
+      "decreto": "A",
+      "atrasoMin": 2,
+      "atrasoMax": 3
+    },
+    "conceito": "Defasagem e restrição orçamentária",
+    "licaoCurta": "Uma medida cria compromissos que voltam ao gabinete em turnos seguintes.",
+    "decretoFavorito": "A",
+    "falaRetorno": {
+      "seguiu": "Lembro do apoio.",
+      "ignorou": "Lembro da divergência."
+    }
+  },
+  {
+    "id": "EV_ALTA_DOLAR_RETORNO_B",
+    "nome": "Importadores voltam ao balcão",
+    "categoria": "CAMBIO",
+    "personagemNome": "Dra. Helena Campos",
+    "personagemCargo": "Presidente do Banco Central",
+    "personagemAvatar": "PRESIDENTE_BC",
+    "dialogo": "Os importadores voltaram pelo mesmo subsídio. A fila já conhece o caminho do Tesouro.",
+    "descricao": "Após a decisão em Fuga de Capitais e Disparada do Dólar, surge uma nova cobrança do mesmo setor.",
+    "contextualizacao": "Uma decisão anterior alterou prioridades; a nova escolha tem custos e benefícios próprios.",
+    "consequenciasPotenciais": "A resposta exige conciliar reservas, apoio popular e atividade.",
+    "decretoA": {
+      "codigo": "A",
+      "titulo": "Condicionar o subsídio",
+      "tipoPolitica": "Renegociação produtiva",
+      "descricao": "Destina recursos para responder à cobrança apresentada pelo personagem.",
+      "explicacaoTeorica": "O apoio público sustenta renda e produção, mas exige financiamento e pode pressionar preços.",
+      "impactoCaixa": -11,
+      "impactoAprovacao": 6,
+      "impactoPib": 0.4,
+      "impactoInflacao": 0.3,
+      "impactoJuros": 0,
+      "consequenciasEsperadas": [
+        "Apoio imediato com custo fiscal e efeitos futuros."
+      ],
+      "efeitosAtrasados": [
+        {
+          "turnosRestantes": 1,
+          "decretoOrigem": "Importadores voltam ao balcão",
+          "descricao": "Continuidade da resposta produtiva",
+          "deltaCaixa": -2,
+          "deltaAprovacao": 1,
+          "deltaPib": 0.2,
+          "deltaInflacao": 0.1
+        }
+      ]
+    },
+    "decretoB": {
+      "codigo": "B",
+      "titulo": "Encerrar a cobertura",
+      "tipoPolitica": "Limite de garantias",
+      "descricao": "Restringe o compromisso fiscal e concentra a resposta nos recursos disponíveis.",
+      "explicacaoTeorica": "Conter o compromisso preserva caixa, com menor estímulo à atividade e custo político.",
+      "impactoCaixa": 4,
+      "impactoAprovacao": -4,
+      "impactoPib": -0.3,
+      "impactoInflacao": -0.2,
+      "impactoJuros": 0,
+      "consequenciasEsperadas": [
+        "Reservas preservadas com custo político."
+      ],
+      "efeitosAtrasados": [
+        {
+          "turnosRestantes": 1,
+          "decretoOrigem": "Importadores voltam ao balcão",
+          "descricao": "Revisão dos compromissos",
+          "deltaCaixa": 1,
+          "deltaAprovacao": -1,
+          "deltaPib": -0.1,
+          "deltaInflacao": -0.1
+        }
+      ]
+    },
+    "tema": "PRECO",
+    "gatilho": {
+      "origem": "EV_ALTA_DOLAR",
+      "decreto": "B",
+      "atrasoMin": 2,
+      "atrasoMax": 3
+    },
+    "conceito": "Defasagem e restrição orçamentária",
+    "licaoCurta": "Uma medida cria compromissos que voltam ao gabinete em turnos seguintes.",
+    "decretoFavorito": "A",
+    "falaRetorno": {
+      "seguiu": "Lembro do apoio.",
+      "ignorou": "Lembro da divergência."
+    }
+  },
+  {
+    "id": "EV_PRECO_ALIMENTOS_RETORNO_A",
+    "nome": "A safra precisa de espaço",
+    "categoria": "PRECO",
+    "personagemNome": "Dona Maria Aparecida",
+    "personagemCargo": "Representante da População",
+    "personagemAvatar": "POPULACAO",
+    "dialogo": "A safra apoiada pelo governo chegou, mas faltam armazéns. Comida parada também vira prejuízo.",
+    "descricao": "Após a decisão em Disparo no Preço da Cesta Básica, surge uma nova cobrança do mesmo setor.",
+    "contextualizacao": "Uma decisão anterior alterou prioridades; a nova escolha tem custos e benefícios próprios.",
+    "consequenciasPotenciais": "A resposta exige conciliar reservas, apoio popular e atividade.",
+    "decretoA": {
+      "codigo": "A",
+      "titulo": "Ampliar os armazéns",
+      "tipoPolitica": "Infraestrutura de abastecimento",
+      "descricao": "Destina recursos para responder à cobrança apresentada pelo personagem.",
+      "explicacaoTeorica": "O apoio público sustenta renda e produção, mas exige financiamento e pode pressionar preços.",
+      "impactoCaixa": -8,
+      "impactoAprovacao": 5,
+      "impactoPib": 0.5,
+      "impactoInflacao": 0.3,
+      "impactoJuros": 0,
+      "consequenciasEsperadas": [
+        "Apoio imediato com custo fiscal e efeitos futuros."
+      ],
+      "efeitosAtrasados": [
+        {
+          "turnosRestantes": 1,
+          "decretoOrigem": "A safra precisa de espaço",
+          "descricao": "Continuidade da resposta produtiva",
+          "deltaCaixa": -2,
+          "deltaAprovacao": 1,
+          "deltaPib": 0.2,
+          "deltaInflacao": 0.1
+        }
+      ]
+    },
+    "decretoB": {
+      "codigo": "B",
+      "titulo": "Limitar compras públicas",
+      "tipoPolitica": "Contenção de compras",
+      "descricao": "Restringe o compromisso fiscal e concentra a resposta nos recursos disponíveis.",
+      "explicacaoTeorica": "Conter o compromisso preserva caixa, com menor estímulo à atividade e custo político.",
+      "impactoCaixa": 3,
+      "impactoAprovacao": -4.5,
+      "impactoPib": -0.3,
+      "impactoInflacao": -0.2,
+      "impactoJuros": 0,
+      "consequenciasEsperadas": [
+        "Reservas preservadas com custo político."
+      ],
+      "efeitosAtrasados": [
+        {
+          "turnosRestantes": 1,
+          "decretoOrigem": "A safra precisa de espaço",
+          "descricao": "Revisão dos compromissos",
+          "deltaCaixa": 1,
+          "deltaAprovacao": -1,
+          "deltaPib": -0.1,
+          "deltaInflacao": -0.1
+        }
+      ]
+    },
+    "tema": "PRECO",
+    "gatilho": {
+      "origem": "EV_PRECO_ALIMENTOS",
+      "decreto": "A",
+      "atrasoMin": 2,
+      "atrasoMax": 3
+    },
+    "conceito": "Defasagem e restrição orçamentária",
+    "licaoCurta": "Uma medida cria compromissos que voltam ao gabinete em turnos seguintes.",
+    "decretoFavorito": "A",
+    "falaRetorno": {
+      "seguiu": "O bairro lembra.",
+      "ignorou": "O bairro discordou."
+    }
+  },
+  {
+    "id": "EV_PRECO_ALIMENTOS_RETORNO_B",
+    "nome": "Feirantes cobram abastecimento",
+    "categoria": "PRECO",
+    "personagemNome": "Dona Maria Aparecida",
+    "personagemCargo": "Representante da População",
+    "personagemAvatar": "POPULACAO",
+    "dialogo": "A feira continua vazia em alguns bairros. Os comerciantes querem conversar sobre transporte, não sobre discursos.",
+    "descricao": "Após a decisão em Disparo no Preço da Cesta Básica, surge uma nova cobrança do mesmo setor.",
+    "contextualizacao": "Uma decisão anterior alterou prioridades; a nova escolha tem custos e benefícios próprios.",
+    "consequenciasPotenciais": "A resposta exige conciliar reservas, apoio popular e atividade.",
+    "decretoA": {
+      "codigo": "A",
+      "titulo": "Financiar os fretes",
+      "tipoPolitica": "Infraestrutura de abastecimento",
+      "descricao": "Destina recursos para responder à cobrança apresentada pelo personagem.",
+      "explicacaoTeorica": "O apoio público sustenta renda e produção, mas exige financiamento e pode pressionar preços.",
+      "impactoCaixa": -9,
+      "impactoAprovacao": 5,
+      "impactoPib": 0.5,
+      "impactoInflacao": 0.3,
+      "impactoJuros": 0,
+      "consequenciasEsperadas": [
+        "Apoio imediato com custo fiscal e efeitos futuros."
+      ],
+      "efeitosAtrasados": [
+        {
+          "turnosRestantes": 1,
+          "decretoOrigem": "Feirantes cobram abastecimento",
+          "descricao": "Continuidade da resposta produtiva",
+          "deltaCaixa": -2,
+          "deltaAprovacao": 1,
+          "deltaPib": 0.2,
+          "deltaInflacao": 0.1
+        }
+      ]
+    },
+    "decretoB": {
+      "codigo": "B",
+      "titulo": "Conter despesas adicionais",
+      "tipoPolitica": "Contenção de compras",
+      "descricao": "Restringe o compromisso fiscal e concentra a resposta nos recursos disponíveis.",
+      "explicacaoTeorica": "Conter o compromisso preserva caixa, com menor estímulo à atividade e custo político.",
+      "impactoCaixa": 4,
+      "impactoAprovacao": -4.5,
+      "impactoPib": -0.3,
+      "impactoInflacao": -0.2,
+      "impactoJuros": 0,
+      "consequenciasEsperadas": [
+        "Reservas preservadas com custo político."
+      ],
+      "efeitosAtrasados": [
+        {
+          "turnosRestantes": 1,
+          "decretoOrigem": "Feirantes cobram abastecimento",
+          "descricao": "Revisão dos compromissos",
+          "deltaCaixa": 1,
+          "deltaAprovacao": -1,
+          "deltaPib": -0.1,
+          "deltaInflacao": -0.1
+        }
+      ]
+    },
+    "tema": "PRECO",
+    "gatilho": {
+      "origem": "EV_PRECO_ALIMENTOS",
+      "decreto": "B",
+      "atrasoMin": 2,
+      "atrasoMax": 3
+    },
+    "conceito": "Defasagem e restrição orçamentária",
+    "licaoCurta": "Uma medida cria compromissos que voltam ao gabinete em turnos seguintes.",
+    "decretoFavorito": "A",
+    "falaRetorno": {
+      "seguiu": "O bairro lembra.",
+      "ignorou": "O bairro discordou."
+    }
+  },
+  {
+    "id": "EV_CRISE_ENERGETICA_RETORNO_A",
+    "nome": "Térmicas cobram renovação",
+    "categoria": "ENERGIA",
+    "personagemNome": "Eng. Roberto Albuquerque",
+    "personagemCargo": "Ministro de Minas e Energia",
+    "personagemAvatar": "ENERGIA",
+    "dialogo": "As térmicas querem renovar os contratos pagos pelo Tesouro. O prazo acaba antes da próxima chuva.",
+    "descricao": "Após a decisão em Reservatórios Secos e Risco de Apagão, surge uma nova cobrança do mesmo setor.",
+    "contextualizacao": "Uma decisão anterior alterou prioridades; a nova escolha tem custos e benefícios próprios.",
+    "consequenciasPotenciais": "A resposta exige conciliar reservas, apoio popular e atividade.",
+    "decretoA": {
+      "codigo": "A",
+      "titulo": "Renovar o apoio",
+      "tipoPolitica": "Compensação energética",
+      "descricao": "Destina recursos para responder à cobrança apresentada pelo personagem.",
+      "explicacaoTeorica": "O apoio público sustenta renda e produção, mas exige financiamento e pode pressionar preços.",
+      "impactoCaixa": -12,
+      "impactoAprovacao": 8,
+      "impactoPib": 0.6000000000000001,
+      "impactoInflacao": 0.3,
+      "impactoJuros": 0,
+      "consequenciasEsperadas": [
+        "Apoio imediato com custo fiscal e efeitos futuros."
+      ],
+      "efeitosAtrasados": [
+        {
+          "turnosRestantes": 1,
+          "decretoOrigem": "Térmicas cobram renovação",
+          "descricao": "Continuidade da resposta produtiva",
+          "deltaCaixa": -2,
+          "deltaAprovacao": 1,
+          "deltaPib": 0.2,
+          "deltaInflacao": 0.1
+        }
+      ]
+    },
+    "decretoB": {
+      "codigo": "B",
+      "titulo": "Rever a cobertura",
+      "tipoPolitica": "Revisão de subsídios",
+      "descricao": "Restringe o compromisso fiscal e concentra a resposta nos recursos disponíveis.",
+      "explicacaoTeorica": "Conter o compromisso preserva caixa, com menor estímulo à atividade e custo político.",
+      "impactoCaixa": 3,
+      "impactoAprovacao": -5,
+      "impactoPib": -0.3,
+      "impactoInflacao": -0.2,
+      "impactoJuros": 0,
+      "consequenciasEsperadas": [
+        "Reservas preservadas com custo político."
+      ],
+      "efeitosAtrasados": [
+        {
+          "turnosRestantes": 1,
+          "decretoOrigem": "Térmicas cobram renovação",
+          "descricao": "Revisão dos compromissos",
+          "deltaCaixa": 1,
+          "deltaAprovacao": -1,
+          "deltaPib": -0.1,
+          "deltaInflacao": -0.1
+        }
+      ]
+    },
+    "tema": "DESEMPREGO",
+    "gatilho": {
+      "origem": "EV_CRISE_ENERGETICA",
+      "decreto": "A",
+      "atrasoMin": 2,
+      "atrasoMax": 3
+    },
+    "conceito": "Defasagem e restrição orçamentária",
+    "licaoCurta": "Uma medida cria compromissos que voltam ao gabinete em turnos seguintes.",
+    "decretoFavorito": "A",
+    "falaRetorno": {
+      "seguiu": "Honrou nosso contrato.",
+      "ignorou": "Discordamos sobre energia."
+    }
+  },
+  {
+    "id": "EV_CRISE_ENERGETICA_RETORNO_B",
+    "nome": "Indústria pede previsibilidade",
+    "categoria": "ENERGIA",
+    "personagemNome": "Eng. Roberto Albuquerque",
+    "personagemCargo": "Ministro de Minas e Energia",
+    "personagemAvatar": "ENERGIA",
+    "dialogo": "As fábricas adaptaram turnos à tarifa anterior. Agora pedem previsibilidade para continuar produzindo.",
+    "descricao": "Após a decisão em Reservatórios Secos e Risco de Apagão, surge uma nova cobrança do mesmo setor.",
+    "contextualizacao": "Uma decisão anterior alterou prioridades; a nova escolha tem custos e benefícios próprios.",
+    "consequenciasPotenciais": "A resposta exige conciliar reservas, apoio popular e atividade.",
+    "decretoA": {
+      "codigo": "A",
+      "titulo": "Compensar pequenas fábricas",
+      "tipoPolitica": "Compensação energética",
+      "descricao": "Destina recursos para responder à cobrança apresentada pelo personagem.",
+      "explicacaoTeorica": "O apoio público sustenta renda e produção, mas exige financiamento e pode pressionar preços.",
+      "impactoCaixa": -13,
+      "impactoAprovacao": 8,
+      "impactoPib": 0.6000000000000001,
+      "impactoInflacao": 0.3,
+      "impactoJuros": 0,
+      "consequenciasEsperadas": [
+        "Apoio imediato com custo fiscal e efeitos futuros."
+      ],
+      "efeitosAtrasados": [
+        {
+          "turnosRestantes": 1,
+          "decretoOrigem": "Indústria pede previsibilidade",
+          "descricao": "Continuidade da resposta produtiva",
+          "deltaCaixa": -2,
+          "deltaAprovacao": 1,
+          "deltaPib": 0.2,
+          "deltaInflacao": 0.1
+        }
+      ]
+    },
+    "decretoB": {
+      "codigo": "B",
+      "titulo": "Manter o repasse",
+      "tipoPolitica": "Revisão de subsídios",
+      "descricao": "Restringe o compromisso fiscal e concentra a resposta nos recursos disponíveis.",
+      "explicacaoTeorica": "Conter o compromisso preserva caixa, com menor estímulo à atividade e custo político.",
+      "impactoCaixa": 4,
+      "impactoAprovacao": -5,
+      "impactoPib": -0.3,
+      "impactoInflacao": -0.2,
+      "impactoJuros": 0,
+      "consequenciasEsperadas": [
+        "Reservas preservadas com custo político."
+      ],
+      "efeitosAtrasados": [
+        {
+          "turnosRestantes": 1,
+          "decretoOrigem": "Indústria pede previsibilidade",
+          "descricao": "Revisão dos compromissos",
+          "deltaCaixa": 1,
+          "deltaAprovacao": -1,
+          "deltaPib": -0.1,
+          "deltaInflacao": -0.1
+        }
+      ]
+    },
+    "tema": "DESEMPREGO",
+    "gatilho": {
+      "origem": "EV_CRISE_ENERGETICA",
+      "decreto": "B",
+      "atrasoMin": 2,
+      "atrasoMax": 3
+    },
+    "conceito": "Defasagem e restrição orçamentária",
+    "licaoCurta": "Uma medida cria compromissos que voltam ao gabinete em turnos seguintes.",
+    "decretoFavorito": "A",
+    "falaRetorno": {
+      "seguiu": "Honrou nosso contrato.",
+      "ignorou": "Discordamos sobre energia."
+    }
+  },
+  {
+    "id": "EV_CRISE_FISCAL_RETORNO_A",
+    "nome": "Serviços sob revisão",
+    "categoria": "FISCAL",
+    "personagemNome": "Dr. Celso Montenegro",
+    "personagemCargo": "Ministro da Economia",
+    "personagemAvatar": "MINISTRO_ECONOMIA",
+    "dialogo": "A revisão de gastos chegou aos balcões de atendimento. Prefeitos trouxeram filas para nossa reunião.",
+    "descricao": "Após a decisão em Alerta no Tesouro e Risco da Dívida, surge uma nova cobrança do mesmo setor.",
+    "contextualizacao": "Uma decisão anterior alterou prioridades; a nova escolha tem custos e benefícios próprios.",
+    "consequenciasPotenciais": "A resposta exige conciliar reservas, apoio popular e atividade.",
+    "decretoA": {
+      "codigo": "A",
+      "titulo": "Proteger o atendimento",
+      "tipoPolitica": "Proteção de serviços",
+      "descricao": "Destina recursos para responder à cobrança apresentada pelo personagem.",
+      "explicacaoTeorica": "O apoio público sustenta renda e produção, mas exige financiamento e pode pressionar preços.",
+      "impactoCaixa": -9,
+      "impactoAprovacao": 6,
+      "impactoPib": 0.7000000000000001,
+      "impactoInflacao": 0.3,
+      "impactoJuros": 0,
+      "consequenciasEsperadas": [
+        "Apoio imediato com custo fiscal e efeitos futuros."
+      ],
+      "efeitosAtrasados": [
+        {
+          "turnosRestantes": 1,
+          "decretoOrigem": "Serviços sob revisão",
+          "descricao": "Continuidade da resposta produtiva",
+          "deltaCaixa": -2,
+          "deltaAprovacao": 1,
+          "deltaPib": 0.2,
+          "deltaInflacao": 0.1
+        }
+      ]
+    },
+    "decretoB": {
+      "codigo": "B",
+      "titulo": "Prolongar os cortes",
+      "tipoPolitica": "Contingenciamento de despesas",
+      "descricao": "Restringe o compromisso fiscal e concentra a resposta nos recursos disponíveis.",
+      "explicacaoTeorica": "Conter o compromisso preserva caixa, com menor estímulo à atividade e custo político.",
+      "impactoCaixa": 3,
+      "impactoAprovacao": -5.5,
+      "impactoPib": -0.3,
+      "impactoInflacao": -0.2,
+      "impactoJuros": 0,
+      "consequenciasEsperadas": [
+        "Reservas preservadas com custo político."
+      ],
+      "efeitosAtrasados": [
+        {
+          "turnosRestantes": 1,
+          "decretoOrigem": "Serviços sob revisão",
+          "descricao": "Revisão dos compromissos",
+          "deltaCaixa": 1,
+          "deltaAprovacao": -1,
+          "deltaPib": -0.1,
+          "deltaInflacao": -0.1
+        }
+      ]
+    },
+    "tema": "DESEMPREGO",
+    "gatilho": {
+      "origem": "EV_CRISE_FISCAL",
+      "decreto": "A",
+      "atrasoMin": 2,
+      "atrasoMax": 3
+    },
+    "conceito": "Defasagem e restrição orçamentária",
+    "licaoCurta": "Uma medida cria compromissos que voltam ao gabinete em turnos seguintes.",
+    "decretoFavorito": "A",
+    "falaRetorno": {
+      "seguiu": "Honrou nossa planilha.",
+      "ignorou": "Ignorou meu aviso."
+    }
+  },
+  {
+    "id": "EV_CRISE_FISCAL_RETORNO_B",
+    "nome": "Credores pedem garantias",
+    "categoria": "FISCAL",
+    "personagemNome": "Dr. Celso Montenegro",
+    "personagemCargo": "Ministro da Economia",
+    "personagemAvatar": "MINISTRO_ECONOMIA",
+    "dialogo": "Os credores aceitaram financiar os gastos anteriores, mas voltaram pedindo garantias. Trouxeram contratos mais grossos.",
+    "descricao": "Após a decisão em Alerta no Tesouro e Risco da Dívida, surge uma nova cobrança do mesmo setor.",
+    "contextualizacao": "Uma decisão anterior alterou prioridades; a nova escolha tem custos e benefícios próprios.",
+    "consequenciasPotenciais": "A resposta exige conciliar reservas, apoio popular e atividade.",
+    "decretoA": {
+      "codigo": "A",
+      "titulo": "Negociar novos prazos",
+      "tipoPolitica": "Proteção de serviços",
+      "descricao": "Destina recursos para responder à cobrança apresentada pelo personagem.",
+      "explicacaoTeorica": "O apoio público sustenta renda e produção, mas exige financiamento e pode pressionar preços.",
+      "impactoCaixa": -10,
+      "impactoAprovacao": 6,
+      "impactoPib": 0.7000000000000001,
+      "impactoInflacao": 0.3,
+      "impactoJuros": 0,
+      "consequenciasEsperadas": [
+        "Apoio imediato com custo fiscal e efeitos futuros."
+      ],
+      "efeitosAtrasados": [
+        {
+          "turnosRestantes": 1,
+          "decretoOrigem": "Credores pedem garantias",
+          "descricao": "Continuidade da resposta produtiva",
+          "deltaCaixa": -2,
+          "deltaAprovacao": 1,
+          "deltaPib": 0.2,
+          "deltaInflacao": 0.1
+        }
+      ]
+    },
+    "decretoB": {
+      "codigo": "B",
+      "titulo": "Reforçar as garantias",
+      "tipoPolitica": "Contingenciamento de despesas",
+      "descricao": "Restringe o compromisso fiscal e concentra a resposta nos recursos disponíveis.",
+      "explicacaoTeorica": "Conter o compromisso preserva caixa, com menor estímulo à atividade e custo político.",
+      "impactoCaixa": 4,
+      "impactoAprovacao": -5.5,
+      "impactoPib": -0.3,
+      "impactoInflacao": -0.2,
+      "impactoJuros": 0,
+      "consequenciasEsperadas": [
+        "Reservas preservadas com custo político."
+      ],
+      "efeitosAtrasados": [
+        {
+          "turnosRestantes": 1,
+          "decretoOrigem": "Credores pedem garantias",
+          "descricao": "Revisão dos compromissos",
+          "deltaCaixa": 1,
+          "deltaAprovacao": -1,
+          "deltaPib": -0.1,
+          "deltaInflacao": -0.1
+        }
+      ]
+    },
+    "tema": "DESEMPREGO",
+    "gatilho": {
+      "origem": "EV_CRISE_FISCAL",
+      "decreto": "B",
+      "atrasoMin": 2,
+      "atrasoMax": 3
+    },
+    "conceito": "Defasagem e restrição orçamentária",
+    "licaoCurta": "Uma medida cria compromissos que voltam ao gabinete em turnos seguintes.",
+    "decretoFavorito": "A",
+    "falaRetorno": {
+      "seguiu": "Honrou nossa planilha.",
+      "ignorou": "Ignorou meu aviso."
+    }
+  },
+  {
+    "id": "EV_COMERCIO_EXTERIOR_RETORNO_A",
+    "nome": "Exportadores disputam crédito",
+    "categoria": "COMERCIO",
+    "personagemNome": "Beatriz Vasconcelos",
+    "personagemCargo": "Representante dos Empresários",
+    "personagemAvatar": "EMPRESARIO",
+    "dialogo": "As encomendas financiadas chegaram, mas faltam garantias para novos embarques. Meus fornecedores aguardam resposta.",
+    "descricao": "Após a decisão em Barreiras Externas e Queda nas Exportações, surge uma nova cobrança do mesmo setor.",
+    "contextualizacao": "Uma decisão anterior alterou prioridades; a nova escolha tem custos e benefícios próprios.",
+    "consequenciasPotenciais": "A resposta exige conciliar reservas, apoio popular e atividade.",
+    "decretoA": {
+      "codigo": "A",
+      "titulo": "Estender o seguro",
+      "tipoPolitica": "Garantias à produção",
+      "descricao": "Destina recursos para responder à cobrança apresentada pelo personagem.",
+      "explicacaoTeorica": "O apoio público sustenta renda e produção, mas exige financiamento e pode pressionar preços.",
+      "impactoCaixa": -14,
+      "impactoAprovacao": 7,
+      "impactoPib": 0.8,
+      "impactoInflacao": 0.3,
+      "impactoJuros": 0,
+      "consequenciasEsperadas": [
+        "Apoio imediato com custo fiscal e efeitos futuros."
+      ],
+      "efeitosAtrasados": [
+        {
+          "turnosRestantes": 1,
+          "decretoOrigem": "Exportadores disputam crédito",
+          "descricao": "Continuidade da resposta produtiva",
+          "deltaCaixa": -2,
+          "deltaAprovacao": 1,
+          "deltaPib": 0.2,
+          "deltaInflacao": 0.1
+        }
+      ]
+    },
+    "decretoB": {
+      "codigo": "B",
+      "titulo": "Encerrar o apoio",
+      "tipoPolitica": "Revisão de incentivos",
+      "descricao": "Restringe o compromisso fiscal e concentra a resposta nos recursos disponíveis.",
+      "explicacaoTeorica": "Conter o compromisso preserva caixa, com menor estímulo à atividade e custo político.",
+      "impactoCaixa": 3,
+      "impactoAprovacao": -6,
+      "impactoPib": -0.3,
+      "impactoInflacao": -0.2,
+      "impactoJuros": 0,
+      "consequenciasEsperadas": [
+        "Reservas preservadas com custo político."
+      ],
+      "efeitosAtrasados": [
+        {
+          "turnosRestantes": 1,
+          "decretoOrigem": "Exportadores disputam crédito",
+          "descricao": "Revisão dos compromissos",
+          "deltaCaixa": 1,
+          "deltaAprovacao": -1,
+          "deltaPib": -0.1,
+          "deltaInflacao": -0.1
+        }
+      ]
+    },
+    "tema": "DESEMPREGO",
+    "gatilho": {
+      "origem": "EV_COMERCIO_EXTERIOR",
+      "decreto": "A",
+      "atrasoMin": 2,
+      "atrasoMax": 3
+    },
+    "conceito": "Defasagem e restrição orçamentária",
+    "licaoCurta": "Uma medida cria compromissos que voltam ao gabinete em turnos seguintes.",
+    "decretoFavorito": "A",
+    "falaRetorno": {
+      "seguiu": "A indústria lembra.",
+      "ignorou": "Discordamos sobre incentivos."
+    }
+  },
+  {
+    "id": "EV_COMERCIO_EXTERIOR_RETORNO_B",
+    "nome": "Fornecedores sob nova tarifa",
+    "categoria": "COMERCIO",
+    "personagemNome": "Beatriz Vasconcelos",
+    "personagemCargo": "Representante dos Empresários",
+    "personagemAvatar": "EMPRESARIO",
+    "dialogo": "As tarifas anteriores chegaram às peças da fábrica. Meu fornecedor agora manda orçamento com pedido de desculpas.",
+    "descricao": "Após a decisão em Barreiras Externas e Queda nas Exportações, surge uma nova cobrança do mesmo setor.",
+    "contextualizacao": "Uma decisão anterior alterou prioridades; a nova escolha tem custos e benefícios próprios.",
+    "consequenciasPotenciais": "A resposta exige conciliar reservas, apoio popular e atividade.",
+    "decretoA": {
+      "codigo": "A",
+      "titulo": "Financiar insumos essenciais",
+      "tipoPolitica": "Garantias à produção",
+      "descricao": "Destina recursos para responder à cobrança apresentada pelo personagem.",
+      "explicacaoTeorica": "O apoio público sustenta renda e produção, mas exige financiamento e pode pressionar preços.",
+      "impactoCaixa": -15,
+      "impactoAprovacao": 7,
+      "impactoPib": 0.8,
+      "impactoInflacao": 0.3,
+      "impactoJuros": 0,
+      "consequenciasEsperadas": [
+        "Apoio imediato com custo fiscal e efeitos futuros."
+      ],
+      "efeitosAtrasados": [
+        {
+          "turnosRestantes": 1,
+          "decretoOrigem": "Fornecedores sob nova tarifa",
+          "descricao": "Continuidade da resposta produtiva",
+          "deltaCaixa": -2,
+          "deltaAprovacao": 1,
+          "deltaPib": 0.2,
+          "deltaInflacao": 0.1
+        }
+      ]
+    },
+    "decretoB": {
+      "codigo": "B",
+      "titulo": "Preservar a arrecadação",
+      "tipoPolitica": "Revisão de incentivos",
+      "descricao": "Restringe o compromisso fiscal e concentra a resposta nos recursos disponíveis.",
+      "explicacaoTeorica": "Conter o compromisso preserva caixa, com menor estímulo à atividade e custo político.",
+      "impactoCaixa": 4,
+      "impactoAprovacao": -6,
+      "impactoPib": -0.3,
+      "impactoInflacao": -0.2,
+      "impactoJuros": 0,
+      "consequenciasEsperadas": [
+        "Reservas preservadas com custo político."
+      ],
+      "efeitosAtrasados": [
+        {
+          "turnosRestantes": 1,
+          "decretoOrigem": "Fornecedores sob nova tarifa",
+          "descricao": "Revisão dos compromissos",
+          "deltaCaixa": 1,
+          "deltaAprovacao": -1,
+          "deltaPib": -0.1,
+          "deltaInflacao": -0.1
+        }
+      ]
+    },
+    "tema": "DESEMPREGO",
+    "gatilho": {
+      "origem": "EV_COMERCIO_EXTERIOR",
+      "decreto": "B",
+      "atrasoMin": 2,
+      "atrasoMax": 3
+    },
+    "conceito": "Defasagem e restrição orçamentária",
+    "licaoCurta": "Uma medida cria compromissos que voltam ao gabinete em turnos seguintes.",
+    "decretoFavorito": "A",
+    "falaRetorno": {
+      "seguiu": "A indústria lembra.",
+      "ignorou": "Discordamos sobre incentivos."
+    }
+  },
+  {
+    "id": "EV_GREVE_GERAL_RETORNO_A",
+    "nome": "Acordo salarial em cobrança",
+    "categoria": "FISCAL",
+    "personagemNome": "Carlos Eduardo \"Carlão\"",
+    "personagemCargo": "Líder dos Servidores e Sindicatos",
+    "personagemAvatar": "TRABALHADORES",
+    "dialogo": "O acordo anterior assinou promessas; as repartições cobram execução. A categoria trouxe uma cópia para cada ministro.",
+    "descricao": "Após a decisão em Greve Geral do Funcionalismo Público, surge uma nova cobrança do mesmo setor.",
+    "contextualizacao": "Uma decisão anterior alterou prioridades; a nova escolha tem custos e benefícios próprios.",
+    "consequenciasPotenciais": "A resposta exige conciliar reservas, apoio popular e atividade.",
+    "decretoA": {
+      "codigo": "A",
+      "titulo": "Repor equipes essenciais",
+      "tipoPolitica": "Negociação salarial",
+      "descricao": "Destina recursos para responder à cobrança apresentada pelo personagem.",
+      "explicacaoTeorica": "O apoio público sustenta renda e produção, mas exige financiamento e pode pressionar preços.",
+      "impactoCaixa": -11,
+      "impactoAprovacao": 8,
+      "impactoPib": 0.9,
+      "impactoInflacao": 0.3,
+      "impactoJuros": 0,
+      "consequenciasEsperadas": [
+        "Apoio imediato com custo fiscal e efeitos futuros."
+      ],
+      "efeitosAtrasados": [
+        {
+          "turnosRestantes": 1,
+          "decretoOrigem": "Acordo salarial em cobrança",
+          "descricao": "Continuidade da resposta produtiva",
+          "deltaCaixa": -2,
+          "deltaAprovacao": 1,
+          "deltaPib": 0.2,
+          "deltaInflacao": 0.1
+        }
+      ]
+    },
+    "decretoB": {
+      "codigo": "B",
+      "titulo": "Escalonar o acordo",
+      "tipoPolitica": "Escalonamento de compromissos",
+      "descricao": "Restringe o compromisso fiscal e concentra a resposta nos recursos disponíveis.",
+      "explicacaoTeorica": "Conter o compromisso preserva caixa, com menor estímulo à atividade e custo político.",
+      "impactoCaixa": 3,
+      "impactoAprovacao": -6.5,
+      "impactoPib": -0.3,
+      "impactoInflacao": -0.2,
+      "impactoJuros": 0,
+      "consequenciasEsperadas": [
+        "Reservas preservadas com custo político."
+      ],
+      "efeitosAtrasados": [
+        {
+          "turnosRestantes": 1,
+          "decretoOrigem": "Acordo salarial em cobrança",
+          "descricao": "Revisão dos compromissos",
+          "deltaCaixa": 1,
+          "deltaAprovacao": -1,
+          "deltaPib": -0.1,
+          "deltaInflacao": -0.1
+        }
+      ]
+    },
+    "tema": "DESEMPREGO",
+    "gatilho": {
+      "origem": "EV_GREVE_GERAL",
+      "decreto": "A",
+      "atrasoMin": 2,
+      "atrasoMax": 3
+    },
+    "conceito": "Defasagem e restrição orçamentária",
+    "licaoCurta": "Uma medida cria compromissos que voltam ao gabinete em turnos seguintes.",
+    "decretoFavorito": "A",
+    "falaRetorno": {
+      "seguiu": "A categoria lembra.",
+      "ignorou": "A categoria discordou."
+    }
+  },
+  {
+    "id": "EV_GREVE_GERAL_RETORNO_B",
+    "nome": "Negociação após o congelamento",
+    "categoria": "FISCAL",
+    "personagemNome": "Carlos Eduardo \"Carlão\"",
+    "personagemCargo": "Líder dos Servidores e Sindicatos",
+    "personagemAvatar": "TRABALHADORES",
+    "dialogo": "O congelamento continua na memória da categoria. A mesa está pronta; falta saber quem vai sentar.",
+    "descricao": "Após a decisão em Greve Geral do Funcionalismo Público, surge uma nova cobrança do mesmo setor.",
+    "contextualizacao": "Uma decisão anterior alterou prioridades; a nova escolha tem custos e benefícios próprios.",
+    "consequenciasPotenciais": "A resposta exige conciliar reservas, apoio popular e atividade.",
+    "decretoA": {
+      "codigo": "A",
+      "titulo": "Reabrir a negociação",
+      "tipoPolitica": "Negociação salarial",
+      "descricao": "Destina recursos para responder à cobrança apresentada pelo personagem.",
+      "explicacaoTeorica": "O apoio público sustenta renda e produção, mas exige financiamento e pode pressionar preços.",
+      "impactoCaixa": -12,
+      "impactoAprovacao": 8,
+      "impactoPib": 0.9,
+      "impactoInflacao": 0.3,
+      "impactoJuros": 0,
+      "consequenciasEsperadas": [
+        "Apoio imediato com custo fiscal e efeitos futuros."
+      ],
+      "efeitosAtrasados": [
+        {
+          "turnosRestantes": 1,
+          "decretoOrigem": "Negociação após o congelamento",
+          "descricao": "Continuidade da resposta produtiva",
+          "deltaCaixa": -2,
+          "deltaAprovacao": 1,
+          "deltaPib": 0.2,
+          "deltaInflacao": 0.1
+        }
+      ]
+    },
+    "decretoB": {
+      "codigo": "B",
+      "titulo": "Manter o congelamento",
+      "tipoPolitica": "Escalonamento de compromissos",
+      "descricao": "Restringe o compromisso fiscal e concentra a resposta nos recursos disponíveis.",
+      "explicacaoTeorica": "Conter o compromisso preserva caixa, com menor estímulo à atividade e custo político.",
+      "impactoCaixa": 4,
+      "impactoAprovacao": -6.5,
+      "impactoPib": -0.3,
+      "impactoInflacao": -0.2,
+      "impactoJuros": 0,
+      "consequenciasEsperadas": [
+        "Reservas preservadas com custo político."
+      ],
+      "efeitosAtrasados": [
+        {
+          "turnosRestantes": 1,
+          "decretoOrigem": "Negociação após o congelamento",
+          "descricao": "Revisão dos compromissos",
+          "deltaCaixa": 1,
+          "deltaAprovacao": -1,
+          "deltaPib": -0.1,
+          "deltaInflacao": -0.1
+        }
+      ]
+    },
+    "tema": "DESEMPREGO",
+    "gatilho": {
+      "origem": "EV_GREVE_GERAL",
+      "decreto": "B",
+      "atrasoMin": 2,
+      "atrasoMax": 3
+    },
+    "conceito": "Defasagem e restrição orçamentária",
+    "licaoCurta": "Uma medida cria compromissos que voltam ao gabinete em turnos seguintes.",
+    "decretoFavorito": "A",
+    "falaRetorno": {
+      "seguiu": "A categoria lembra.",
+      "ignorou": "A categoria discordou."
+    }
+  }
+]

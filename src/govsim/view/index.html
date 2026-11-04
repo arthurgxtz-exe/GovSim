@@ -10,7 +10,7 @@
     <div id="erro-api" class="erro-api hidden" role="alert" aria-live="assertive"></div>
     <section id="inicio" class="welcome" aria-labelledby="inicio-titulo">
       <div class="welcome-panel"><p class="eyebrow">GOVSIM • REPÚBLICA EM SUAS MÃOS</p><h1 id="inicio-titulo">GovSim<span>O peso da coroa.</span></h1>
-      <p>Equilibre recursos, apoio popular, atividade econômica e preços durante seu mandato.</p>
+      <p>Cuide do dinheiro do governo, do apoio das pessoas, da produção e dos preços.</p>
       <select id="inicio-dificuldade" class="hidden" aria-hidden="true" tabindex="-1"><option value="FACIL">Fácil</option><option value="MEDIO">Médio</option><option value="DIFICIL">Difícil</option></select>
       <fieldset class="difficulty-cards"><legend>Qual será o seu mandato?</legend>
         <label class="difficulty-option" data-level="FACIL"><input type="radio" name="desafio" value="FACIL" checked><span class="difficulty-icon">♧</span><strong>Fácil</strong><small>10 turnos · números visíveis · mais reservas</small></label>
@@ -19,11 +19,12 @@
       </fieldset>
       <button id="btn-tutorial" class="tutorial-toggle" type="button" aria-expanded="false" aria-controls="tutorial-conteudo">Como governar · tutorial</button>
       <dialog id="tutorial-conteudo" class="tutorial hidden" aria-label="Tutorial em três cartas"><button id="tutorial-fechar" class="reigns-secondary-btn" type="button">Fechar tutorial</button>
-        <article><b>01 • Leia a crise</b><p>Observe os quatro pilares. Caixa e aprovação zerados encerram o mandato.</p></article>
+        <article><b>01 • Leia a crise</b><p>Veja o dinheiro do governo e o apoio das pessoas. Se qualquer um acabar, o mandato termina. Toque nos símbolos para entender cada um.</p></article>
         <article><b>02 • Compare e decida</b><p>Arraste para comparar e solte para decidir. Pelo teclado, segure A/B ou ←/→ para ver a opção; solte para confirmar. Tab também permite focar os botões. Fácil: números. Médio: pontos de intensidade sem direção. Difícil: sem prévia.</p></article>
-        <article><b>03 • Olhe adiante</b><p>Consulte a linha do tempo. Decisões de hoje mudam turnos futuros. No Médio e Difícil, inflação ≥25% ou PIB abaixo de −3% por dois turnos também encerram o mandato.</p></article>
+        <article><b>03 • Olhe adiante</b><p>As escolhas de hoje podem voltar depois. Veja a faixa Próximos efeitos. No Médio e Difícil, preços subindo ≥25% ou produção abaixo de −3% por dois turnos também encerram o mandato.</p></article>
       </dialog><div class="demo-menu"><p>Modo demonstração (cartas em ordem fixa, para apresentação)</p><div><button id="btn-demo-curta" type="button">Demo · 4 turnos</button><button id="btn-demo-10" type="button">Demo · 10 turnos</button></div><small>Atalho: Ctrl+D</small></div><button id="inicio-jogar" class="reigns-primary-btn">Começar mandato</button></div>
     </section>
+    <dialog id="glossario-popover" class="glossario-popover" aria-labelledby="glossario-titulo"><h2 id="glossario-titulo"></h2><p id="glossario-definicao"></p><p id="glossario-mudanca"></p><button id="glossario-fechar" class="reigns-secondary-btn" type="button">Fechar explicação</button></dialog>
     <div id="alerta-acessivel" class="sr-only" role="status" aria-live="polite"></div>
     <!-- MOLDURA CENTRAL E PALCO INSPIRADO EM REIGNS -->
     <div class="reigns-viewport">
@@ -42,7 +43,7 @@
             <!-- OS 4 ÍCONES-RECIPIENTE DE REIGNS (CAIXA, APROVAÇÃO, PIB, INFLAÇÃO) -->
             <div class="pillars-bar" role="region" aria-label="Quatro Indicadores Principais">
                 <!-- Pilar 1: Caixa Público -->
-                <div id="hud-caixa" class="pillar-item" title="Caixa Público: Recursos financeiros do governo. Se zerar, ocorre derrota fiscal.">
+                <div id="hud-caixa" data-ajuda="caixa" role="button" tabindex="0" aria-haspopup="dialog" class="pillar-item" title="Caixa Público: Recursos financeiros do governo. Se zerar, ocorre derrota fiscal.">
                     <div class="pillar-dot-slot">
                         <span id="dot-caixa" class="reigns-dot"></span>
                     </div>
@@ -62,7 +63,7 @@
                 </div>
 
                 <!-- Pilar 2: Aprovação Popular -->
-                <div id="hud-aprovacao" class="pillar-item" title="Aprovação Popular: Apoio da população ao governo. Se zerar, o Presidente cai.">
+                <div id="hud-aprovacao" data-ajuda="aprovacao" role="button" tabindex="0" aria-haspopup="dialog" class="pillar-item" title="Aprovação Popular: Apoio da população ao governo. Se zerar, o Presidente cai.">
                     <div class="pillar-dot-slot">
                         <span id="dot-aprovacao" class="reigns-dot"></span>
                     </div>
@@ -80,7 +81,7 @@
                 </div>
 
                 <!-- Pilar 3: PIB -->
-                <div id="hud-pib" class="pillar-item" title="PIB: Desempenho da atividade econômica e geração de empregos.">
+                <div id="hud-pib" data-ajuda="pib" role="button" tabindex="0" aria-haspopup="dialog" class="pillar-item" title="PIB: Desempenho da atividade econômica e geração de empregos.">
                     <div class="pillar-dot-slot">
                         <span id="dot-pib" class="reigns-dot"></span>
                     </div>
@@ -98,7 +99,7 @@
                 </div>
 
                 <!-- Pilar 4: Inflação -->
-                <div id="hud-inflacao" class="pillar-item" title="Inflação: Variação geral dos preços. Inflação elevada corrói a aprovação popular.">
+                <div id="hud-inflacao" data-ajuda="inflacao" role="button" tabindex="0" aria-haspopup="dialog" class="pillar-item" title="Inflação: Variação geral dos preços. Inflação elevada corrói a aprovação popular.">
                     <div class="pillar-dot-slot">
                         <span id="dot-inflacao" class="reigns-dot"></span>
                     </div>
@@ -131,7 +132,7 @@
                         <span class="crisis-sep">&bull;</span>
                         <span id="evento-nome" class="crisis-name">Emergência Nacional</span>
                     </div>
-                    <p id="personagem-dialogo" class="reigns-speech-text">
+                    <p id="heranca-mandato" class="heranca-mandato hidden"></p><p id="personagem-dialogo" class="reigns-speech-text">
                         "Senhor Presidente, aguardamos sua decisão."
                     </p>
                     <p id="evento-contextualizacao" class="reigns-context-subtext"></p>
@@ -167,7 +168,7 @@
                                 <!-- Frente da Carta (Arte do Personagem + Cortina Superior de Escolha) -->
                                 <div class="card-face card-front">
                                     <!-- Cortina Preta Translúcida no Topo da Carta ao Inclinar (Assinatura de Reigns!) -->
-                                    <div id="choice-curtain" class="reigns-choice-curtain" aria-live="polite" aria-hidden="true">
+                                    <div class="selos-narrativos" id="selos-narrativos"><p id="selo-consequencia" class="hidden"></p><p id="selo-retorno" class="hidden"></p></div><div id="choice-curtain" class="reigns-choice-curtain" aria-live="polite" aria-hidden="true">
                                         <span id="curtain-text" class="curtain-decision-text">DECISÃO</span>
                                         <small id="curtain-sub" class="curtain-policy-sub"></small>
                                     </div>
@@ -237,23 +238,23 @@
                         <p id="conseq-sintese" class="lesson-lead"></p>
                         <details id="conseq-explicacao" class="conseq-explicacao"><summary>Entenda o porquê</summary><div class="lesson-two-cols">
                             <div>
-                                <strong>Mecanismo Econômico:</strong>
+                                <strong>Por que isso aconteceu:</strong>
                                 <p id="conseq-porque"></p>
                             </div>
                             <div>
-                                <strong>Trade-off e Efeitos Futuros:</strong>
+                                <strong>O que você ganhou e perdeu:</strong>
                                 <p id="conseq-futuro"></p>
                             </div>
                         </div>
                         <div id="conseq-reacoes-mini" class="lesson-reactions"></div>
 
                         <details class="conseq-memoria-details">
-                            <summary>Ver Memória de Cálculo Detalhada deste Turno</summary>
+                            <summary>Como o resultado foi calculado</summary>
                             <ul id="lista-memoria-calculo" class="conseq-memoria-list"></ul>
                         </details>
                     </details></div>
 
-                    <button id="btn-proxima-carta" class="reigns-primary-btn" type="button">
+                    <p id="manchete-turno" class="manchete-turno" role="status"></p><button id="btn-proxima-carta" class="reigns-primary-btn" type="button">
                         Virar Próxima Carta &#10140;
                     </button>
                 </div>
@@ -270,16 +271,16 @@
                     </div>
 
                     <div class="endgame-content">
-                        <details class="endgame-analysis"><summary>Análise completa do mandato</summary>
+                        <p id="epilogo-mandato" class="epilogo-mandato"></p><p id="resultado-eleicao" class="resultado-eleicao"></p><details class="endgame-analysis"><summary>Balanço completo do governo</summary>
                             <h3>Balanço Econômico (<span id="fim-turnos-realizados">10</span> turnos no poder)</h3>
                             <p id="fim-avaliacao-economica"></p>
                         </details>
 
-                        <section class="aprendizado"><h3>O que você aprendeu</h3><ul id="fim-aprendizados"></ul></section>
+                        <section class="aprendizado"><h3>O que faltou para Estadista</h3><p id="fim-estadista-faltou"></p></section><section class="aprendizado"><h3>O que você aprendeu</h3><ul id="fim-aprendizados"></ul></section>
                         <div id="fim-resumo-indicadores" class="conseq-4-pills"></div>
 
                         <div class="endgame-chart-wrap">
-                            <p>Caixa · Aprovação · PIB · Inflação (escalas normalizadas)</p><div id="grafico-resumo-texto" class="sr-only"></div>
+                            <p>Caixa · Aprovação · PIB · Inflação (linhas na mesma escala para comparar)</p><div id="grafico-resumo-texto" class="sr-only"></div>
                             <canvas role="img" aria-label="Evolução dos quatro indicadores ao longo do mandato" aria-describedby="grafico-resumo-texto" id="grafico-fim-jogo" width="600" height="180"></canvas>
                         </div>
 
@@ -307,8 +308,8 @@
             </div>
 
             <div class="footer-economy-badges">
-                <span class="footer-pill" title="Taxa Básica de Juros do Banco Central">
-                    Selic: <strong id="valor-juros">10,5% a.a.</strong>
+                <span class="footer-pill" data-ajuda="selic" role="button" tabindex="0" aria-haspopup="dialog" title="Taxa Básica de Juros do Banco Central">
+                    Selic: <strong id="valor-juros">10,5% ao ano</strong>
                 </span>
             </div>
         </footer>
@@ -318,19 +319,19 @@
     <div id="modal-cronicas" class="drawer-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="cronicas-titulo">
         <div class="drawer-panel">
             <div class="drawer-header">
-                <h2 id="cronicas-titulo">&#128220; Crônicas da República &amp; Efeitos Econômicos</h2>
+                <h2 id="cronicas-titulo">&#128220; História do governo e resultados das escolhas</h2>
                 <button id="btn-fechar-cronicas" class="btn-close-drawer" type="button">&times;</button>
             </div>
 
             <div class="drawer-body"><section class="drawer-section"><h3>Como governar</h3><p>Caixa ou aprovação em zero encerram o mandato. No Médio e Difícil, inflação a partir de 25% e PIB abaixo de −3% por dois turnos também encerram a partida. Arraste ou foque A/B para comparar. No Fácil, a faixa mostra números; no Médio, pontos neutros indicam apenas intensidade; no Difícil, não há prévia. As setas da fila inferior mostram efeitos já agendados, não se são bons ou ruins. T+1 e T+2 indicam quando consequências de decisões anteriores entram em vigor.</p></section>
                 <div class="drawer-section">
-                    <h3>&#9203; Efeitos Econômicos Atrasados (Defasagem Temporal)</h3>
+                    <h3>&#9203; Resultados que chegam depois</h3>
                     <p class="drawer-hint">Decisões anteriores (como mudanças na taxa de juros ou investimentos) que produzirão impacto nos próximos turnos:</p>
                     <div id="lista-efeitos-pendentes" class="drawer-list"></div>
                 </div>
 
                 <div class="drawer-section">
-                    <h3>&#127963; Termômetro Institucional (IA Baseada em Regras)</h3>
+                    <h3>&#127963; Como outros grupos reagiram</h3>
                     <p class="drawer-hint">Reações atuais da Oposição Parlamentar e do Mercado Financeiro diante dos indicadores:</p>
                     <div id="lista-reacoes-modal" class="drawer-list"></div>
                 </div>

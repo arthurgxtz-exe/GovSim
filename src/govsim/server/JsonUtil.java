@@ -51,6 +51,19 @@ public class JsonUtil {
 
         sb.append("\"dificuldade\":").append(quote(estado.getDificuldade().name())).append(",");
         sb.append("\"mostrarNumeros\":").append(estado.getDificuldade().isMostrarNumeros()).append(",");
+        sb.append("\"herancaMandato\":").append(quote(estado.getHerancaMandato())).append(",");
+        sb.append("\"manchete\":").append(quote(estado.getManchete())).append(",");
+        sb.append("\"resultadoEleicao\":").append(quote(estado.getResultadoEleicao())).append(",");
+        sb.append("\"dialogoApresentado\":").append(quote(estado.getDialogoApresentado())).append(",");
+        sb.append("\"memoriaPersonagens\":{");boolean primeiroPersonagem=true;
+        for(java.util.Map.Entry<String,Estado.MemoriaPersonagem> entrada:estado.getMemoriaPersonagens().entrySet()){
+            if(!primeiroPersonagem)sb.append(",");primeiroPersonagem=false;Estado.MemoriaPersonagem m=entrada.getValue();
+            sb.append(quote(entrada.getKey())).append(":{\"seguiu\":").append(m.getSeguiu()).append(",\"ignorou\":").append(m.getIgnorou()).append(",\"ultimaEscolha\":").append(quote(m.getUltimaEscolha())).append("}");
+        }sb.append("},");
+        sb.append("\"epilogoMandato\":").append(quote(estado.getEpilogoMandato())).append(",");
+        sb.append("\"licoesMandato\":").append(listaStringsParaJson(estado.getLicoesMandato())).append(",");
+        sb.append("\"seloConsequencia\":").append(quote(estado.getSeloConsequencia())).append(",");
+        sb.append("\"seloRetorno\":").append(quote(estado.getSeloRetorno())).append(",");
         // Indicadores principais
         sb.append("\"indicadores\":{");
         sb.append("\"caixa\":").append(indicadorParaJson(estado.getCaixaPublico())).append(",");
@@ -120,12 +133,16 @@ public class JsonUtil {
 
     private static String direcao(double v,double limiar){return v==0?"→":(v>0?(Math.abs(v)>=limiar?"↑↑":"↑"):(Math.abs(v)>=limiar?"↓↓":"↓"));}
     private static String decretoPublico(Decreto d){
-        return "{\"codigo\":"+quote(d.getCodigo())+",\"titulo\":"+quote(semQuantidades(d.getTitulo()))+",\"tipoPolitica\":"+quote(semQuantidades(d.getTipoPolitica()))+",\"descricao\":"+quote(semQuantidades(d.getDescricao()))+
+        return "{\"codigo\":"+quote(d.getCodigo())+",\"titulo\":"+quote(semQuantidades(d.getTitulo()))+",\"emPoucasPalavras\":"+quote(semQuantidades(d.getEmPoucasPalavras()))+",\"tipoPolitica\":"+quote(semQuantidades(d.getTipoPolitica()))+",\"descricao\":"+quote(semQuantidades(d.getDescricao()))+
             ",\"direcoes\":{\"caixa\":"+quote(direcao(d.getImpactoCaixa(),12))+",\"aprovacao\":"+quote(direcao(d.getImpactoAprovacao(),8))+",\"pib\":"+quote(direcao(d.getImpactoPib(),1.2))+",\"inflacao\":"+quote(direcao(d.getImpactoInflacao(),0.9))+",\"juros\":"+quote(direcao(d.getImpactoJuros(),1.5))+"}}";
     }
     private static String semQuantidades(String texto){return texto.replaceAll("[+-]?[0-9]+([.,][0-9]+)?", "[estimativa]");}
     private static String eventoPublico(Evento e){
-        return "{\"id\":"+quote(e.getId())+",\"nome\":"+quote(e.getNome())+",\"categoria\":"+quote(e.getCategoria())+",\"personagemNome\":"+quote(e.getPersonagemNome())+",\"personagemCargo\":"+quote(e.getPersonagemCargo())+",\"personagemAvatar\":"+quote(e.getPersonagemAvatar())+",\"dialogo\":"+quote(semQuantidades(e.getDialogo()))+",\"descricao\":"+quote(semQuantidades(e.getDescricao()))+",\"contextualizacao\":"+quote(semQuantidades(e.getContextualizacao()))+",\"decretoA\":"+decretoPublico(e.getDecretoA())+",\"decretoB\":"+decretoPublico(e.getDecretoB())+"}";
+        return "{\"id\":"+quote(e.getId())+",\"nome\":"+quote(e.getNome())+",\"categoria\":"+quote(e.getCategoria())+",\"personagemNome\":"+quote(e.getPersonagemNome())+",\"personagemCargo\":"+quote(e.getPersonagemCargo())+",\"personagemAvatar\":"+quote(e.getPersonagemAvatar())+",\"dialogo\":"+quote(semQuantidades(e.getDialogo()))+",\"descricao\":"+quote(semQuantidades(e.getDescricao()))+",\"contextualizacao\":"+quote(semQuantidades(e.getContextualizacao()))+",\"decretoA\":"+decretoPublico(e.getDecretoA())+",\"decretoB\":"+decretoPublico(e.getDecretoB())+extrasNarrativos(e)+"}";
+    }
+    private static String extrasNarrativos(Evento e){StringBuilder s=new StringBuilder();
+        for(String chave:new String[]{"conceito","licaoCurta"}){Object v=e.getNarrativa().get(chave);if(v instanceof String)s.append(",").append(quote(chave)).append(":").append(quote((String)v));}
+        return s.toString();
     }
     private static String eventoParaJson(Evento ev) {
         StringBuilder sb = new StringBuilder();
@@ -142,6 +159,7 @@ public class JsonUtil {
         sb.append("\"consequenciasPotenciais\":").append(quote(ev.getConsequenciasPotenciais())).append(",");
         sb.append("\"decretoA\":").append(decretoParaJson(ev.getDecretoA())).append(",");
         sb.append("\"decretoB\":").append(decretoParaJson(ev.getDecretoB()));
+        sb.append(extrasNarrativos(ev));
         sb.append("}");
         return sb.toString();
     }
@@ -151,6 +169,7 @@ public class JsonUtil {
         sb.append("{");
         sb.append("\"codigo\":").append(quote(dec.getCodigo())).append(",");
         sb.append("\"titulo\":").append(quote(dec.getTitulo())).append(",");
+        sb.append("\"emPoucasPalavras\":").append(quote(dec.getEmPoucasPalavras())).append(",");
         sb.append("\"tipoPolitica\":").append(quote(dec.getTipoPolitica())).append(",");
         sb.append("\"descricao\":").append(quote(dec.getDescricao())).append(",");
         sb.append("\"explicacaoTeorica\":").append(quote(dec.getExplicacaoTeorica())).append(",");

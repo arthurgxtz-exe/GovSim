@@ -128,7 +128,7 @@ public class MotorEconomico {
         // Valores intermediários para o cálculo das relações endógenas entre indicadores
         double reversaoPib=0.3*(2.5-pibAntes);
         double reversaoInflacao=0.18*(4-inflacaoAntes);
-        detalhesCalculo.add("Reversão PIB ao potencial de 2,5%: " + formatarComSinal(reversaoPib) + "; inflação conserva 82% do desvio da meta de 4%: " + formatarComSinal(reversaoInflacao));
+        detalhesCalculo.add("Reversãa produção ao potencial de 2,5%: " + formatarComSinal(reversaoPib) + "; inflação conserva 82% do desvio da meta de 4%: " + formatarComSinal(reversaoInflacao));
         double pibInter = pibAntes + reversaoPib + deltaPibDireto + deltaPibAtrasado;
         double inflacaoInter = Math.max(0.0, inflacaoAntes + reversaoInflacao + deltaInflacaoDireto + deltaInflacaoAtrasado);
 
@@ -144,11 +144,11 @@ public class MotorEconomico {
         if (pibInter > 3.0) {
             double bonusArrecadacao = Indicador.arredondar((pibInter - 3.0) * 0.8);
             deltaCaixaEndogeno += bonusArrecadacao;
-            detalhesCalculo.add("Interação PIB -> Caixa (Bônus de Arrecadação por crescimento > 3,0%): +" + formatar(bonusArrecadacao) + " pts no Caixa.");
+            detalhesCalculo.add("Interaçãa produção -> Caixa (Bônus de Arrecadação por crescimento > 3,0%): +" + formatar(bonusArrecadacao) + " pts no Caixa.");
         } else if (pibInter < 0.0) {
             double perdaArrecadacao = Indicador.arredondar(Math.abs(pibInter) * 1.2);
             deltaCaixaEndogeno -= perdaArrecadacao;
-            detalhesCalculo.add("Interação PIB -> Caixa (Queda de Arrecadação por recessão): -" + formatar(perdaArrecadacao) + " pts no Caixa.");
+            detalhesCalculo.add("Interaçãa produção -> Caixa (Queda de Arrecadação por queda na produção): -" + formatar(perdaArrecadacao) + " pts no Caixa.");
         }
 
         // 3.2. Custo da Dívida Pública (Juros afetam Caixa Público)
@@ -166,11 +166,11 @@ public class MotorEconomico {
         if (pibInter > 3.8) {
             double pressaoDemanda = Indicador.arredondar((pibInter - 3.8) * 0.35);
             deltaInflacaoEndogeno += pressaoDemanda;
-            detalhesCalculo.add("Interação PIB -> Inflação (Pressão de demanda com PIB em " + formatar(pibInter) + "%): +" + formatar(pressaoDemanda) + "% na Inflação.");
+            detalhesCalculo.add("Interaçãa produção -> Inflação (Pressão de demanda com produção em " + formatar(pibInter) + "%): +" + formatar(pressaoDemanda) + "% na Inflação.");
         } else if (pibInter < -1.0) {
             double desinflacaoRecessiva = Indicador.arredondar((Math.abs(pibInter) - 1.0) * 0.30);
             deltaInflacaoEndogeno -= desinflacaoRecessiva;
-            detalhesCalculo.add("Interação PIB -> Inflação (Desaceleração de preços por retração da demanda): -" + formatar(desinflacaoRecessiva) + "% na Inflação.");
+            detalhesCalculo.add("Interaçãa produção -> Inflação (Desaceleração de preços por queda da demanda): -" + formatar(desinflacaoRecessiva) + "% na Inflação.");
         }
 
         double inflacaoPosDemanda = Math.max(0.0, inflacaoInter + deltaInflacaoEndogeno - reversaoInflacao);
@@ -179,21 +179,21 @@ public class MotorEconomico {
         if (inflacaoPosDemanda > 6.0) {
             double desgasteInflacao = Indicador.arredondar((inflacaoPosDemanda - 6.0) * 0.75);
             deltaAprovacaoEndogeno -= desgasteInflacao;
-            detalhesCalculo.add("Interação Inflação -> Aprovação (Perda do poder de compra com inflação em " + formatar(inflacaoPosDemanda) + "%): -" + formatar(desgasteInflacao) + "% na Aprovação.");
+            detalhesCalculo.add("Interação Inflação -> Aprovação (Perda do o que o dinheiro consegue comprar com inflação em " + formatar(inflacaoPosDemanda) + "%): -" + formatar(desgasteInflacao) + "% na Aprovação.");
         } else if (inflacaoPosDemanda >= 2.5 && inflacaoPosDemanda <= 4.5) {
             deltaAprovacaoEndogeno += 1.0;
-            detalhesCalculo.add("Interação Inflação -> Aprovação (Estabilidade do poder de compra na meta): +1,0% na Aprovação.");
+            detalhesCalculo.add("Interação Inflação -> Aprovação (Estabilidade do o que o dinheiro consegue comprar na meta): +1,0% na Aprovação.");
         }
 
         // 3.5. Nível de Emprego e Renda (PIB afeta Aprovação Popular)
         if (pibInter >= 2.5) {
             double bonusEmprego = Indicador.arredondar((pibInter - 2.0) * 0.5);
             deltaAprovacaoEndogeno += bonusEmprego;
-            detalhesCalculo.add("Interação PIB -> Aprovação (Geração de empregos e renda): +" + formatar(bonusEmprego) + "% na Aprovação.");
+            detalhesCalculo.add("Interaçãa produção -> Aprovação (Geração de empregos e renda): +" + formatar(bonusEmprego) + "% na Aprovação.");
         } else if (pibInter < 0.0) {
             double penalidadeDesemprego = Indicador.arredondar(Math.abs(pibInter) * 1.0);
             deltaAprovacaoEndogeno -= penalidadeDesemprego;
-            detalhesCalculo.add("Interação PIB -> Aprovação (Desgaste social por recessão e desemprego): -" + formatar(penalidadeDesemprego) + "% na Aprovação.");
+            detalhesCalculo.add("Interaçãa produção -> Aprovação (Desgaste social por queda na produção e desemprego): -" + formatar(penalidadeDesemprego) + "% na Aprovação.");
         }
 
         // Projeção antes da reação da IA
@@ -290,6 +290,7 @@ public class MotorEconomico {
                 descricoesAtrasadosAgendados,
                 resultadoIA.getReacoes()
         );
+        estado.registrarDecisaoNarrativa(eventoAtual,codigoDecreto);
         estado.adicionarHistorico(registro);
 
         // =========================================================================
@@ -342,10 +343,10 @@ public class MotorEconomico {
         estado.registrarAtividade();
         if(estado.getDificuldade()!=Dificuldade.FACIL){
             if(estado.getInflacao().getValorAtual()>=25){
-                estado.encerrarPartida(false,"DERROTA_HIPERINFLACAO","Derrota: Hiperinflação","Inflação atingiu 25%: contratos e poder de compra entram em colapso.","Lição Econômica: estímulos precisam respeitar a capacidade produtiva e a estabilidade dos preços.");return;
+                estado.encerrarPartida(false,"DERROTA_HIPERINFLACAO","Derrota: Hiperinflação","Inflação atingiu 25%: contratos e o que o dinheiro consegue comprar entram em colapso.","Lição Econômica: estímulos precisam respeitar a capacidade produtiva e a estabilidade dos preços.");return;
             }
             if(estado.getTurnosDepressao()>=2){
-                estado.encerrarPartida(false,"DERROTA_DEPRESSAO","Derrota: Depressão Econômica","PIB abaixo de -3% por dois turnos: falências e desemprego interrompem o mandato.","Lição Econômica: restrição prolongada da demanda compromete emprego, renda e arrecadação.");return;
+                estado.encerrarPartida(false,"DERROTA_DEPRESSAO","Derrota: Depressão Econômica","produção abaixo de -3% por dois turnos: falências e desemprego interrompem o mandato.","Lição Econômica: restrição prolongada da demanda compromete emprego, renda e dinheiro recebido em impostos.");return;
             }
         }
         if (turno >= totalTurnos) {
@@ -369,16 +370,16 @@ public class MotorEconomico {
                                             double pibA, double pibD, double infA, double infD,
                                             double jurosA, double jurosD) {
         StringBuilder sb = new StringBuilder();
-        sb.append("Caixa Público passou de ").append(formatar(caixaA)).append(" para ").append(formatar(caixaD))
+        sb.append("O dinheiro do governo foi de ").append(formatar(caixaA)).append(" para ").append(formatar(caixaD))
                 .append(" pts (").append(formatarComSinal(caixaD - caixaA)).append("); ");
-        sb.append("Aprovação Popular foi de ").append(formatar(aprovA)).append("% para ").append(formatar(aprovD))
+        sb.append("O apoio das pessoas foi de ").append(formatar(aprovA)).append("% para ").append(formatar(aprovD))
                 .append("% (").append(formatarComSinal(aprovD - aprovA)).append("%); ");
-        sb.append("PIB variou de ").append(formatar(pibA)).append("% para ").append(formatar(pibD))
+        sb.append("produção variou de ").append(formatar(pibA)).append("% para ").append(formatar(pibD))
                 .append("% a.a. (").append(formatarComSinal(pibD - pibA)).append("%); ");
-        sb.append("e a Inflação foi de ").append(formatar(infA)).append("% para ").append(formatar(infD))
+        sb.append("e a alta dos preços foi de ").append(formatar(infA)).append("% para ").append(formatar(infD))
                 .append("% a.a. (").append(formatarComSinal(infD - infA)).append("%).");
         if (Math.abs(jurosD - jurosA) >= 0.1) {
-            sb.append(" A Taxa Básica de Juros (Selic) foi ajustada de ").append(formatar(jurosA))
+            sb.append(" Os juros definidos pelo Banco Central, chamados Selic, passaram de ").append(formatar(jurosA))
                     .append("% para ").append(formatar(jurosD)).append("% a.a.");
         }
         return sb.toString();
@@ -386,102 +387,31 @@ public class MotorEconomico {
 
     private String gerarExplicacaoPorQueMudou(Decreto decreto, List<String> atrasadosAtivados,
                                               double deltaCaixaEndo, double deltaInfEndo, double deltaAprovEndo) {
-        StringBuilder sb = new StringBuilder();
-        sb.append(decreto.getExplicacaoTeorica());
-        if (!atrasadosAtivados.isEmpty()) {
-            sb.append(" Além disso, neste turno maturaram efeitos atrasados de decisões anteriores (")
-                    .append(atrasadosAtivados.size()).append(" efeito(s) defasado(s) entrou/entraram em vigor).");
-        }
-        if (Math.abs(deltaCaixaEndo) >= 0.2 || Math.abs(deltaInfEndo) >= 0.2 || Math.abs(deltaAprovEndo) >= 0.2) {
-            sb.append(" O motor econômico também contabilizou interações endógenas entre os indicadores (efeito do PIB sobre a arrecadação, do nível de preços sobre a popularidade e dos juros sobre a dívida).");
-        }
+        StringBuilder sb=new StringBuilder(decreto.getExplicacaoTeorica());
+        if(!atrasadosAtivados.isEmpty())sb.append(" Também chegaram resultados de ").append(atrasadosAtivados.size()).append(" decisões anteriores.");
+        sb.append(" O resultado inclui a influência das vendas, dos preços e do custo das dívidas nas contas do governo.");
         return sb.toString();
     }
 
     private String gerarExplicacaoCustoTradeOff(Decreto decreto, double dCaixa, double dAprov, double dPib, double dInf) {
-        List<String> ganhos = new ArrayList<String>();
-        List<String> custos = new ArrayList<String>();
-
-        if (dCaixa > 0) ganhos.add("fortalecimento do Caixa Público (" + formatarComSinal(dCaixa) + " pts)");
-        else if (dCaixa < 0) custos.add("redução do Caixa Público (" + formatarComSinal(dCaixa) + " pts)");
-
-        if (dAprov > 0) ganhos.add("ganho de Aprovação Popular (" + formatarComSinal(dAprov) + "%)");
-        else if (dAprov < 0) custos.add("desgaste na Aprovação Popular (" + formatarComSinal(dAprov) + "%)");
-
-        if (dPib > 0) ganhos.add("expansão do PIB (" + formatarComSinal(dPib) + "% a.a.)");
-        else if (dPib < 0) custos.add("desaceleração do PIB (" + formatarComSinal(dPib) + "% a.a.)");
-
-        if (dInf < 0) ganhos.add("alívio na Inflação (" + formatarComSinal(dInf) + "% a.a.)");
-        else if (dInf > 0) custos.add("maior pressão sobre a Inflação (" + formatarComSinal(dInf) + "% a.a.)");
-
-        StringBuilder sb = new StringBuilder();
-        sb.append("Classificação da medida: ").append(decreto.getTipoPolitica()).append(". ");
-        if (!ganhos.isEmpty() && !custos.isEmpty()) {
-            sb.append("O benefício obtido com ").append(juntarLista(ganhos))
-                    .append(" teve como custo econômico direto ").append(juntarLista(custos)).append(".");
-        } else if (!custos.isEmpty()) {
-            sb.append("A decisão impôs custos imediatos em ").append(juntarLista(custos))
-                    .append(", visando conter riscos estruturais nos turnos seguintes.");
-        } else {
-            sb.append("A conjuntura permitiu resultados favoráveis no curto prazo, mas exige vigilância sobre os compromissos futuros.");
-        }
-        return sb.toString();
+        return "Ação: "+decreto.getTipoPolitica()+". Neste turno, o dinheiro do governo mudou "+formatarComSinal(dCaixa)+" pontos, o apoio das pessoas "+formatarComSinal(dAprov)+"%, a produção "+formatarComSinal(dPib)+"% e os preços "+formatarComSinal(dInf)+"%. Esses resultados também incluem escolhas anteriores.";
     }
 
     private String gerarExplicacaoConsequenciasFuturas(Estado estado, List<String> agendadosAgora,
                                                        double caixa, double aprovacao, double inflacao) {
-        StringBuilder sb = new StringBuilder();
-        if (!agendadosAgora.isEmpty()) {
-            sb.append("A decisão deste turno programou ").append(agendadosAgora.size())
-                    .append(" efeito(s) atrasado(s): ").append(String.join("; ", agendadosAgora)).append(". ");
-        } else {
-            sb.append("Nenhum novo efeito defasado adicional foi agendado por este decreto específico. ");
-        }
-
-        if (caixa <= 35.0) {
-            sb.append("ATENÇÃO FISCAL: Com o Caixa Público em ").append(formatar(caixa))
-                    .append(" pts, novos gastos elevados podem levar o governo à insolvência (Derrota). ");
-        }
-        if (aprovacao <= 30.0) {
-            sb.append("ATENÇÃO POLÍTICA: A Aprovação Popular está em nível perigoso (").append(formatar(aprovacao))
-                    .append("%); medidas impopulares ou inflação alta podem zerar sua governabilidade. ");
-        }
-        if (inflacao >= 7.5) {
-            sb.append("ALERTA INFLACIONÁRIO: A inflação em ").append(formatar(inflacao))
-                    .append("% a.a. continuará corroendo a aprovação popular a cada turno se não for combatida.");
-        }
+        StringBuilder sb=new StringBuilder();
+        if(!agendadosAgora.isEmpty())sb.append("Esta decisão deixou ").append(agendadosAgora.size()).append(" mudanças para os próximos turnos: ").append(String.join("; ",agendadosAgora)).append(". ");
+        else sb.append("Esta escolha não deixou novas mudanças próprias para depois. ");
+        if(caixa<=35.0)sb.append("O governo tem pouco dinheiro: ").append(formatar(caixa)).append(" pontos; gastar muito pode esgotar a conta. ");
+        if(aprovacao<=30.0)sb.append("Poucas pessoas apoiam o governo: ").append(formatar(aprovacao)).append("%; novas perdas de apoio podem encerrar o mandato. ");
+        if(inflacao>=7.5)sb.append("Os preços estão subindo ").append(formatar(inflacao)).append("% ao ano; isso dificulta as compras das famílias.");
         return sb.toString().trim();
     }
 
     private String gerarSinteseDidatica(Evento evento, Decreto decreto,
                                         double dCaixa, double dAprov, double dPib, double dInf,
                                         List<String> agendadosAgora) {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Diante de “").append(evento.getNome()).append("”, seu governo decidiu: ")
-                .append(decreto.getTitulo()).append(" (").append(decreto.getTipoPolitica()).append("). ");
-
-        if (dCaixa < -8.0 && (dPib > 0 || dAprov > 0)) {
-            sb.append("Seu governo aumentou o esforço fiscal para sustentar a atividade econômica e o bem-estar social, o que impulsionou ")
-                    .append(dPib > 0 ? "o PIB (" + formatarComSinal(dPib) + "%) " : "")
-                    .append(dAprov > 0 ? "e a aprovação popular (" + formatarComSinal(dAprov) + "%)" : "")
-                    .append(", mas reduziu o Caixa Público em ").append(formatar(Math.abs(dCaixa))).append(" pontos. ");
-        } else if (dCaixa >= 0 && (dPib < 0 || dAprov < 0)) {
-            sb.append("Seu governo priorizou a preservação do Caixa Público (").append(formatarComSinal(dCaixa))
-                    .append(" pts) e a disciplina macroeconômica, mas pagou o preço de curto prazo com ")
-                    .append(dAprov < 0 ? "queda na aprovação popular (" + formatarComSinal(dAprov) + "%) " : "")
-                    .append(dPib < 0 ? "e retração no PIB (" + formatarComSinal(dPib) + "%). " : ". ");
-        } else {
-            sb.append("A medida alterou o equilíbrio macroeconômico com variação de ")
-                    .append(formatarComSinal(dCaixa)).append(" pts no Caixa, ")
-                    .append(formatarComSinal(dAprov)).append("% na Aprovação, ")
-                    .append(formatarComSinal(dPib)).append("% no PIB e ")
-                    .append(formatarComSinal(dInf)).append("% na Inflação. ");
-        }
-
-        if (!agendadosAgora.isEmpty()) {
-            sb.append("Nos próximos turnos, os efeitos defasados dessa escolha continuarão repercutindo sobre a economia.");
-        }
-        return sb.toString();
+        return "Seu governo decidiu: “"+decreto.getTitulo()+"”. Neste turno, o dinheiro do governo mudou "+formatarComSinal(dCaixa)+" pontos, o apoio das pessoas "+formatarComSinal(dAprov)+"%, a produção "+formatarComSinal(dPib)+"% e os preços "+formatarComSinal(dInf)+"%.";
     }
 
     private String gerarAvaliacaoFinal(Estado estado, boolean vitoria) {
@@ -492,24 +422,33 @@ public class MotorEconomico {
 
         StringBuilder sb = new StringBuilder();
         if (vitoria) {
-            sb.append("Análise do Mandato: Você demonstrou capacidade de gerenciar os trade-offs entre política fiscal e monetária ao longo dos ")
+            sb.append("Balanço: você tomou decisões sobre dinheiro e ajuda às pessoas durante ")
                     .append(estado.getHistorico().size()).append(" turnos. ");
-            if (caixa >= 85 && inflacao <= 5.0 && pib >= 2.0 && aprovacao >= 75) {
-                sb.append("Desempenho de Excelência (Estadista): O país encerra o mandato com contas públicas sólidas, inflação controlada, crescimento sustentável do PIB e elevado apoio popular.");
-            } else if (inflacao > 8.0) {
-                sb.append("Mandato Concluído sob Pressão Inflacionária: O governo sobreviveu e manteve o caixa positivo, mas deixou uma herança de inflação elevada (")
-                        .append(formatar(inflacao)).append("% a.a.), ilustrando o custo de políticas expansionistas prolongadas.");
+            // Apenas a avaliação muda: parâmetros econômicos e condições de vitória permanecem intactos.
+            double caixaExcelencia, aprovacaoExcelencia, pibExcelencia, inflacaoExcelencia;
+            switch (estado.getDificuldade()) {
+                case FACIL: caixaExcelencia=30; aprovacaoExcelencia=98; pibExcelencia=5; inflacaoExcelencia=12; break;
+                case MEDIO: caixaExcelencia=35; aprovacaoExcelencia=85; pibExcelencia=1; inflacaoExcelencia=11; break;
+                default: caixaExcelencia=25; aprovacaoExcelencia=95; pibExcelencia=0.5; inflacaoExcelencia=8.5; break;
+            }
+            if (caixa >= caixaExcelencia && inflacao <= inflacaoExcelencia && pib >= pibExcelencia && aprovacao >= aprovacaoExcelencia) {
+                sb.append("Desempenho de Excelência (Estadista): O governo terminou com dinheiro guardado, muito apoio das pessoas e produção suficiente para os critérios desta dificuldade. Isso não significa que todos os problemas do país foram resolvidos.");
+            } else if (caixa >= 20 && aprovacao >= 35 && pib >= 0.5 && inflacao <= inflacaoExcelencia) {
+                sb.append("Gestão Equilibrada: o governo terminou com dinheiro guardado, apoio das pessoas e produção em crescimento. Ainda faltaram alguns critérios para Estadista.");
+            } else if (inflacao > inflacaoExcelencia) {
+                sb.append("Mandato Concluído sob Pressão Inflacionária: os preços subiram muito e dificultaram as compras das famílias (")
+                        .append(formatar(inflacao)).append("% ao ano). O governo chegou ao fim, mas deixou esse problema para resolver.");
             } else if (pib < 0.5) {
-                sb.append("Mandato Ortodoxo de Baixo Crescimento: O governo preservou a solvência fiscal e evitou o colapso, mas o aperto econômico deixou a atividade produtiva desacelerada (PIB em ")
+                sb.append("Mandato de Baixo Crescimento: o governo conseguiu pagar suas contas, mas a produção cresceu pouco ou caiu (")
                         .append(formatar(pib)).append("% a.a.).");
             } else {
-                sb.append("Gestão Equilibrada: O governo navegou pelas crises alternando estímulos e ajustes fiscais/monetários, preservando a estabilidade institucional e macroeconômica.");
+                sb.append("Mandato Concluído com Reservas Frágeis: sobrou pouco dinheiro ou pouco apoio das pessoas. O próximo governo terá menos espaço para agir.");
             }
         } else {
             if (caixa <= 0) {
-                sb.append("Lição Econômica da Derrota Fiscal: O excesso de gastos públicos, subsídios ou juros elevados sobre a dívida sem contrapartida de arrecadação esgotou o Caixa Público. Na economia, estímulos fiscais sustentam o PIB e a popularidade no curto prazo, mas a restrição orçamentária impõe limites rígidos à solvência do Estado.");
+                sb.append("Lição da Derrota Fiscal: o dinheiro do governo acabou antes do fim. Ajudar as pessoas e pagar dívidas exige pensar também em como cobrir as contas.");
             } else {
-                sb.append("Lição Econômica da Derrota Política: A combinação de medidas impopulares de austeridade, desemprego (queda do PIB) ou inflação elevada corroeu completamente a Aprovação Popular. Na gestão pública, o ajuste econômico precisa considerar a viabilidade social e política para se sustentar.");
+                sb.append("Lição do mandato interrompido: o governo não manteve as condições necessárias para continuar. Veja os problemas destacados na tela e as escolhas que contribuíram para o resultado.");
             }
         }
         return sb.toString();

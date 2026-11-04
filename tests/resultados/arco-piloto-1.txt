@@ -1,0 +1,6 @@
+FACIL aleatoria custo=1.350 beneficio=1.000 vitoria=60.67 Estadista/todas=0.07 Estadista/vitorias=0.11
+FACIL esperta custo=1.350 beneficio=1.000 vitoria=95.77 Estadista/todas=0.87 Estadista/vitorias=0.90
+MEDIO aleatoria custo=1.350 beneficio=0.900 vitoria=25.80 Estadista/todas=0.30 Estadista/vitorias=1.16
+MEDIO esperta custo=1.350 beneficio=0.900 vitoria=47.73 Estadista/todas=0.90 Estadista/vitorias=1.89
+DIFICIL aleatoria custo=1.100 beneficio=0.950 vitoria=8.03 Estadista/todas=0.03 Estadista/vitorias=0.41
+DIFICIL esperta custo=1.100 beneficio=0.950 vitoria=23.63 Estadista/todas=0.20 Estadista/vitorias=0.85

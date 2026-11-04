@@ -10,6 +10,27 @@ import java.util.List;
  * efeitos atrasados pendentes, reações da IA, histórico de turnos e status de vitória/derrota.
  */
 public class Estado {
+    public static final class MemoriaPersonagem {
+        private int seguiu,ignorou,ultimoTurno;private String ultimaEscolha="";private boolean ultimoSeguiu;
+        public int getUltimoTurno(){return ultimoTurno;}public int getSeguiu(){return seguiu;}public int getIgnorou(){return ignorou;}public String getUltimaEscolha(){return ultimaEscolha;}public boolean isUltimoSeguiu(){return ultimoSeguiu;}
+    }
+    private final java.util.Map<String,MemoriaPersonagem> memoriaPersonagens=new java.util.LinkedHashMap<String,MemoriaPersonagem>();
+    public java.util.Map<String,MemoriaPersonagem> getMemoriaPersonagens(){return java.util.Collections.unmodifiableMap(memoriaPersonagens);}
+    public String getDialogoApresentado(){return eventoAtual==null?"":NarrativaMandato.dialogo(this,eventoAtual);}
+    public static final class DecisaoNarrativa {
+        public final int turno;public final String codigoOriginal;
+        public DecisaoNarrativa(int turno,String codigo){this.turno=turno;this.codigoOriginal=codigo;}
+    }
+    private final java.util.Map<String,DecisaoNarrativa> decisoesNarrativas=new java.util.LinkedHashMap<String,DecisaoNarrativa>();
+    private int ultimoTurnoConsequencia=-100;
+    public java.util.Map<String,DecisaoNarrativa> getDecisoesNarrativas(){return java.util.Collections.unmodifiableMap(decisoesNarrativas);}
+    public int getUltimoTurnoConsequencia(){return ultimoTurnoConsequencia;}
+    public void registrarDecisaoNarrativa(Evento evento,String codigo){
+        String original=evento.getCodigoOriginal(codigo);decisoesNarrativas.put(evento.getId(),new DecisaoNarrativa(turnoAtual,original));
+        Object favorito=evento.getNarrativa().get("decretoFavorito");if(favorito==null)return;
+        MemoriaPersonagem m=memoriaPersonagens.get(evento.getPersonagemNome());if(m==null){m=new MemoriaPersonagem();memoriaPersonagens.put(evento.getPersonagemNome(),m);}
+        m.ultimoTurno=turnoAtual;m.ultimaEscolha=original;m.ultimoSeguiu=original.equals(favorito);if(m.ultimoSeguiu)m.seguiu++;else m.ignorou++;
+    }
     public static final int TURNOS_PADRAO = 10;
 
     // Valores iniciais documentados na proposta e em REGRAS_ECONOMICAS.md
@@ -59,6 +80,14 @@ public class Estado {
     private String tituloFimDeJogo;
     private String motivoFimDeJogo;
     private String avaliacaoFinalEconomica;
+
+    public String getEpilogoMandato(){return NarrativaMandato.epilogo(this);}
+    public java.util.List<String> getLicoesMandato(){return NarrativaMandato.licoes(this);}
+    public String getSeloConsequencia(){return NarrativaMandato.seloConsequencia(this);}
+    public String getSeloRetorno(){return NarrativaMandato.seloRetorno(this);}
+    public String getHerancaMandato(){return NarrativaMandato.heranca(this);}
+    public String getManchete(){return NarrativaMandato.manchete(this);}
+    public String getResultadoEleicao(){return NarrativaMandato.eleicao(this);}
 
     public Estado() {
         this.caixaPublico = new Indicador(
@@ -110,6 +139,7 @@ public class Estado {
         iniciarNovaPartida(modoDemonstracao,totalTurnos,Dificuldade.FACIL);
     }
     public void iniciarNovaPartida(boolean modoDemonstracao,int totalTurnos,Dificuldade dificuldade){
+        decisoesNarrativas.clear();memoriaPersonagens.clear();ultimoTurnoConsequencia=-100;
         this.dificuldade=dificuldade; paciencia=1;confianca=1;inversoes.clear(); this.turnosDepressao=0;
         this.modoDemonstracao = modoDemonstracao;
         this.totalTurnos = totalTurnos > 0 ? totalTurnos : dificuldade.getTotalTurnos();
@@ -148,6 +178,7 @@ public class Estado {
 
     public void registrarEventoSorteado(Evento evento) {
         this.eventoAtual = evento;
+        if(evento!=null&&evento.isConsequencia())ultimoTurnoConsequencia=turnoAtual;
         if (evento != null && !this.idsEventosSorteados.contains(evento.getId())) {
             this.idsEventosSorteados.add(evento.getId());
         }

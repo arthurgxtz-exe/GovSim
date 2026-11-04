@@ -8,6 +8,12 @@ package govsim.model;
  * - Direita (Decreto B)
  */
 public class Evento {
+    private java.util.Map<String,Object> narrativa=java.util.Collections.emptyMap();
+    private boolean invertido;
+    public Evento comNarrativa(java.util.Map<String,Object> dados){narrativa=java.util.Collections.unmodifiableMap(new java.util.HashMap<String,Object>(dados));return this;}
+    public java.util.Map<String,Object> getNarrativa(){return narrativa;}
+    public String getCodigoOriginal(String visual){return invertido?("A".equals(visual)?"B":"A"):visual;}
+    public boolean isConsequencia(){return narrativa.containsKey("gatilho");}
     private final String id;
     private final String nome;
     private final String categoria;
@@ -39,7 +45,7 @@ public class Evento {
         this.decretoB = decretoB;
     }
 
-    public Evento inverter(){return new Evento(id,nome,categoria,personagemNome,personagemCargo,personagemAvatar,dialogo,descricao,contextualizacao,consequenciasPotenciais,decretoB.comCodigo("A"),decretoA.comCodigo("B"));}
+    public Evento inverter(){Evento copia=new Evento(id,nome,categoria,personagemNome,personagemCargo,personagemAvatar,dialogo,descricao,contextualizacao,consequenciasPotenciais,decretoB.comCodigo("A"),decretoA.comCodigo("B"));copia.narrativa=narrativa;copia.invertido=!invertido;return copia;}
     public Decreto getDecreto(String codigo) {
         if ("A".equalsIgnoreCase(codigo)) {
             return decretoA;

@@ -7,7 +7,7 @@ public final class Simulador {
  public static void executar(int n){
   if(n<=0)throw new IllegalArgumentException("N deve ser positivo");
   System.out.println("N="+n+" por estratégia/dificuldade; semente do motor 20261103, escolhas 781. Médias incluem derrotas.");
-  System.out.println("Dificuldade Estratégia Vitória% Caixa% Aprov% Ambos% Hiper% Depressão% | Caixa Aprov PIB Inf | Estadista%");
+  System.out.println("Dificuldade Estratégia Vitória% Caixa% Aprov% Ambos% Hiper% Depressão% | Caixa Aprov PIB Inf | Estadista% Estadista/vitórias%");
   for(Dificuldade d:Dificuldade.values())for(int estrategia=0;estrategia<6;estrategia++){
    int[] resultados=new int[6]; double[] soma=new double[4]; int estadistas=0;
    MotorEconomico motor=new MotorEconomico(new Random(20261103));
@@ -19,13 +19,13 @@ public final class Simulador {
     String[] status={"VITORIA","DERROTA_CAIXA","DERROTA_APROVACAO","DERROTA_AMBOS","DERROTA_HIPERINFLACAO","DERROTA_DEPRESSAO"};
     for(int k=0;k<6;k++)if(status[k].equals(e.getStatusPartida()))resultados[k]++;
     soma[0]+=e.getCaixaPublico().getValorAtual();soma[1]+=e.getAprovacaoPopular().getValorAtual();soma[2]+=e.getPib().getValorAtual();soma[3]+=e.getInflacao().getValorAtual();
-    if(e.getAvaliacaoFinalEconomica().contains("Estadista"))estadistas++;
+    if(e.isVitoria()&&e.getAvaliacaoFinalEconomica().contains("(Estadista)"))estadistas++;
    }
    String[] nomes={"aleatória","sempre A","sempre B","aprovação","caixa","esperta"};
    System.out.printf(Locale.US,"%s %-10s",d.name(),nomes[estrategia]);
    for(int k:resultados)System.out.printf(Locale.US," %6.2f",100.0*k/n);
    System.out.print(" | ");for(double v:soma)System.out.printf(Locale.US," %6.2f",v/n);
-   System.out.printf(Locale.US," | %.2f%n",100.0*estadistas/n);
+   System.out.printf(Locale.US," | %.2f %.2f%n",100.0*estadistas/n,resultados[0]==0?0:100.0*estadistas/resultados[0]);
   }
  }
  private static String escolher(Estado e,int estrategia,Random r){

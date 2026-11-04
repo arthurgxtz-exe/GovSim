@@ -62,6 +62,7 @@
         document.querySelector(".reigns-viewport").inert=true;
         configurarBotoesEAtalhos();
         configurarArrasteCarta();
+        configurarGlossario();
         carregarEstadoInicial();
     });
 
@@ -251,6 +252,7 @@
         }
 
         document.addEventListener("keydown", function (e) {
+            if(document.getElementById("glossario-popover").open||e.target.closest("[data-glossario]"))return;
             if(e.ctrlKey && e.key.toLowerCase()==="d"){e.preventDefault();abrirMenu(true);return;}
             if(e.ctrlKey||e.altKey||e.metaKey)return;
             if(!document.getElementById("inicio").classList.contains("hidden") || /SELECT|INPUT/.test(e.target.tagName))return;
@@ -299,6 +301,7 @@
         palco.addEventListener("pointerleave",function(){if(!arrastando)resetarInclinacaoCarta();});
         function cancelar(){ponteiro=null;arrastando=false;deltaXAtual=0;carta.classList.remove("dragging");resetarInclinacaoCarta();}
         carta.addEventListener("pointerdown",function(e){
+            if(e.target&&e.target.closest&&e.target.closest("[data-glossario]"))return;
             if(e.button!==0||processando||animandoCarta||exibindoConsequencia||!estadoAtual||estadoAtual.partidaEncerrada)return;
             ponteiro=e.pointerId;inicioX=e.clientX;deltaXAtual=0;arrastando=true;carta.setPointerCapture(ponteiro);carta.classList.add("dragging");
         });
@@ -391,6 +394,7 @@
 
     function renderizarPreviaFaixa(decreto,alvo) {
         alvo.textContent="";
+        if(estadoAtual.dificuldade!=="DIFICIL"&&decreto.emPoucasPalavras){const resumo=document.createElement("span");resumo.className="decreto-resumo";resumo.textContent=decreto.emPoucasPalavras;alvo.appendChild(resumo);}
         if(!estadoAtual.mostrarNumeros)return;
         [["caixa","Caixa","impactoCaixa"],["aprovacao","Aprovação","impactoAprovacao"],["pib","PIB","impactoPib"],["inflacao","Inflação","impactoInflacao"]].forEach(function(info){
             const chip=document.createElement("span");chip.className="effect-chip";
@@ -578,7 +582,7 @@
         document.getElementById("ano-mandato").textContent = "Ano " + ano;
         document.getElementById("turno-atual").textContent = estado.turnoAtual;
         document.getElementById("turno-total").textContent = estado.totalTurnos;
-        document.getElementById("valor-juros").textContent = formatarNum(estado.taxaJuros) + "% a.a.";
+        document.getElementById("valor-juros").textContent = formatarNum(estado.taxaJuros) + "% ao ano";
 
         const pendentes = (estado.efeitosPendentes || []).length;
         const contagem=document.getElementById("badge-efeitos-count");
@@ -632,39 +636,7 @@
     }
 
     // Rótulos curtos das cartas históricas: o catálogo original permanece intacto.
-    function tituloVisual(id,codigo,original){
-        const titulos={
-          "Subir Juros Selic (+2,5 p.p.)": "Subir a Selic",
-          "Subsidiar Importados com Caixa": "Subsidiar importações",
-          "Desonerar Cesta Básica e Safra": "Desonerar a cesta",
-          "Negar Subsídio e Subir Juros": "Elevar juros",
-          "Tesouro Paga a Conta de Luz": "Subsidiar a energia",
-          "Cobrar Bandeira Vermelha": "Cobrar bandeira vermelha",
-          "Lançar Obras Públicas (PAC)": "Financiar obras públicas",
-          "Cortar Juros (-2,0 p.p.) Privado": "Cortar a Selic",
-          "Cortar Gastos e Fazer Superávit": "Cortar gastos",
-          "Manter Gastos e Emitir Dívida": "Emitir dívida",
-          "Subsidiar Diesel e Fertilizantes": "Subsidiar diesel e fertilizantes",
-          "Repassar Alta nos Postos": "Repassar custos externos",
-          "Elevar Impostos e Contingenciar": "Elevar impostos",
-          "Reduzir Alíquotas e Estimular PIB": "Reduzir alíquotas",
-          "Poupar Caixa e Subir Juros (+1,5)": "Poupar e subir juros",
-          "Acelerar Gastos e Cortar Juros": "Gastar e cortar juros",
-          "Financiar e Desonerar Exportação": "Apoiar exportações",
-          "Sobretaxar Produtos Importados": "Taxar importações",
-          "Investir no Ensino e Ciência": "Investir em educação",
-          "Contingenciar Verba da Educação": "Cortar verbas educacionais",
-          "Socorrer Cofres dos Estados": "Socorrer os estados",
-          "Negar Resgate e Exigir Ajuste": "Exigir ajuste estadual",
-          "Conceder Reajuste Salarial": "Reajustar salários",
-          "Congelar Salários e Cortar Ponto": "Congelar salários",
-          "Renegociar Dívidas e Cortar Juros": "Renegociar dívidas",
-          "Manter Rigor Bancário (+1,0 Juros)": "Restringir o crédito"
-};
-        const normalizar=function(t){return t.replace(/\([^)]*\)/g,"").replace(/\s+/g," ").trim();};
-        const chave=Object.keys(titulos).find(function(t){return normalizar(t)===normalizar(original);});
-        return chave?titulos[chave]:original;
-    }
+    function tituloVisual(id,codigo,original){return original;}
     function iconeIndicador(chave){
         const caminhos={caixa:"M3 9L12 4 21 9ZM5 11V19M10 11V19M14 11V19M19 11V19M3 21H21",aprovacao:"M12 21L3 12V7L7 4 12 8 17 4 21 7V12Z",pib:"M4 21V13H8V21M10 21V8H14V21M16 21V3H20V21",inflacao:"M18 5A9 9 0 1 0 20 16M18 2V7H13M9 15L15 9"};
         return "<svg aria-hidden='true' viewBox='0 0 24 24' class='indicator-icon'><path d='"+caminhos[chave]+"' fill='none' stroke='currentColor' stroke-width='1.7' stroke-linecap='square' stroke-linejoin='miter'/></svg>";
@@ -706,10 +678,64 @@
         tocarSom("flip");
     }
 
+    let glossario=[],expressoesGlossario=null,origemGlossario=null;
+    const porTermoGlossario={};
+    function normalizarTermo(texto){return texto.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();}
+    function definirGlossario(dados){
+        glossario=dados.filter(function(e){return typeof e.id==="string"&&typeof e.termo==="string"&&typeof e.definicao==="string";});
+        Object.keys(porTermoGlossario).forEach(function(k){delete porTermoGlossario[k];});
+        const termos=[];
+        glossario.forEach(function(e){[e.termo].concat(e.aliases||[]).forEach(function(t){[t,normalizarTermo(t)].forEach(function(v){porTermoGlossario[normalizarTermo(v)]=e.id;termos.push(v);});});});
+        const escaparRegex=function(t){return t.replace(/[.*+?^${}()|[\]\\]/g,"\\$&");};
+        expressoesGlossario=termos.length?new RegExp("(^|[^A-Za-zÀ-ÿ0-9_])("+Array.from(new Set(termos)).sort(function(a,b){return b.length-a.length;}).map(escaparRegex).join("|")+")(?=$|[^A-Za-zÀ-ÿ0-9_])","gi"):null;
+    }
+    function segmentarTermos(texto){
+        const partes=[];if(!expressoesGlossario)return [{texto:texto}];expressoesGlossario.lastIndex=0;
+        let cursor=0,m;
+        while((m=expressoesGlossario.exec(texto))){const inicio=m.index+m[1].length;if(inicio>cursor)partes.push({texto:texto.slice(cursor,inicio)});partes.push({texto:m[2],id:porTermoGlossario[normalizarTermo(m[2])]});cursor=inicio+m[2].length;}
+        if(cursor<texto.length)partes.push({texto:texto.slice(cursor)});return partes;
+    }
+    function abrirGlossario(id,origem){
+        const entrada=glossario.find(function(e){return e.id===id;});if(!entrada)return;
+        const dialogo=document.getElementById("glossario-popover");origemGlossario=origem;
+        document.getElementById("glossario-titulo").textContent=entrada.termo;
+        document.getElementById("glossario-definicao").textContent=entrada.definicao;
+        document.getElementById("glossario-mudanca").textContent=entrada.comoMuda||"";
+        if(!dialogo.open)dialogo.showModal();document.getElementById("glossario-fechar").focus();
+    }
+    function fecharGlossario(){const d=document.getElementById("glossario-popover");if(d.open)d.close();if(origemGlossario&&origemGlossario.focus)origemGlossario.focus();}
+    function marcarGlossario(){
+        if(!expressoesGlossario)return;
+        const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT),nos=[];let n;
+        while((n=walker.nextNode()))if(n.parentElement&&!n.parentElement.closest("button,a,input,textarea,select,script,style,canvas,.sr-only,[data-ajuda],[data-glossario],[aria-hidden='true'],#glossario-popover"))nos.push(n);
+        nos.forEach(function(no){const partes=segmentarTermos(no.nodeValue);if(!partes.some(function(p){return p.id;}))return;
+            const fragmento=document.createDocumentFragment();partes.forEach(function(p){if(!p.id){fragmento.appendChild(document.createTextNode(p.texto));return;}const botao=document.createElement("button");botao.type="button";botao.className="termo-ajuda";botao.dataset.glossario=p.id;botao.setAttribute("aria-haspopup","dialog");botao.setAttribute("aria-label",p.texto+": ver explicação");botao.textContent=p.texto;fragmento.appendChild(botao);});no.parentNode.replaceChild(fragmento,no);
+        });
+    }
+    function tratarCliqueGlossario(e){const alvo=e.target.closest("[data-ajuda],[data-glossario]");if(alvo){e.preventDefault();abrirGlossario(alvo.dataset.ajuda||alvo.dataset.glossario,alvo);}}
+    function tratarTeclaGlossario(e){
+        if(e.key==="Escape"&&document.getElementById("glossario-popover").open){e.preventDefault();fecharGlossario();return;}
+        const alvo=e.target.closest("[data-ajuda]");if(alvo&&(e.key==="Enter"||e.key===" ")){e.preventDefault();abrirGlossario(alvo.dataset.ajuda,alvo);}
+    }
+    function configurarGlossario(){
+        document.getElementById("glossario-fechar").addEventListener("click",fecharGlossario);
+        document.getElementById("glossario-popover").addEventListener("cancel",function(e){e.preventDefault();fecharGlossario();});
+        document.addEventListener("click",tratarCliqueGlossario);
+        document.addEventListener("keydown",tratarTeclaGlossario);
+        fetch("glossario.json").then(function(r){if(!r.ok)throw new Error("Glossário indisponível");return r.json();}).then(function(dados){
+            definirGlossario(dados);marcarGlossario();let timer=null;
+            const observador=new MutationObserver(function(){if(timer!==null)return;timer=setTimeout(function(){timer=null;observador.disconnect();marcarGlossario();observar();},80);});
+            function observar(){observador.observe(document.body,{childList:true,subtree:true,characterData:true});}observar();
+        }).catch(function(){document.getElementById("alerta-acessivel").textContent="A ajuda de palavras não pôde ser carregada. Reabra o jogo pela pasta completa.";});
+    }
+
+    function nomeCategoria(codigo){return ({PRECO:"Preço",CAMBIO:"Câmbio",EDUCACAO:"Educação",ENERGIA:"Energia",FISCAL:"Fiscal",SAUDE:"Saúde",DESEMPREGO:"Desemprego",TRABALHO:"Trabalho",SUPERAQUECIMENTO:"Superaquecimento",COMERCIO:"Comércio",FEDERALISMO:"Federalismo"})[codigo]||"Economia";}
+    function cenarioCategoria(codigo){return ({SAUDE:"saude",CAMBIO:"cambio",PRECO:"preco",ENERGIA:"energia",DESEMPREGO:"desemprego",FISCAL:"fiscal",SUPERAQUECIMENTO:"preco",COMERCIO:"cambio",EDUCACAO:"educacao",FEDERALISMO:"fiscal"})[codigo]||"fiscal";}
+
     function renderizarCartaPersonagem(evento, animarFlip) {
         if (!evento) return;
-        const nome=(evento.nome+" "+evento.categoria).normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();
-        document.body.dataset.cenario=/saude|sanitari|pandemia/.test(nome)?"saude":/energia|energet|apaga|reservatorio/.test(nome)?"energia":/cambio|cambial|dolar|guerra|comercio exterior/.test(nome)?"cambio":/educa|ensino|ciencia|requalifica/.test(nome)?"educacao":/desemprego|fechamento|demiss/.test(nome)?"desemprego":/trabalho|greve|informal|automacao/.test(nome)?"trabalho":/preco|alimento|seca|credito|consumo|imobili|imoveis|portos/.test(nome)?"preco":"fiscal";
+        document.body.dataset.cenario=cenarioCategoria(evento.categoria);
+        document.body.dataset.etapa=evento.id==="EV_POSSE"?"posse":"crise";
         const carta = document.getElementById("carta-ativa");
         const inner3d = document.getElementById("card-inner-3d");
 
@@ -718,16 +744,19 @@
 
         cancelarViradaCarta();
 
-        document.getElementById("evento-categoria").textContent = ({PRECO:"Preço",CAMBIO:"Câmbio",EDUCACAO:"Educação",ENERGIA:"Energia",FISCAL:"Fiscal",SAUDE:"Saúde",DESEMPREGO:"Desemprego",TRABALHO:"Trabalho"})[evento.categoria]||evento.categoria;
+        document.getElementById("evento-categoria").textContent = nomeCategoria(evento.categoria);
         document.getElementById("evento-nome").textContent = evento.nome;
-        const fala=(evento.dialogo||evento.descricao||"").trim().replace(/^["“”]+|["“”]+$/g,"");
+        const heranca=document.getElementById("heranca-mandato");heranca.textContent=estadoAtual.herancaMandato||"";heranca.classList.toggle("hidden",evento.id!=="EV_POSSE");
+        [["selo-consequencia",estadoAtual.seloConsequencia],["selo-retorno",estadoAtual.seloRetorno]].forEach(function(par){const el=document.getElementById(par[0]);el.textContent=par[1]||"";el.classList.toggle("hidden",!par[1]);});
+        document.getElementById("selos-narrativos").classList.toggle("hidden",!estadoAtual.seloConsequencia&&!estadoAtual.seloRetorno);
+        const fala=(estadoAtual.dialogoApresentado||evento.dialogo||evento.descricao||"").trim().replace(/^["“”]+|["“”]+$/g,"");
         document.getElementById("personagem-dialogo").textContent="“"+fala+"”";
         document.getElementById("personagem-dialogo").removeAttribute("title");
         document.getElementById("evento-contextualizacao").textContent = evento.contextualizacao;
         document.getElementById("evento-contextualizacao").classList.toggle("hidden",!estadoAtual.mostrarNumeros);
 
         document.getElementById("personagem-nome").textContent = evento.personagemNome || "Conselheiro";
-        document.getElementById("personagem-cargo").textContent = evento.personagemCargo || evento.categoria;
+        document.getElementById("personagem-cargo").textContent = evento.personagemCargo || document.getElementById("evento-categoria").textContent;
 
         const avatar=evento.personagemAvatar;
         if(retratoAnterior.evento!==evento.id){retratoAnterior={evento:evento.id,avatar:avatar,variante:retratoAnterior.avatar===avatar?1-retratoAnterior.variante:0};}
@@ -803,6 +832,7 @@
         }
 
         const tituloResultado=document.getElementById("conseq-decisao-titulo");tituloResultado.setAttribute("tabindex","-1");tituloResultado.focus({preventScroll:true});
+        document.getElementById("manchete-turno").textContent=estado.manchete||"";
         const btnProx = document.getElementById("btn-proxima-carta");
         if (estado.partidaEncerrada) {
             btnProx.textContent = estado.vitoria
@@ -841,14 +871,27 @@
         }
     }
 
+    function explicarEstadista(estado){
+        const limites={FACIL:[30,98,5,12],MEDIO:[35,85,1,11],DIFICIL:[25,95,.5,8.5]}[estado.dificuldade]||[30,98,5,12];
+        const faltas=[],indicadores=estado.indicadores;
+        if(!estado.vitoria)faltas.push("concluir o mandato");
+        [["caixa","Caixa",0],["aprovacao","Aprovação",1],["pib","PIB",2],["inflacao","Inflação",3]].forEach(function(info){
+            const limite=limites[info[2]],valor=indicadores[info[0]].valorAtual;
+            if(info[2]===3?valor>limite:valor<limite)faltas.push(info[1]+(info[2]===3?" até ":" de pelo menos ")+formatarNum(limite));
+        });
+        return faltas.length?"Faltou: "+faltas.join("; ")+".":"Todos os critérios de Estadista foram alcançados.";
+    }
+
     function exibirFimDeJogo(estado) {
         const tela = document.getElementById("tela-fim-de-jogo");
         tela.classList.remove("hidden");
         document.querySelector(".endgame-analysis").open=false;
         tela.dataset.resultado=estado.vitoria?"vitoria":"derrota";
         const tituloFinal=document.getElementById("fim-titulo");tituloFinal.setAttribute("tabindex","-1");tituloFinal.focus({preventScroll:true});
+        document.getElementById("epilogo-mandato").textContent=estado.epilogoMandato||"";
+        document.getElementById("resultado-eleicao").textContent=estado.resultadoEleicao||"";
         const avaliacao=estado.avaliacaoFinalEconomica||"";
-        document.getElementById("fim-classificacao").textContent=!estado.vitoria?"Mandato interrompido":avaliacao.includes("Estadista")?"Estadista":avaliacao.includes("Pressão Inflacionária")?"Sob pressão":avaliacao.includes("Baixo Crescimento")?"Gestão prudente":"Gestão equilibrada";
+        document.getElementById("fim-classificacao").textContent=!estado.vitoria?"Mandato interrompido":avaliacao.includes("(Estadista)")?"Estadista":avaliacao.includes("Pressão Inflacionária")?"Sob pressão":avaliacao.includes("Baixo Crescimento")?"Baixo crescimento":avaliacao.includes("Gestão Equilibrada")?"Gestão equilibrada":"Reservas frágeis";
 
         tocarSom(estado.vitoria ? "vitoria" : "derrota");
 
@@ -890,17 +933,11 @@
         });
 
         desenharGrafico("grafico-fim-jogo", estado);
-        const h=estado.historico||[], aprendizados=[];
-        const gastos=h.filter(function(t){return t.deltaCaixa<0&&t.deltaAprovacao>0;}).length;
-        const ajustes=h.filter(function(t){return t.deltaCaixa>0&&t.deltaAprovacao<0;}).length;
-        const juros=h.filter(function(t){return t.jurosDepois>t.jurosAntes;}).length;
-        if(gastos)aprendizados.push("Em "+gastos+" decisões, o apoio popular cresceu enquanto o caixa caiu: proteger renda exige financiar o custo fiscal.");
-        if(ajustes)aprendizados.push("Em "+ajustes+" decisões, o caixa melhorou com perda de aprovação: ajustes econômicos também têm custo político.");
-        if(juros)aprendizados.push("Você elevou os juros em "+juros+" turnos. O crédito reage com atraso: as ondas T+1 e T+2 ajudam a explicar o resultado.");
-        const maturados=h.reduce(function(n,t){return n+(t.efeitosAtrasadosAtivados||[]).length;},0);
-        aprendizados.push(maturados?"Você acompanhou "+maturados+" efeitos defasados: o resultado de um turno também depende de decisões anteriores.":"As decisões de hoje podem produzir efeitos depois do mandato. Consulte sempre a fila antes de escolher.");
-        if(aprendizados.length<2)aprendizados.push("O mandato terminou com caixa "+formatarNum(estado.indicadores.caixa.valorAtual)+" e aprovação "+formatarNum(estado.indicadores.aprovacao.valorAtual)+"%: a estabilidade depende de preservar ambas as reservas.");
+        const h=estado.historico||[];
+        const aprendizados=estado.licoesMandato||[];
+        document.getElementById("fim-estadista-faltou").textContent=explicarEstadista(estado);
         const ul=document.getElementById("fim-aprendizados");ul.textContent="";aprendizados.slice(0,3).forEach(function(t){const li=document.createElement("li");li.textContent=t;ul.appendChild(li);});
+        if(!aprendizados.length){const vazio=document.createElement("li");vazio.textContent="Não há lições registradas para este mandato.";ul.appendChild(vazio);}
         document.getElementById("grafico-resumo-texto").textContent=h.map(function(t){return "Turno "+t.numeroTurno+": caixa "+t.caixaDepois+", aprovação "+t.aprovacaoDepois+", PIB "+t.pibDepois+", inflação "+t.inflacaoDepois;}).join(". ");
     }
 
@@ -960,13 +997,14 @@
         const W = canvas.width, H = canvas.height;
         ctx.clearRect(0, 0, W, H);
 
+        const historico=estado.historico||[];
         const pts = [{
-            caixa: estado.historico.length ? estado.historico[0].caixaAntes : estado.indicadores.caixa.valorAtual,
-            aprovacao: estado.historico.length ? estado.historico[0].aprovacaoAntes : estado.indicadores.aprovacao.valorAtual,
-            pib: estado.historico.length ? estado.historico[0].pibAntes : estado.indicadores.pib.valorAtual,
-            inflacao: estado.historico.length ? estado.historico[0].inflacaoAntes : estado.indicadores.inflacao.valorAtual
+            caixa: historico.length ? historico[0].caixaAntes : estado.indicadores.caixa.valorAtual,
+            aprovacao: historico.length ? historico[0].aprovacaoAntes : estado.indicadores.aprovacao.valorAtual,
+            pib: historico.length ? historico[0].pibAntes : estado.indicadores.pib.valorAtual,
+            inflacao: historico.length ? historico[0].inflacaoAntes : estado.indicadores.inflacao.valorAtual
         }];
-        (estado.historico || []).forEach(function (h) {
+        historico.forEach(function (h) {
             pts.push({
                 caixa: h.caixaDepois,
                 aprovacao: h.aprovacaoDepois,
