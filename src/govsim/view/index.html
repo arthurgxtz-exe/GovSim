@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GovSim — Reigns of the Republic (Simulador Político-Econômico)</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="erro-api" class="erro-api hidden" role="alert" aria-live="assertive"></div>
+    <section id="inicio" class="welcome" aria-labelledby="inicio-titulo">
+      <div class="welcome-panel"><p class="eyebrow">GOVSIM • REPÚBLICA EM SUAS MÃOS</p><h1 id="inicio-titulo">GovSim<span>O peso da coroa.</span></h1>
+      <p>Equilibre recursos, apoio popular, atividade econômica e preços durante seu mandato.</p>
+      <select id="inicio-dificuldade" class="hidden" aria-hidden="true" tabindex="-1"><option value="FACIL">Fácil</option><option value="MEDIO">Médio</option><option value="DIFICIL">Difícil</option></select>
+      <fieldset class="difficulty-cards"><legend>Qual será o seu mandato?</legend>
+        <label class="difficulty-option" data-level="FACIL"><input type="radio" name="desafio" value="FACIL" checked><span class="difficulty-icon">♧</span><strong>Fácil</strong><small>10 turnos · números visíveis · mais reservas</small></label>
+        <label class="difficulty-option" data-level="MEDIO"><input type="radio" name="desafio" value="MEDIO"><span class="difficulty-icon">♜</span><strong>Médio</strong><small>12 turnos · intensidade por pontos · equilíbrio delicado</small></label>
+        <label class="difficulty-option" data-level="DIFICIL"><input type="radio" name="desafio" value="DIFICIL"><span class="difficulty-icon">♛</span><strong>Difícil</strong><small>15 turnos · sem prévia · decisões exigentes</small></label>
+      </fieldset>
+      <button id="btn-tutorial" class="tutorial-toggle" type="button" aria-expanded="false" aria-controls="tutorial-conteudo">Como governar · tutorial</button>
+      <dialog id="tutorial-conteudo" class="tutorial hidden" aria-label="Tutorial em três cartas"><button id="tutorial-fechar" class="reigns-secondary-btn" type="button">Fechar tutorial</button>
+        <article><b>01 • Leia a crise</b><p>Observe os quatro pilares. Caixa e aprovação zerados encerram o mandato.</p></article>
+        <article><b>02 • Compare e decida</b><p>Arraste para comparar e solte para decidir. Pelo teclado, segure A/B ou ←/→ para ver a opção; solte para confirmar. Tab também permite focar os botões. Fácil: números. Médio: pontos de intensidade sem direção. Difícil: sem prévia.</p></article>
+        <article><b>03 • Olhe adiante</b><p>Consulte a linha do tempo. Decisões de hoje mudam turnos futuros. No Médio e Difícil, inflação ≥25% ou PIB abaixo de −3% por dois turnos também encerram o mandato.</p></article>
+      </dialog><div class="demo-menu"><p>Modo demonstração (cartas em ordem fixa, para apresentação)</p><div><button id="btn-demo-curta" type="button">Demo · 4 turnos</button><button id="btn-demo-10" type="button">Demo · 10 turnos</button></div><small>Atalho: Ctrl+D</small></div><button id="inicio-jogar" class="reigns-primary-btn">Começar mandato</button></div>
+    </section>
+    <div id="alerta-acessivel" class="sr-only" role="status" aria-live="polite"></div>
+    <!-- MOLDURA CENTRAL E PALCO INSPIRADO EM REIGNS -->
+    <div class="reigns-viewport">
+
+        <!-- 1. TOPO: OS 4 PILARES QUE SE PREENCHEM POR DENTRO + BOLINHAS DE PREVIEW -->
+        <header class="reigns-hud-header">
+            <div class="hud-top-strip">
+                <div class="hud-brand"><span class="brand-crown" aria-hidden="true">♕</span><span class="brand-name">GOVSIM</span><span id="badge-dificuldade" class="difficulty-badge">Fácil</span><span id="badge-modo" class="mode-tag">Mandato oficial</span></div>
+                <span class="turno-cabecalho">Turno <strong id="turno-atual">1</strong>/<strong id="turno-total">10</strong></span>
+                <nav class="hud-controls" aria-label="Controles da partida">
+                    <button id="btn-som" class="icon-btn" type="button">♫ Som</button>
+                    <button id="btn-abrir-cronicas" class="icon-btn" type="button">▤ Crônicas <span id="badge-efeitos-count" class="badge-count hidden"></span></button>
+                    <button id="btn-menu" class="icon-btn" type="button">☰ Menu</button>
+                </nav>
+            </div>
+            <!-- OS 4 ÍCONES-RECIPIENTE DE REIGNS (CAIXA, APROVAÇÃO, PIB, INFLAÇÃO) -->
+            <div class="pillars-bar" role="region" aria-label="Quatro Indicadores Principais">
+                <!-- Pilar 1: Caixa Público -->
+                <div id="hud-caixa" class="pillar-item" title="Caixa Público: Recursos financeiros do governo. Se zerar, ocorre derrota fiscal.">
+                    <div class="pillar-dot-slot">
+                        <span id="dot-caixa" class="reigns-dot"></span>
+                    </div>
+                    <div class="pillar-vessel">
+                        <!-- Ícone de fundo (vazio/escuro) -->
+                        <svg class="vessel-bg" viewBox="0 0 36 36">
+                            <path d="M18 3L3 10v3h30v-3L18 3zM7 16v11H4v4h28v-4h-3V16h-4v11h-5V16h-4v11h-5V16H7z"/>
+                        </svg>
+                        <!-- Ícone de preenchimento (sobe e desce conforme o valor!) -->
+                        <svg id="vessel-fill-caixa" class="vessel-fill fill-color-caixa" viewBox="0 0 36 36" style="clip-path: inset(37.5% 0 0 0);">
+                            <path d="M18 3L3 10v3h30v-3L18 3zM7 16v11H4v4h28v-4h-3V16h-4v11h-5V16h-4v11h-5V16H7z"/>
+                        </svg>
+                    </div>
+                    <span class="pillar-label">Caixa</span>
+                    <strong id="valor-caixa" class="pillar-value">100,0</strong>
+                    <span id="float-caixa" class="pillar-delta"></span>
+                </div>
+
+                <!-- Pilar 2: Aprovação Popular -->
+                <div id="hud-aprovacao" class="pillar-item" title="Aprovação Popular: Apoio da população ao governo. Se zerar, o Presidente cai.">
+                    <div class="pillar-dot-slot">
+                        <span id="dot-aprovacao" class="reigns-dot"></span>
+                    </div>
+                    <div class="pillar-vessel">
+                        <svg class="vessel-bg" viewBox="0 0 36 36">
+                            <path d="M18 4l4 7 8-3-3 10H9L6 8l8 3 4-7zm-9 17h18v3c0 4-4 8-9 8s-9-4-9-8v-3z"/>
+                        </svg>
+                        <svg id="vessel-fill-aprovacao" class="vessel-fill fill-color-aprovacao" viewBox="0 0 36 36" style="clip-path: inset(40% 0 0 0);">
+                            <path d="M18 4l4 7 8-3-3 10H9L6 8l8 3 4-7zm-9 17h18v3c0 4-4 8-9 8s-9-4-9-8v-3z"/>
+                        </svg>
+                    </div>
+                    <span class="pillar-label">Aprovação</span>
+                    <strong id="valor-aprovacao" class="pillar-value">60,0%</strong>
+                    <span id="float-aprovacao" class="pillar-delta"></span>
+                </div>
+
+                <!-- Pilar 3: PIB -->
+                <div id="hud-pib" class="pillar-item" title="PIB: Desempenho da atividade econômica e geração de empregos.">
+                    <div class="pillar-dot-slot">
+                        <span id="dot-pib" class="reigns-dot"></span>
+                    </div>
+                    <div class="pillar-vessel">
+                        <svg class="vessel-bg" viewBox="0 0 36 36">
+                            <path d="M4 28V16l8 5V16l8 5V10h12v18H4zm20-14v4h4v-4h-4zm0 7v4h4v-4h-4z"/>
+                        </svg>
+                        <svg id="vessel-fill-pib" class="vessel-fill fill-color-pib" viewBox="0 0 36 36" style="clip-path: inset(46.9% 0 0 0);">
+                            <path d="M4 28V16l8 5V16l8 5V10h12v18H4zm20-14v4h4v-4h-4zm0 7v4h4v-4h-4z"/>
+                        </svg>
+                    </div>
+                    <span class="pillar-label">PIB</span>
+                    <strong id="valor-pib" class="pillar-value">+2,5%</strong>
+                    <span id="float-pib" class="pillar-delta"></span>
+                </div>
+
+                <!-- Pilar 4: Inflação -->
+                <div id="hud-inflacao" class="pillar-item" title="Inflação: Variação geral dos preços. Inflação elevada corrói a aprovação popular.">
+                    <div class="pillar-dot-slot">
+                        <span id="dot-inflacao" class="reigns-dot"></span>
+                    </div>
+                    <div class="pillar-vessel">
+                        <svg class="vessel-bg" viewBox="0 0 36 36">
+                            <path d="M19.5 3C20.5 7 18 10 15 12c-3 2-5 5-5 9 0 6 5 11 11 11s10-5 10-11c0-7-5-13-11.5-18zM18 29c-3.3 0-6-2.5-6-5.8 0-3 2-5 5.2-6 2.8-.8 5.2-2.5 6.4-5 .8 2 1.4 4.2 1.4 6.5 0 5.7-3.1 10.3-7 10.3z"/>
+                        </svg>
+                        <svg id="vessel-fill-inflacao" class="vessel-fill fill-color-inflacao" viewBox="0 0 36 36" style="clip-path: inset(77.5% 0 0 0);">
+                            <path d="M19.5 3C20.5 7 18 10 15 12c-3 2-5 5-5 9 0 6 5 11 11 11s10-5 10-11c0-7-5-13-11.5-18zM18 29c-3.3 0-6-2.5-6-5.8 0-3 2-5 5.2-6 2.8-.8 5.2-2.5 6.4-5 .8 2 1.4 4.2 1.4 6.5 0 5.7-3.1 10.3-7 10.3z"/>
+                        </svg>
+                    </div>
+                    <span class="pillar-label">Inflação</span>
+                    <strong id="valor-inflacao" class="pillar-value">4,5%</strong>
+                    <span id="float-inflacao" class="pillar-delta"></span>
+                </div>
+            </div>
+
+        </header>
+
+        <!-- 2. CORPO CENTRAL DO JOGO (LAYOUT FIEL A REIGNS) -->
+        <main class="reigns-main-column">
+
+            <!-- A) MESA DE JOGO ATIVA -->
+            <section id="mesa-cartas" class="reigns-play-area" aria-live="polite">
+
+                <!-- Diálogo e Crise ACIMA da carta (exatamente como em Reigns) -->
+                <div class="reigns-dialogue-stage">
+                    <div class="crisis-header-line">
+                        <span id="evento-categoria" class="crisis-pill">Choque Econômico</span>
+                        <span class="crisis-sep">&bull;</span>
+                        <span id="evento-nome" class="crisis-name">Emergência Nacional</span>
+                    </div>
+                    <p id="personagem-dialogo" class="reigns-speech-text">
+                        "Senhor Presidente, aguardamos sua decisão."
+                    </p>
+                    <p id="evento-contextualizacao" class="reigns-context-subtext"></p>
+                </div>
+
+                <!-- Palco da Carta com Botões Laterais de Apoio em Telas Grandes -->
+                <div class="card-arena">
+                    <!-- Asa Esquerda (Decreto A) -->
+                    <button id="btn-assinar-a" class="wing-choice wing-left" type="button" aria-label="Decreto A: focar para prévia; Enter para decidir">
+                        <span class="wing-arrow">← A</span>
+                        <strong id="dec-a-titulo" class="wing-title">Opção A</strong>
+                        <span id="dec-a-politica" class="wing-tag">Política Fiscal</span>
+                    </button>
+
+                    <!-- O BARALHO E A CARTA DE RETRATO (ESTILO REIGNS) -->
+                    <div class="deck-pedestal">
+                        <!-- Cartas empilhadas no fundo do baralho -->
+                        
+                        <div class="deck-shadow-card shadow-2" aria-hidden="true"></div>
+                        <div class="deck-shadow-card shadow-1" aria-hidden="true"></div>
+
+                        <!-- A Carta Interativa (Arrastável e com Flip 3D) -->
+                        <article id="carta-ativa" class="reigns-portrait-card" tabindex="0" aria-label="Carta do Personagem">
+                            <div id="card-inner-3d" class="card-inner-3d">
+                                <!-- Verso da Carta (Brasão da República / GovSim) visto durante o flip -->
+                                <div class="card-face card-back" aria-hidden="true">
+                                    <div class="card-back-pattern">
+                                        <span class="back-emblem" aria-hidden="true">◇</span>
+                                        <span class="back-title">GOVSIM</span>
+                                    </div>
+                                </div>
+
+                                <!-- Frente da Carta (Arte do Personagem + Cortina Superior de Escolha) -->
+                                <div class="card-face card-front">
+                                    <!-- Cortina Preta Translúcida no Topo da Carta ao Inclinar (Assinatura de Reigns!) -->
+                                    <div id="choice-curtain" class="reigns-choice-curtain" aria-live="polite" aria-hidden="true">
+                                        <span id="curtain-text" class="curtain-decision-text">DECISÃO</span>
+                                        <small id="curtain-sub" class="curtain-policy-sub"></small>
+                                    </div>
+
+                                    <!-- Ilustração Vetorial Geométrica do Personagem -->
+                                    <div class="drag-choice drag-choice-a" id="drag-label-a" aria-hidden="true"></div><div class="drag-choice drag-choice-b" id="drag-label-b" aria-hidden="true"></div>
+                                    <div id="svg-retrato" class="reigns-artwork-canvas"></div>
+
+                                    <!-- Indicadores discretos de deslize nos cantos inferiores da carta -->
+                                    <div class="card-corner-hints">
+                                        <span class="corner-left">&larr; <em id="hint-curto-a">A</em></span>
+                                        <span class="corner-right"><em id="hint-curto-b">B</em> &rarr;</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+
+                    <!-- Asa Direita (Decreto B) -->
+                    <button id="btn-assinar-b" class="wing-choice wing-right" type="button" aria-label="Decreto B: focar para prévia; Enter para decidir">
+                        <span class="wing-arrow">B →</span>
+                        <strong id="dec-b-titulo" class="wing-title">Opção B</strong>
+                        <span id="dec-b-politica" class="wing-tag">Política Monetária</span>
+                    </button>
+                </div>
+
+                <!-- Placa de Nome e Cargo do Personagem ABAIXO da carta (exatamente como em Reigns) -->
+                <div class="reigns-character-plate">
+                    <h2 id="personagem-nome" class="plate-char-name">Ministro</h2>
+                    <span id="personagem-cargo" class="plate-char-role">Conselho de Estado</span>
+                </div>
+            </section>
+
+            <!-- B) CARTA DE CONSEQUÊNCIA ECONÔMICA (NO MESMO PALCO APÓS CADA DECISÃO) -->
+            <section id="carta-consequencia" class="reigns-consequence-stage hidden" aria-live="assertive">
+                <div class="conseq-scroll-card">
+                    <span class="conseq-eyebrow">DECRETO PRESIDENCIAL ASSINADO</span>
+                    <h2 id="conseq-decisao-titulo" class="conseq-decision-heading">DECISÃO</h2>
+                    <span id="conseq-politica-tipo" class="conseq-policy-badge">Política Econômica</span><p id="conseq-descricao" class="conseq-description"></p><p id="conseq-nota" class="conseq-note"></p>
+
+                    <!-- Impactos numéricos nos 4 indicadores -->
+                    <div class="conseq-4-pills">
+                        <div id="conseq-box-caixa" class="c-pill">
+                            <span class="c-pill-label">Caixa Público</span>
+                            <strong id="conseq-val-caixa" class="c-pill-delta">0,0</strong>
+                            <small id="conseq-after-caixa">100,0</small>
+                        </div>
+                        <div id="conseq-box-aprovacao" class="c-pill">
+                            <span class="c-pill-label">Aprovação</span>
+                            <strong id="conseq-val-aprovacao" class="c-pill-delta">0,0%</strong>
+                            <small id="conseq-after-aprovacao">60,0%</small>
+                        </div>
+                        <div id="conseq-box-pib" class="c-pill">
+                            <span class="c-pill-label">PIB</span>
+                            <strong id="conseq-val-pib" class="c-pill-delta">0,0%</strong>
+                            <small id="conseq-after-pib">2,5%</small>
+                        </div>
+                        <div id="conseq-box-inflacao" class="c-pill">
+                            <span class="c-pill-label">Inflação</span>
+                            <strong id="conseq-val-inflacao" class="c-pill-delta">0,0%</strong>
+                            <small id="conseq-after-inflacao">4,5%</small>
+                        </div>
+                    </div>
+
+                    <!-- Explicação Didática Concisa e Clara -->
+                    <div class="conseq-lesson-box">
+                        <p id="conseq-sintese" class="lesson-lead"></p>
+                        <details id="conseq-explicacao" class="conseq-explicacao"><summary>Entenda o porquê</summary><div class="lesson-two-cols">
+                            <div>
+                                <strong>Mecanismo Econômico:</strong>
+                                <p id="conseq-porque"></p>
+                            </div>
+                            <div>
+                                <strong>Trade-off e Efeitos Futuros:</strong>
+                                <p id="conseq-futuro"></p>
+                            </div>
+                        </div>
+                        <div id="conseq-reacoes-mini" class="lesson-reactions"></div>
+
+                        <details class="conseq-memoria-details">
+                            <summary>Ver Memória de Cálculo Detalhada deste Turno</summary>
+                            <ul id="lista-memoria-calculo" class="conseq-memoria-list"></ul>
+                        </details>
+                    </details></div>
+
+                    <button id="btn-proxima-carta" class="reigns-primary-btn" type="button">
+                        Virar Próxima Carta &#10140;
+                    </button>
+                </div>
+            </section>
+
+            <!-- C) TELA DE FIM DE MANDATO (VITÓRIA OU QUEDA DO PRESIDENTE) -->
+            <section id="tela-fim-de-jogo" class="reigns-endgame-stage hidden" aria-live="assertive">
+                <div class="endgame-scroll-card">
+                    <div id="fim-banner-topo" class="endgame-banner">
+                        <div id="fim-icone" class="endgame-symbol">&#9813;</div>
+                        <span id="fim-status-badge" class="endgame-tag">FIM DO MANDATO</span>
+                        <span id="fim-classificacao" class="classification-seal"></span><h2 id="fim-titulo">Veredito da História</h2>
+                        <p id="fim-motivo" class="endgame-summary"></p>
+                    </div>
+
+                    <div class="endgame-content">
+                        <details class="endgame-analysis"><summary>Análise completa do mandato</summary>
+                            <h3>Balanço Econômico (<span id="fim-turnos-realizados">10</span> turnos no poder)</h3>
+                            <p id="fim-avaliacao-economica"></p>
+                        </details>
+
+                        <section class="aprendizado"><h3>O que você aprendeu</h3><ul id="fim-aprendizados"></ul></section>
+                        <div id="fim-resumo-indicadores" class="conseq-4-pills"></div>
+
+                        <div class="endgame-chart-wrap">
+                            <p>Caixa · Aprovação · PIB · Inflação (escalas normalizadas)</p><div id="grafico-resumo-texto" class="sr-only"></div>
+                            <canvas role="img" aria-label="Evolução dos quatro indicadores ao longo do mandato" aria-describedby="grafico-resumo-texto" id="grafico-fim-jogo" width="600" height="180"></canvas>
+                        </div>
+
+                        <div class="endgame-btn-row">
+                            <button id="btn-fim-nova-normal" class="reigns-primary-btn" type="button">
+                                ☰ Voltar ao menu
+                            </button>
+                            <button id="btn-fim-nova-demo" class="reigns-secondary-btn" type="button">
+                                &#9654; Modo Demonstração
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- 3. RODAPÉ CRONOLÓGICO DE REINADO (ESTILO REIGNS) -->
+        <footer class="reigns-footer-bar">
+            <span class="timeline-legend">Próximos efeitos</span><section id="linha-tempo" class="timeline" aria-label="Efeitos futuros por indicador"></section>
+            <div class="footer-ruler-info">
+                <span class="ruler-title">Presidente da República</span>
+                <span class="footer-dot">&bull;</span>
+                <strong id="ano-mandato">Ano 2026</strong>
+                
+            </div>
+
+            <div class="footer-economy-badges">
+                <span class="footer-pill" title="Taxa Básica de Juros do Banco Central">
+                    Selic: <strong id="valor-juros">10,5% a.a.</strong>
+                </span>
+            </div>
+        </footer>
+    </div>
+
+    <!-- MODAL DE CRÔNICAS DO MANDATO, EFEITOS ATRASADOS E GRÁFICO -->
+    <div id="modal-cronicas" class="drawer-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="cronicas-titulo">
+        <div class="drawer-panel">
+            <div class="drawer-header">
+                <h2 id="cronicas-titulo">&#128220; Crônicas da República &amp; Efeitos Econômicos</h2>
+                <button id="btn-fechar-cronicas" class="btn-close-drawer" type="button">&times;</button>
+            </div>
+
+            <div class="drawer-body"><section class="drawer-section"><h3>Como governar</h3><p>Caixa ou aprovação em zero encerram o mandato. No Médio e Difícil, inflação a partir de 25% e PIB abaixo de −3% por dois turnos também encerram a partida. Arraste ou foque A/B para comparar. No Fácil, a faixa mostra números; no Médio, pontos neutros indicam apenas intensidade; no Difícil, não há prévia. As setas da fila inferior mostram efeitos já agendados, não se são bons ou ruins. T+1 e T+2 indicam quando consequências de decisões anteriores entram em vigor.</p></section>
+                <div class="drawer-section">
+                    <h3>&#9203; Efeitos Econômicos Atrasados (Defasagem Temporal)</h3>
+                    <p class="drawer-hint">Decisões anteriores (como mudanças na taxa de juros ou investimentos) que produzirão impacto nos próximos turnos:</p>
+                    <div id="lista-efeitos-pendentes" class="drawer-list"></div>
+                </div>
+
+                <div class="drawer-section">
+                    <h3>&#127963; Termômetro Institucional (IA Baseada em Regras)</h3>
+                    <p class="drawer-hint">Reações atuais da Oposição Parlamentar e do Mercado Financeiro diante dos indicadores:</p>
+                    <div id="lista-reacoes-modal" class="drawer-list"></div>
+                </div>
+
+                <div class="drawer-section">
+                    <h3>&#128200; Curva de Evolução dos 4 Indicadores</h3>
+                    <div class="chart-legend-row">
+                        <span><i class="leg-dot c-caixa"></i> Caixa</span>
+                        <span><i class="leg-dot c-aprov"></i> Aprovação</span>
+                        <span><i class="leg-dot c-pib"></i> PIB</span>
+                        <span><i class="leg-dot c-inf"></i> Inflação</span>
+                    </div>
+                    <canvas id="grafico-evolucao" width="640" height="200"></canvas>
+                </div>
+
+                <div class="drawer-section">
+                    <h3>&#128214; Histórico de Decisões do Mandato</h3>
+                    <div id="lista-historico" class="drawer-list"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
